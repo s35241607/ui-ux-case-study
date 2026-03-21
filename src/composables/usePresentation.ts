@@ -44,17 +44,19 @@ export function usePresentation() {
       }
     }
 
-    // Navigation with Arrow Keys
-    const currentIndex = allCases.findIndex(c => c.path === route.path)
-    if (currentIndex !== -1) {
-      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-        e.preventDefault()
-        const next = allCases[currentIndex + 1] || allCases[0] // Loop back to start if at end
-        router.push(next.path)
-      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        e.preventDefault()
-        const prev = allCases[currentIndex - 1] || allCases[allCases.length - 1] // Loop to end if at start
-        router.push(prev.path)
+    // Navigation with Arrow/Page Keys - ONLY in presentation mode
+    if (isPresenting.value) {
+      const currentIndex = allCases.findIndex(c => c.path === route.path)
+      if (currentIndex !== -1) {
+        if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === 'ArrowDown') {
+          e.preventDefault()
+          const next = allCases[currentIndex + 1] || allCases[0] // Loop back to start if at end
+          router.push(next.path)
+        } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'ArrowUp') {
+          e.preventDefault()
+          const prev = allCases[currentIndex - 1] || allCases[allCases.length - 1] // Loop to end if at start
+          router.push(prev.path)
+        }
       }
     }
   }
