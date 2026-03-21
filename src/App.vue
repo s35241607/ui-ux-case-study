@@ -21,21 +21,14 @@ const { isPresenting, togglePresentationMode } = usePresentation()
     and break fixed positioning, causing toast to appear in wrong location.
   -->
   <Teleport to="body">
-    <Toaster 
-      position="bottom-right" 
-      :theme="isDark ? 'dark' : 'light'" 
-      :toastOptions="{
-        className: 'sonner-toast-custom',
-      }"
-    />
-    
+    <Toaster position="bottom-right" :theme="isDark ? 'dark' : 'light'" :toastOptions="{
+      class: 'sonner-toast-custom',
+    }" />
+
     <!-- Presentation Mode Exit Button (only visible when presenting) -->
     <Transition name="fade">
-      <button 
-        v-if="isPresenting"
-        @click="togglePresentationMode" 
-        class="fixed top-4 right-4 z-[100] bg-black/40 hover:bg-black/60 text-white px-3 py-1.5 rounded-full text-xs flex items-center gap-2 backdrop-blur-sm transition-all"
-      >
+      <button v-if="isPresenting" @click="togglePresentationMode"
+        class="fixed top-4 right-4 z-[100] bg-black/40 hover:bg-black/60 text-white px-3 py-1.5 rounded-full text-xs flex items-center gap-2 backdrop-blur-sm transition-all">
         <span class="flex items-center gap-1"><kbd class="font-mono bg-white/20 px-1 rounded">ESC</kbd> 或點擊離開簡報模式</span>
       </button>
     </Transition>
@@ -60,6 +53,7 @@ const { isPresenting, togglePresentationMode } = usePresentation()
 .fade-leave-active {
   transition: opacity 0.3s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;

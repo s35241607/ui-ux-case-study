@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Check, X, Pencil, Edit2 } from 'lucide-vue-next'
+import { Pencil, Edit2 } from 'lucide-vue-next'
 import SplitView from '@/components/layout/SplitView.vue'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -63,7 +63,8 @@ const getStatusColor = (status: string) => {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">內聯編輯 vs 彈窗編輯 (Inline Edit)</h1>
-        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗
+        </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         在企業內部系統中，使用者每天可能要修改數百筆資料的狀態。若是每次修改都需要點擊「編輯」進入特殊模式或彈出對話框，將會造成嚴重的效率瓶頸與認知中斷。
@@ -92,14 +93,16 @@ const getStatusColor = (status: string) => {
                       <div class="text-xs text-muted-foreground">{{ row.email }}</div>
                     </td>
                     <td class="p-4">
-                      <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors"
-                            :class="getStatusColor(row.status)">
+                      <span
+                        class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors"
+                        :class="getStatusColor(row.status)">
                         {{ row.status }}
                       </span>
                       <div class="text-xs text-muted-foreground mt-1">{{ row.role }}</div>
                     </td>
                     <td class="p-4">
-                      <Button variant="outline" size="sm" @click="startBadEdit(row)" class="bad-btn-override" :disabled="badEditingId === row.id">
+                      <Button variant="outline" size="sm" @click="startBadEdit(row)" class="bad-btn-override"
+                        :disabled="badEditingId === row.id">
                         <Edit2 class="w-3.5 h-3.5 mr-1" />
                         編輯
                       </Button>
@@ -165,35 +168,43 @@ const getStatusColor = (status: string) => {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="row in goodData" :key="row.id" class="border-b last:border-0 hover:bg-primary/5 transition-colors group cursor-default">
+                <tr v-for="row in goodData" :key="row.id"
+                  class="border-b last:border-0 hover:bg-primary/5 transition-colors group cursor-default">
                   <td class="p-4">
                     <div class="font-medium">{{ row.name }}</div>
                     <div class="text-xs text-muted-foreground">{{ row.email }}</div>
                   </td>
                   <td class="p-0">
                     <DropdownMenu>
-                      <DropdownMenuTrigger class="w-full h-full px-4 py-3 flex items-center gap-2 cursor-pointer hover:bg-primary/10 transition-colors text-left focus:outline-none focus:ring-1 focus:ring-ring focus:ring-inset rounded-sm group/cell">
+                      <DropdownMenuTrigger
+                        class="w-full h-full px-4 py-3 flex items-center gap-2 cursor-pointer hover:bg-primary/10 transition-colors text-left focus:outline-none focus:ring-1 focus:ring-ring focus:ring-inset rounded-sm group/cell">
                         <span class="font-medium text-sm">{{ row.role }}</span>
-                        <Pencil class="w-3 h-3 text-muted-foreground/30 group-hover/cell:text-muted-foreground/70 transition-colors shrink-0" />
+                        <Pencil
+                          class="w-3 h-3 text-muted-foreground/30 group-hover/cell:text-muted-foreground/70 transition-colors shrink-0" />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="start">
-                        <DropdownMenuItem v-for="opt in roleOptions" :key="opt" @click="quickUpdateGood(row, 'role', opt)">
-                          <span :class="{'font-bold': row.role === opt}">{{ opt }}</span>
+                        <DropdownMenuItem v-for="opt in roleOptions" :key="opt"
+                          @click="quickUpdateGood(row, 'role', opt)">
+                          <span :class="{ 'font-bold': row.role === opt }">{{ opt }}</span>
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </td>
                   <td class="p-0">
                     <DropdownMenu>
-                      <DropdownMenuTrigger class="w-full h-full px-4 py-3 flex items-center gap-2 cursor-pointer hover:bg-primary/10 transition-colors text-left focus:outline-none focus:ring-1 focus:ring-ring focus:ring-inset rounded-sm group/cell">
-                        <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold border" :class="getStatusColor(row.status)">
+                      <DropdownMenuTrigger
+                        class="w-full h-full px-4 py-3 flex items-center gap-2 cursor-pointer hover:bg-primary/10 transition-colors text-left focus:outline-none focus:ring-1 focus:ring-ring focus:ring-inset rounded-sm group/cell">
+                        <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold border"
+                          :class="getStatusColor(row.status)">
                           {{ row.status }}
                         </span>
-                        <Pencil class="w-3 h-3 text-muted-foreground/30 group-hover/cell:text-muted-foreground/70 transition-colors shrink-0" />
+                        <Pencil
+                          class="w-3 h-3 text-muted-foreground/30 group-hover/cell:text-muted-foreground/70 transition-colors shrink-0" />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="start">
-                        <DropdownMenuItem v-for="opt in statusOptions" :key="opt" @click="quickUpdateGood(row, 'status', opt)">
-                          <span :class="{'font-bold': row.status === opt}">{{ opt }}</span>
+                        <DropdownMenuItem v-for="opt in statusOptions" :key="opt"
+                          @click="quickUpdateGood(row, 'status', opt)">
+                          <span :class="{ 'font-bold': row.status === opt }">{{ opt }}</span>
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>

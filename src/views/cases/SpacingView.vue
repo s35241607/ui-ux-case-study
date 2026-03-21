@@ -30,9 +30,9 @@ import { Badge } from '@/components/ui/badge'
             <div class="divide-y">
               <div v-for="i in 4" :key="i" class="flex items-center p-1 gap-1 text-xs">
                 <span class="font-mono">#ORD-{{ 1000 + i }}</span>
-                <span class="flex-1">客戶{{ ['王小明','陳大志','林美華','張志遠'][i-1] }}</span>
+                <span class="flex-1">客戶{{ ['王小明', '陳大志', '林美華', '張志遠'][i - 1] }}</span>
                 <span class="text-green-600">已付款</span>
-                <span>${{ [12800, 4500, 98200, 2100][i-1] }}</span>
+                <span>${{ [12800, 4500, 98200, 2100][i - 1] }}</span>
               </div>
             </div>
           </div>
@@ -43,7 +43,9 @@ import { Badge } from '@/components/ui/badge'
             <div class="flex gap-0.5 flex-wrap">
               <input class="border rounded px-1 h-6 bg-background" placeholder="訂單編號" />
               <input class="border rounded px-1 h-6 bg-background" placeholder="客戶名稱" />
-              <select class="border rounded px-1 h-6 bg-background"><option>所有狀態</option></select>
+              <select class="border rounded px-1 h-6 bg-background">
+                <option>所有狀態</option>
+              </select>
               <button class="bg-primary text-primary-foreground rounded px-1 h-6">搜尋</button>
             </div>
           </div>
@@ -76,26 +78,19 @@ import { Badge } from '@/components/ui/badge'
             </CardHeader>
             <CardContent class="p-0">
               <div class="divide-y">
-                <div
-                  v-for="(row, i) in [
-                    { id:'ORD-1001', name:'王小明', status:'已付款', amount:12800 },
-                    { id:'ORD-1002', name:'陳大志', status:'處理中', amount:4500 },
-                    { id:'ORD-1003', name:'林美華', status:'已付款', amount:98200 },
-                    { id:'ORD-1004', name:'張志遠', status:'待付款', amount:2100 },
-                  ]"
-                  :key="row.id"
-                  class="flex items-center px-4 py-3 gap-3 hover:bg-muted/40 transition-colors"
-                >
+                <div v-for="row in [
+                  { id: 'ORD-1001', name: '王小明', status: '已付款', amount: 12800 },
+                  { id: 'ORD-1002', name: '陳大志', status: '處理中', amount: 4500 },
+                  { id: 'ORD-1003', name: '林美華', status: '已付款', amount: 98200 },
+                  { id: 'ORD-1004', name: '張志遠', status: '待付款', amount: 2100 },
+                ]" :key="row.id" class="flex items-center px-4 py-3 gap-3 hover:bg-muted/40 transition-colors">
                   <span class="font-mono text-xs text-muted-foreground w-24 shrink-0">#{{ row.id }}</span>
                   <span class="flex-1 text-sm font-medium">{{ row.name }}</span>
-                  <span
-                    class="text-xs px-2 py-0.5 rounded-full font-medium"
-                    :class="{
-                      'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400': row.status === '已付款',
-                      'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400': row.status === '處理中',
-                      'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400': row.status === '待付款',
-                    }"
-                  >{{ row.status }}</span>
+                  <span class="text-xs px-2 py-0.5 rounded-full font-medium" :class="{
+                    'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400': row.status === '已付款',
+                    'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400': row.status === '處理中',
+                    'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400': row.status === '待付款',
+                  }">{{ row.status }}</span>
                   <span class="text-sm font-medium tabular-nums text-right">NT${{ row.amount.toLocaleString() }}</span>
                 </div>
               </div>
@@ -109,10 +104,18 @@ import { Badge } from '@/components/ui/badge'
             </CardHeader>
             <CardContent>
               <div class="flex flex-wrap gap-3">
-                <input class="border rounded-md px-3 h-9 text-sm bg-background focus:ring-1 focus:ring-ring outline-none" placeholder="訂單編號" />
-                <input class="border rounded-md px-3 h-9 text-sm bg-background focus:ring-1 focus:ring-ring outline-none" placeholder="客戶名稱" />
-                <select class="border rounded-md px-3 h-9 text-sm bg-background focus:ring-1 focus:ring-ring outline-none"><option>所有狀態</option></select>
-                <button class="bg-primary text-primary-foreground rounded-md px-4 h-9 text-sm font-medium hover:bg-primary/90 transition-colors">搜尋</button>
+                <input
+                  class="border rounded-md px-3 h-9 text-sm bg-background focus:ring-1 focus:ring-ring outline-none"
+                  placeholder="訂單編號" />
+                <input
+                  class="border rounded-md px-3 h-9 text-sm bg-background focus:ring-1 focus:ring-ring outline-none"
+                  placeholder="客戶名稱" />
+                <select
+                  class="border rounded-md px-3 h-9 text-sm bg-background focus:ring-1 focus:ring-ring outline-none">
+                  <option>所有狀態</option>
+                </select>
+                <button
+                  class="bg-primary text-primary-foreground rounded-md px-4 h-9 text-sm font-medium hover:bg-primary/90 transition-colors">搜尋</button>
               </div>
             </CardContent>
           </Card>
@@ -124,14 +127,28 @@ import { Badge } from '@/components/ui/badge'
             </CardHeader>
             <CardContent>
               <dl class="space-y-2 text-sm">
-                <div class="flex gap-2"><dt class="text-muted-foreground w-12 shrink-0">姓名</dt><dd class="font-medium">王小明</dd></div>
-                <div class="flex gap-2"><dt class="text-muted-foreground w-12 shrink-0">信箱</dt><dd>wang@example.com</dd></div>
-                <div class="flex gap-2"><dt class="text-muted-foreground w-12 shrink-0">電話</dt><dd>0912-345-678</dd></div>
-                <div class="flex gap-2"><dt class="text-muted-foreground w-12 shrink-0">地址</dt><dd>台北市信義區市府路1號</dd></div>
+                <div class="flex gap-2">
+                  <dt class="text-muted-foreground w-12 shrink-0">姓名</dt>
+                  <dd class="font-medium">王小明</dd>
+                </div>
+                <div class="flex gap-2">
+                  <dt class="text-muted-foreground w-12 shrink-0">信箱</dt>
+                  <dd>wang@example.com</dd>
+                </div>
+                <div class="flex gap-2">
+                  <dt class="text-muted-foreground w-12 shrink-0">電話</dt>
+                  <dd>0912-345-678</dd>
+                </div>
+                <div class="flex gap-2">
+                  <dt class="text-muted-foreground w-12 shrink-0">地址</dt>
+                  <dd>台北市信義區市府路1號</dd>
+                </div>
               </dl>
               <div class="flex gap-2 mt-4 pt-4 border-t">
-                <button class="bg-primary text-primary-foreground rounded-md px-4 py-2 text-sm font-medium hover:bg-primary/90 transition-colors">編輯資訊</button>
-                <button class="border rounded-md px-4 py-2 text-sm font-medium hover:bg-muted transition-colors">取消</button>
+                <button
+                  class="bg-primary text-primary-foreground rounded-md px-4 py-2 text-sm font-medium hover:bg-primary/90 transition-colors">編輯資訊</button>
+                <button
+                  class="border rounded-md px-4 py-2 text-sm font-medium hover:bg-muted transition-colors">取消</button>
               </div>
             </CardContent>
           </Card>

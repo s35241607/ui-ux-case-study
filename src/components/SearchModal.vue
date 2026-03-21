@@ -103,31 +103,20 @@ defineExpose({ open })
   <Teleport to="body">
     <!-- Backdrop -->
     <Transition name="search-backdrop">
-      <div
-        v-if="isOpen"
-        class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
-        @click="close"
-      />
+      <div v-if="isOpen" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm" @click="close" />
     </Transition>
 
     <!-- Modal -->
     <Transition name="search-modal">
-      <div
-        v-if="isOpen"
-        class="fixed left-1/2 top-[20%] z-50 w-full max-w-xl -translate-x-1/2 px-4"
-      >
+      <div v-if="isOpen" class="fixed left-1/2 top-[20%] z-50 w-full max-w-xl -translate-x-1/2 px-4">
         <div class="rounded-xl border bg-popover shadow-2xl overflow-hidden">
           <!-- Search input -->
           <div class="flex items-center gap-3 px-4 border-b">
             <Search class="h-4 w-4 text-muted-foreground shrink-0" />
-            <input
-              ref="inputRef"
-              v-model="query"
-              type="text"
-              placeholder="搜尋案例... (輸入標題、分類或關鍵字)"
-              class="w-full bg-transparent py-4 text-sm outline-none placeholder:text-muted-foreground"
-            />
-            <kbd class="hidden sm:flex items-center gap-1 rounded border bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground font-mono">
+            <input ref="inputRef" v-model="query" type="text" placeholder="搜尋案例... (輸入標題、分類或關鍵字)"
+              class="w-full bg-transparent py-4 text-sm outline-none placeholder:text-muted-foreground" />
+            <kbd
+              class="hidden sm:flex items-center gap-1 rounded border bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground font-mono">
               ESC
             </kbd>
           </div>
@@ -141,35 +130,22 @@ defineExpose({ open })
             <template v-else>
               <!-- Group by category -->
               <template v-for="category in ['UI 設計', 'UX 體驗']" :key="category">
-                <div
-                  v-if="filteredResults.some(r => r.category === category)"
-                  class="mb-1"
-                >
+                <div v-if="filteredResults.some(r => r.category === category)" class="mb-1">
                   <div class="flex items-center gap-2 px-2 py-1.5 mb-1">
-                    <span
-                      class="text-[10px] font-semibold tracking-wider uppercase"
-                      :class="category === 'UI 設計' ? 'text-blue-500 dark:text-blue-400' : 'text-purple-500 dark:text-purple-400'"
-                    >
+                    <span class="text-[10px] font-semibold tracking-wider uppercase"
+                      :class="category === 'UI 設計' ? 'text-blue-500 dark:text-blue-400' : 'text-purple-500 dark:text-purple-400'">
                       {{ category }}
                     </span>
                   </div>
-                  <button
-                    v-for="(page, globalIdx) in filteredResults.filter(r => r.category === category)"
-                    :key="page.path"
+                  <button v-for="page in filteredResults.filter(r => r.category === category)" :key="page.path"
                     :ref="el => { if (el) resultRefs[filteredResults.indexOf(page)] = el as HTMLElement }"
-                    @click="navigate(page)"
-                    @mouseenter="selectedIndex = filteredResults.indexOf(page)"
-                    class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors"
-                    :class="selectedIndex === filteredResults.indexOf(page)
+                    @click="navigate(page)" @mouseenter="selectedIndex = filteredResults.indexOf(page)"
+                    class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors" :class="selectedIndex === filteredResults.indexOf(page)
                       ? 'bg-accent text-accent-foreground'
-                      : 'hover:bg-accent/50'"
-                  >
-                    <div
-                      class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md"
-                      :class="category === 'UI 設計'
-                        ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                        : 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'"
-                    >
+                      : 'hover:bg-accent/50'">
+                    <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md" :class="category === 'UI 設計'
+                      ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                      : 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'">
                       <component :is="page.icon" class="h-4 w-4" />
                     </div>
                     <div class="flex-1 min-w-0">
@@ -177,8 +153,10 @@ defineExpose({ open })
                       <div class="text-xs text-muted-foreground truncate">{{ page.desc }}</div>
                     </div>
                     <div class="flex items-center gap-2 shrink-0">
-                      <span class="text-[10px] px-1.5 py-0.5 rounded-full border text-muted-foreground">{{ page.type }}</span>
-                      <ArrowRight v-if="selectedIndex === filteredResults.indexOf(page)" class="h-3.5 w-3.5 text-muted-foreground" />
+                      <span class="text-[10px] px-1.5 py-0.5 rounded-full border text-muted-foreground">{{ page.type
+                        }}</span>
+                      <ArrowRight v-if="selectedIndex === filteredResults.indexOf(page)"
+                        class="h-3.5 w-3.5 text-muted-foreground" />
                     </div>
                   </button>
                 </div>
@@ -209,6 +187,7 @@ defineExpose({ open })
 .search-backdrop-leave-active {
   transition: opacity 0.15s ease;
 }
+
 .search-backdrop-enter-from,
 .search-backdrop-leave-to {
   opacity: 0;
@@ -218,6 +197,7 @@ defineExpose({ open })
 .search-modal-leave-active {
   transition: all 0.15s ease;
 }
+
 .search-modal-enter-from,
 .search-modal-leave-to {
   opacity: 0;

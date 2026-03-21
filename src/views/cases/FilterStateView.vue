@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { X, Filter, Search, Calendar, Tag, Users, ChevronDown } from 'lucide-vue-next'
+import { X, Filter } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 // Bad: no filter indicator
@@ -87,7 +87,8 @@ function clearAllFilters() {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">篩選器狀態顯示 (Filter State)</h1>
-        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗
+        </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         企業系統查詢功能常有多個篩選條件（狀態、類別、日期）。用戶設定篩選後，
@@ -119,7 +120,8 @@ function clearAllFilters() {
                       <SelectContent>
                         <SelectGroup>
                           <SelectItem value="all">全部</SelectItem>
-                          <SelectItem v-for="opt in filterOptions.status" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.status" :key="opt.value" :value="opt.value">{{
+                            opt.label }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -133,7 +135,8 @@ function clearAllFilters() {
                       <SelectContent>
                         <SelectGroup>
                           <SelectItem value="all">全部</SelectItem>
-                          <SelectItem v-for="opt in filterOptions.category" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.category" :key="opt.value" :value="opt.value">{{
+                            opt.label }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -147,7 +150,8 @@ function clearAllFilters() {
                       <SelectContent>
                         <SelectGroup>
                           <SelectItem value="all">全部</SelectItem>
-                          <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label
+                            }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -193,7 +197,8 @@ function clearAllFilters() {
                       <SelectContent>
                         <SelectGroup>
                           <SelectItem value="all">全部</SelectItem>
-                          <SelectItem v-for="opt in filterOptions.status" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.status" :key="opt.value" :value="opt.value">{{
+                            opt.label }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -207,7 +212,8 @@ function clearAllFilters() {
                       <SelectContent>
                         <SelectGroup>
                           <SelectItem value="all">全部</SelectItem>
-                          <SelectItem v-for="opt in filterOptions.category" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.category" :key="opt.value" :value="opt.value">{{
+                            opt.label }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -221,7 +227,8 @@ function clearAllFilters() {
                       <SelectContent>
                         <SelectGroup>
                           <SelectItem value="all">全部</SelectItem>
-                          <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label
+                            }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -238,19 +245,15 @@ function clearAllFilters() {
                             <Filter class="h-3 w-3 inline mr-0.5" />
                             {{ activeFilters.length }} 個篩選：
                           </span>
-                          <button
-                            v-for="filter in activeFilters"
-                            :key="filter.key"
+                          <button v-for="filter in activeFilters" :key="filter.key"
                             class="inline-flex items-center gap-1 rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[10px] font-medium hover:bg-primary/20 transition-colors"
-                            @click="removeFilter(filter.key)"
-                          >
+                            @click="removeFilter(filter.key)">
                             {{ filter.label }}：{{ filter.value }}
                             <X class="h-2.5 w-2.5" />
                           </button>
                           <button
                             class="text-[10px] text-muted-foreground hover:text-destructive underline transition-colors"
-                            @click="clearAllFilters"
-                          >清除全部</button>
+                            @click="clearAllFilters">清除全部</button>
                         </div>
                       </template>
                       <span v-else class="text-xs text-muted-foreground/60">未套用任何篩選條件，顯示所有資料</span>

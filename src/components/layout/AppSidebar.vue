@@ -7,9 +7,7 @@ import {
   SidebarHeader, SidebarFooter
 } from '@/components/ui/sidebar'
 import {
-  Maximize2, AlignLeft, MousePointer2, LayoutTemplate,
-  Loader2, Bell, Navigation, FileWarning, Layers, Home,
-  FolderOpen, CheckSquare, Filter
+  Layers, Home
 } from 'lucide-vue-next'
 import { uiCases, uxCases } from '@/config/cases'
 
@@ -26,9 +24,11 @@ const currentPath = computed(() => route.path)
     <SidebarHeader class="px-3 py-3 border-b">
       <SidebarMenu>
         <SidebarMenuItem>
-          <SidebarMenuButton asChild size="lg" class="h-auto py-2 px-2 hover:bg-accent rounded-md" tooltip="Lan's UX Lab">
+          <SidebarMenuButton asChild size="lg" class="h-auto py-2 px-2 hover:bg-accent rounded-md"
+            tooltip="Lan's UX Lab">
             <router-link to="/" class="flex items-center gap-2.5">
-              <div class="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-lg overflow-hidden bg-gradient-to-br from-violet-500 via-purple-500 to-indigo-600 shadow-sm">
+              <div
+                class="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-lg overflow-hidden bg-gradient-to-br from-violet-500 via-purple-500 to-indigo-600 shadow-sm">
                 <span class="text-white font-bold text-xs tracking-tight">L</span>
               </div>
               <div class="flex flex-col gap-0 leading-none group-data-[collapsible=icon]:hidden">
@@ -60,7 +60,8 @@ const currentPath = computed(() => route.path)
 
       <!-- UI Design Cases -->
       <SidebarGroup class="py-1">
-        <SidebarGroupLabel class="flex items-center gap-1.5 text-xs font-semibold text-blue-600/80 dark:text-blue-400/80 px-2 mb-0.5">
+        <SidebarGroupLabel
+          class="flex items-center gap-1.5 text-xs font-semibold text-blue-600/80 dark:text-blue-400/80 px-2 mb-0.5">
           <Layers class="h-3 w-3" />
           <span class="group-data-[collapsible=icon]:hidden">UI 設計</span>
         </SidebarGroupLabel>
@@ -82,7 +83,8 @@ const currentPath = computed(() => route.path)
 
       <!-- UX Experience Cases -->
       <SidebarGroup class="py-1">
-        <SidebarGroupLabel class="flex items-center gap-1.5 text-xs font-semibold text-violet-600/80 dark:text-violet-400/80 px-2 mb-0.5">
+        <SidebarGroupLabel
+          class="flex items-center gap-1.5 text-xs font-semibold text-violet-600/80 dark:text-violet-400/80 px-2 mb-0.5">
           <Layers class="h-3 w-3" />
           <span class="group-data-[collapsible=icon]:hidden">UX 體驗</span>
         </SidebarGroupLabel>
@@ -104,7 +106,8 @@ const currentPath = computed(() => route.path)
     <!-- Footer -->
     <SidebarFooter class="border-t py-2.5 px-3">
       <div class="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
-        <div class="h-5 w-5 shrink-0 rounded bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
+        <div
+          class="h-5 w-5 shrink-0 rounded bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
           <span class="text-white text-[9px] font-bold">L</span>
         </div>
         <p class="text-[11px] text-muted-foreground group-data-[collapsible=icon]:hidden">

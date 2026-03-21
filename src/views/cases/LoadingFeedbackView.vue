@@ -9,7 +9,6 @@ import { Loader2, Send, RefreshCw, Heart, ShoppingCart } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 // Bad: no loading state
-const isBadSubmitting = ref(false)
 const badClickCount = ref(0)
 async function badSubmit() {
   badClickCount.value++
@@ -60,7 +59,8 @@ async function goodRefresh() {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">載入狀態反饋 (Loading Feedback)</h1>
-        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗
+        </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         當用戶觸發任何需要等待的操作（送出表單、API 請求、資料載入），系統必須立即給予視覺反饋。
@@ -79,8 +79,10 @@ async function goodRefresh() {
                 <CardDescription class="text-xs">（點擊送出，觀察按鈕變化）</CardDescription>
               </CardHeader>
               <CardContent class="space-y-3">
-                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請人姓名" />
-                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請事由" />
+                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none"
+                  placeholder="申請人姓名" />
+                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none"
+                  placeholder="申請事由" />
               </CardContent>
               <CardFooter class="flex-col items-start gap-2">
                 <Button class="w-full" @click="badSubmit">
@@ -97,7 +99,9 @@ async function goodRefresh() {
           <!-- Case 2 -->
           <CaseBlock index="2" title="資料區塊載入" description="無骨架屏，資料載入期間用戶面對空白，毫無提示" tag="ux">
             <Card>
-              <CardHeader><CardTitle class="text-sm">資料列表</CardTitle></CardHeader>
+              <CardHeader>
+                <CardTitle class="text-sm">資料列表</CardTitle>
+              </CardHeader>
               <CardContent>
                 <div class="text-center py-8 text-muted-foreground/40 text-sm">
                   （此處資料載入中，但沒有任何視覺提示）
@@ -118,8 +122,10 @@ async function goodRefresh() {
                 <CardDescription class="text-xs">（點擊送出，觀察 Loading 動畫）</CardDescription>
               </CardHeader>
               <CardContent class="space-y-3">
-                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請人姓名" />
-                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請事由" />
+                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none"
+                  placeholder="申請人姓名" />
+                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none"
+                  placeholder="申請事由" />
               </CardContent>
               <CardFooter>
                 <Button class="w-full" :disabled="isGoodSubmitting" @click="goodSubmit">
@@ -134,7 +140,9 @@ async function goodRefresh() {
           <!-- Case 2 -->
           <CaseBlock index="2" title="資料區塊載入" description="Skeleton 骨架屏讓用戶知道資料正在載入，並預期版面結構" tag="ux">
             <Card>
-              <CardHeader><CardTitle class="text-sm">資料列表（Skeleton 示意）</CardTitle></CardHeader>
+              <CardHeader>
+                <CardTitle class="text-sm">資料列表（Skeleton 示意）</CardTitle>
+              </CardHeader>
               <CardContent class="space-y-3">
                 <div class="animate-pulse space-y-2">
                   <div class="h-4 bg-muted rounded w-3/4"></div>
@@ -149,7 +157,9 @@ async function goodRefresh() {
           <!-- Case 3 -->
           <CaseBlock index="3" title="行內操作按鈕" description="收藏、購物車、重新整理等按鈕在 Loading 時禁用並顯示進度" tag="ux">
             <Card>
-              <CardHeader><CardTitle class="text-sm">各種操作的 Loading 狀態</CardTitle></CardHeader>
+              <CardHeader>
+                <CardTitle class="text-sm">各種操作的 Loading 狀態</CardTitle>
+              </CardHeader>
               <CardContent class="flex flex-wrap gap-2">
                 <Button variant="outline" size="sm" :disabled="isGoodLiking" @click="goodLike">
                   <Loader2 v-if="isGoodLiking" class="h-3.5 w-3.5 mr-1.5 animate-spin" />

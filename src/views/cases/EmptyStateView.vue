@@ -2,10 +2,10 @@
 import { ref } from 'vue'
 import SplitView from '@/components/layout/SplitView.vue'
 import CaseBlock from '@/components/layout/CaseBlock.vue'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { FolderOpen, FileText, Plus, RefreshCw, Search, Package, Users, BarChart3 } from 'lucide-vue-next'
+import { FolderOpen, FileText, Plus, Package, Users } from 'lucide-vue-next'
 
 const badTab = ref<'orders' | 'products' | 'users'>('orders')
 const goodTab = ref<'orders' | 'products' | 'users'>('orders')
@@ -45,7 +45,9 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
               <CardHeader class="pb-2">
                 <div class="flex items-center justify-between">
                   <CardTitle class="text-sm">訂單列表</CardTitle>
-                  <Button size="sm" variant="outline"><Plus class="h-3.5 w-3.5 mr-1" />新增</Button>
+                  <Button size="sm" variant="outline">
+                    <Plus class="h-3.5 w-3.5 mr-1" />新增
+                  </Button>
                 </div>
               </CardHeader>
               <CardContent>
@@ -75,12 +77,9 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
             <Card>
               <CardHeader class="pb-2">
                 <div class="flex gap-1 border-b pb-2">
-                  <button
-                    v-for="tab in tabs" :key="tab.key"
-                    class="px-3 py-1.5 text-xs rounded transition-colors"
+                  <button v-for="tab in tabs" :key="tab.key" class="px-3 py-1.5 text-xs rounded transition-colors"
                     :class="badTab === tab.key ? 'bg-muted font-medium' : 'text-muted-foreground hover:text-foreground'"
-                    @click="badTab = tab.key"
-                  >{{ tab.label }}</button>
+                    @click="badTab = tab.key">{{ tab.label }}</button>
                 </div>
               </CardHeader>
               <CardContent>
@@ -99,7 +98,9 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
               <CardHeader class="pb-2">
                 <div class="flex items-center justify-between">
                   <CardTitle class="text-sm">訂單列表</CardTitle>
-                  <Button size="sm"><Plus class="h-3.5 w-3.5 mr-1" />新增訂單</Button>
+                  <Button size="sm">
+                    <Plus class="h-3.5 w-3.5 mr-1" />新增訂單
+                  </Button>
                 </div>
               </CardHeader>
               <CardContent>
@@ -121,7 +122,9 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
                     <p class="text-sm font-medium">尚無訂單資料</p>
                     <p class="text-xs text-muted-foreground mt-0.5">目前沒有任何訂單，新增第一筆開始使用</p>
                   </div>
-                  <Button size="sm"><Plus class="h-3.5 w-3.5 mr-1" />新增訂單</Button>
+                  <Button size="sm">
+                    <Plus class="h-3.5 w-3.5 mr-1" />新增訂單
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -132,12 +135,9 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
             <Card>
               <CardHeader class="pb-2">
                 <div class="flex gap-1 border-b pb-2">
-                  <button
-                    v-for="tab in tabs" :key="tab.key"
-                    class="px-3 py-1.5 text-xs rounded transition-colors"
+                  <button v-for="tab in tabs" :key="tab.key" class="px-3 py-1.5 text-xs rounded transition-colors"
                     :class="goodTab === tab.key ? 'bg-primary text-primary-foreground font-medium' : 'text-muted-foreground hover:text-foreground'"
-                    @click="goodTab = tab.key"
-                  >{{ tab.label }}</button>
+                    @click="goodTab = tab.key">{{ tab.label }}</button>
                 </div>
               </CardHeader>
               <CardContent>
@@ -149,7 +149,9 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
                     <p class="text-sm font-medium">{{ emptyMessages[goodTab].title }}</p>
                     <p class="text-xs text-muted-foreground mt-0.5 max-w-[200px]">{{ emptyMessages[goodTab].desc }}</p>
                   </div>
-                  <Button size="sm"><Plus class="h-3.5 w-3.5 mr-1" />{{ emptyMessages[goodTab].cta }}</Button>
+                  <Button size="sm">
+                    <Plus class="h-3.5 w-3.5 mr-1" />{{ emptyMessages[goodTab].cta }}
+                  </Button>
                 </div>
               </CardContent>
             </Card>

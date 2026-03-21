@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
 import SplitView from '@/components/layout/SplitView.vue'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { ExternalLink, ArrowLeft, Search, Filter } from 'lucide-vue-next'
+import { ExternalLink, ArrowLeft, Filter } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 // ---- BAD simulation ----
@@ -19,7 +18,7 @@ const badOrders = [
   { id: 'ORD-003', name: '林美華', amount: 98200 },
 ]
 // When bad navigates, it loses search state
-function badNavigateToDetail(id: string) {
+function badNavigateToDetail(_id: string) {
   badSearchQuery.value = ''  // loses state!
   badCurrentPage.value = 'detail'
 }
@@ -74,7 +73,8 @@ function goodGoBack() {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">導覽狀態保留 (Navigation State)</h1>
-        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗
+        </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         用戶在列表頁篩選、搜尋後點進詳情，<strong>返回時應保留原本的查詢狀態</strong>，而不是回到初始狀態。
@@ -101,8 +101,7 @@ function goodGoBack() {
             </CardHeader>
             <CardContent class="p-0">
               <div v-for="o in badOrders.filter(o => o.name.includes(badSearchQuery))" :key="o.id"
-                class="flex items-center gap-3 px-4 py-2.5 border-b last:border-0 hover:bg-muted/40 transition-colors"
-              >
+                class="flex items-center gap-3 px-4 py-2.5 border-b last:border-0 hover:bg-muted/40 transition-colors">
                 <span class="font-mono text-xs text-muted-foreground">{{ o.id }}</span>
                 <span class="flex-1 text-sm">{{ o.name }}</span>
                 <!-- Bad: button-style, no native link -->
@@ -116,7 +115,8 @@ function goodGoBack() {
           <!-- Bad: detail page -->
           <Card v-else>
             <CardHeader>
-              <button @click="badGoBack" class="flex items-center gap-1 text-muted-foreground text-xs hover:text-foreground mb-2 transition-colors">
+              <button @click="badGoBack"
+                class="flex items-center gap-1 text-muted-foreground text-xs hover:text-foreground mb-2 transition-colors">
                 <ArrowLeft class="h-3.5 w-3.5" />
                 返回列表
               </button>
@@ -167,17 +167,13 @@ function goodGoBack() {
             </CardHeader>
             <CardContent class="p-0">
               <div v-for="o in goodFilteredOrders" :key="o.id"
-                class="flex items-center gap-3 px-4 py-2.5 border-b last:border-0 hover:bg-muted/40 transition-colors"
-              >
+                class="flex items-center gap-3 px-4 py-2.5 border-b last:border-0 hover:bg-muted/40 transition-colors">
                 <span class="font-mono text-xs text-muted-foreground">{{ o.id }}</span>
                 <span class="flex-1 text-sm">{{ o.name }}</span>
                 <!-- Good: native anchor supports middle-click -->
-                <a
-                  href="#"
-                  @click.prevent="goodNavigateToDetail(o)"
+                <a href="#" @click.prevent="goodNavigateToDetail(o)"
                   class="flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
-                  title="點擊查看 / 中鍵開新分頁"
-                >
+                  title="點擊查看 / 中鍵開新分頁">
                   <ExternalLink class="h-3 w-3" />
                   查看
                 </a>
@@ -191,7 +187,8 @@ function goodGoBack() {
           <!-- Good: detail page -->
           <Card v-else>
             <CardHeader>
-              <button @click="goodGoBack" class="flex items-center gap-1 text-muted-foreground text-xs hover:text-foreground mb-2 transition-colors">
+              <button @click="goodGoBack"
+                class="flex items-center gap-1 text-muted-foreground text-xs hover:text-foreground mb-2 transition-colors">
                 <ArrowLeft class="h-3.5 w-3.5" />
                 返回列表（查詢條件已記憶）
               </button>
@@ -199,9 +196,18 @@ function goodGoBack() {
             </CardHeader>
             <CardContent>
               <dl class="space-y-1.5 text-sm">
-                <div class="flex gap-2"><dt class="text-muted-foreground w-16">客戶</dt><dd class="font-medium">{{ selectedOrder?.name }}</dd></div>
-                <div class="flex gap-2"><dt class="text-muted-foreground w-16">金額</dt><dd class="tabular-nums">NT${{ selectedOrder?.amount.toLocaleString() }}</dd></div>
-                <div class="flex gap-2"><dt class="text-muted-foreground w-16">狀態</dt><dd>{{ selectedOrder?.status }}</dd></div>
+                <div class="flex gap-2">
+                  <dt class="text-muted-foreground w-16">客戶</dt>
+                  <dd class="font-medium">{{ selectedOrder?.name }}</dd>
+                </div>
+                <div class="flex gap-2">
+                  <dt class="text-muted-foreground w-16">金額</dt>
+                  <dd class="tabular-nums">NT${{ selectedOrder?.amount.toLocaleString() }}</dd>
+                </div>
+                <div class="flex gap-2">
+                  <dt class="text-muted-foreground w-16">狀態</dt>
+                  <dd>{{ selectedOrder?.status }}</dd>
+                </div>
               </dl>
               <p class="text-xs text-green-600 dark:text-green-400 mt-3">✓ 返回後篩選條件將自動恢復</p>
             </CardContent>

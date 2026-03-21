@@ -2,12 +2,11 @@
 import { ref, computed } from 'vue'
 import SplitView from '@/components/layout/SplitView.vue'
 import CaseBlock from '@/components/layout/CaseBlock.vue'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
-  Edit, Download, Trash2, CheckSquare, Square, X,
-  ChevronDown, Package, MoreHorizontal
+  Download, Trash2, CheckSquare, Square, X
 } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
@@ -79,7 +78,8 @@ function batchDelete() {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">批次操作設計 (Batch Actions)</h1>
-        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗
+        </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         企業系統中，用戶經常需要對多筆資料執行相同操作（核准、刪除、匯出）。
@@ -113,11 +113,15 @@ function batchDelete() {
                       <td class="py-2 px-2 text-right text-xs tabular-nums">{{ order.amount }}</td>
                       <td class="py-2 px-4">
                         <div class="flex gap-1 justify-end">
-                          <Button size="sm" variant="outline" class="h-6 px-2 text-[10px]" @click="toast.success(`已核准 ${order.id}`)">核准</Button>
-                          <Button size="sm" variant="outline" class="h-6 px-2 text-[10px]" @click="toast.info(`匯出 ${order.id}`)">
+                          <Button size="sm" variant="outline" class="h-6 px-2 text-[10px]"
+                            @click="toast.success(`已核准 ${order.id}`)">核准</Button>
+                          <Button size="sm" variant="outline" class="h-6 px-2 text-[10px]"
+                            @click="toast.info(`匯出 ${order.id}`)">
                             <Download class="h-3 w-3" />
                           </Button>
-                          <Button size="sm" variant="outline" class="h-6 px-2 text-[10px] text-destructive hover:text-destructive" @click="toast.error(`刪除 ${order.id}`)">
+                          <Button size="sm" variant="outline"
+                            class="h-6 px-2 text-[10px] text-destructive hover:text-destructive"
+                            @click="toast.error(`刪除 ${order.id}`)">
                             <Trash2 class="h-3 w-3" />
                           </Button>
                         </div>
@@ -145,12 +149,9 @@ function batchDelete() {
               </CardHeader>
 
               <!-- Batch action bar -->
-              <div
-                class="flex items-center gap-2 px-4 py-2 border-b transition-all duration-200"
-                :class="selectedIds.size > 0
-                  ? 'bg-primary/5 border-primary/20'
-                  : 'bg-transparent border-transparent'"
-              >
+              <div class="flex items-center gap-2 px-4 py-2 border-b transition-all duration-200" :class="selectedIds.size > 0
+                ? 'bg-primary/5 border-primary/20'
+                : 'bg-transparent border-transparent'">
                 <template v-if="selectedIds.size > 0">
                   <span class="text-sm font-medium text-primary">已選 {{ selectedIds.size }} 筆</span>
                   <div class="flex items-center gap-1.5 ml-2">
@@ -158,7 +159,9 @@ function batchDelete() {
                     <Button size="sm" variant="outline" class="h-7 text-xs" @click="batchExport">
                       <Download class="h-3 w-3 mr-1" />匯出
                     </Button>
-                    <Button size="sm" variant="outline" class="h-7 text-xs text-destructive hover:text-destructive border-destructive/30 hover:bg-destructive/5" @click="batchDelete">
+                    <Button size="sm" variant="outline"
+                      class="h-7 text-xs text-destructive hover:text-destructive border-destructive/30 hover:bg-destructive/5"
+                      @click="batchDelete">
                       <Trash2 class="h-3 w-3 mr-1" />刪除
                     </Button>
                   </div>
@@ -178,7 +181,8 @@ function batchDelete() {
                       <th class="py-2 pl-4 pr-2 w-8">
                         <button @click="toggleAll" class="flex items-center justify-center w-4 h-4">
                           <CheckSquare v-if="allSelected" class="h-4 w-4 text-primary" />
-                          <div v-else-if="someSelected" class="h-4 w-4 border-2 border-primary rounded-sm bg-primary/20 flex items-center justify-center">
+                          <div v-else-if="someSelected"
+                            class="h-4 w-4 border-2 border-primary rounded-sm bg-primary/20 flex items-center justify-center">
                             <div class="w-2 h-0.5 bg-primary rounded" />
                           </div>
                           <Square v-else class="h-4 w-4 text-muted-foreground/50" />
@@ -189,12 +193,10 @@ function batchDelete() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr
-                      v-for="order in orders" :key="order.id"
+                    <tr v-for="order in orders" :key="order.id"
                       class="border-b last:border-0 transition-colors cursor-pointer"
                       :class="selectedIds.has(order.id) ? 'bg-primary/5' : 'hover:bg-muted/30'"
-                      @click="toggleRow(order.id)"
-                    >
+                      @click="toggleRow(order.id)">
                       <td class="py-2.5 pl-4 pr-2 w-8">
                         <div class="flex items-center justify-center w-4 h-4" @click.stop="toggleRow(order.id)">
                           <CheckSquare v-if="selectedIds.has(order.id)" class="h-4 w-4 text-primary" />
