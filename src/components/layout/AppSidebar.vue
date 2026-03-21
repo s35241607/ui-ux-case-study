@@ -9,7 +9,7 @@ import {
 import {
   Layers, Home
 } from 'lucide-vue-next'
-import { uiCases, uxCases } from '@/config/cases'
+import { caseGroups, categoryMeta } from '@/config/cases'
 
 const route = useRoute()
 
@@ -58,49 +58,29 @@ const currentPath = computed(() => route.path)
 
       <div class="mx-2 h-px bg-border/60 group-data-[collapsible=icon]:hidden" />
 
-      <!-- UI Design Cases -->
-      <SidebarGroup class="py-1">
-        <SidebarGroupLabel
-          class="flex items-center gap-1.5 text-xs font-semibold text-blue-600/80 dark:text-blue-400/80 px-2 mb-0.5">
-          <Layers class="h-3 w-3" />
-          <span class="group-data-[collapsible=icon]:hidden">UI 設計</span>
-        </SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem v-for="item in uiCases" :key="item.path">
-              <SidebarMenuButton asChild :isActive="currentPath === item.path" :tooltip="item.title">
-                <router-link :to="item.path" class="gap-2.5">
-                  <component :is="item.icon" class="h-4 w-4 shrink-0 text-muted-foreground" />
-                  <span class="text-sm">{{ item.title }}</span>
-                </router-link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarGroup>
-
-      <div class="mx-2 h-px bg-border/60 group-data-[collapsible=icon]:hidden" />
-
-      <!-- UX Experience Cases -->
-      <SidebarGroup class="py-1">
-        <SidebarGroupLabel
-          class="flex items-center gap-1.5 text-xs font-semibold text-violet-600/80 dark:text-violet-400/80 px-2 mb-0.5">
-          <Layers class="h-3 w-3" />
-          <span class="group-data-[collapsible=icon]:hidden">UX 體驗</span>
-        </SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem v-for="item in uxCases" :key="item.path">
-              <SidebarMenuButton asChild :isActive="currentPath === item.path" :tooltip="item.title">
-                <router-link :to="item.path" class="gap-2.5">
-                  <component :is="item.icon" class="h-4 w-4 shrink-0 text-muted-foreground" />
-                  <span class="text-sm">{{ item.title }}</span>
-                </router-link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarGroup>
+      <!-- Case Groups (data-driven, 6 categories) -->
+      <template v-for="(group, idx) in caseGroups" :key="group.label">
+        <div v-if="idx > 0" class="mx-2 h-px bg-border/60 group-data-[collapsible=icon]:hidden" />
+        <SidebarGroup class="py-1">
+          <SidebarGroupLabel class="flex items-center gap-1.5 text-xs font-semibold px-2 mb-0.5"
+            :class="categoryMeta[group.label].labelColor">
+            <Layers class="h-3 w-3" />
+            <span class="group-data-[collapsible=icon]:hidden">{{ group.label }}</span>
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem v-for="item in group.cases" :key="item.path">
+                <SidebarMenuButton asChild :isActive="currentPath === item.path" :tooltip="item.title">
+                  <router-link :to="item.path" class="gap-2.5">
+                    <component :is="item.icon" class="h-4 w-4 shrink-0 text-muted-foreground" />
+                    <span class="text-sm">{{ item.title }}</span>
+                  </router-link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </template>
     </SidebarContent>
 
     <!-- Footer -->

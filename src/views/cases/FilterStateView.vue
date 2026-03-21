@@ -87,8 +87,8 @@ function clearAllFilters() {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">篩選器狀態顯示 (Filter State)</h1>
-        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗
-        </Badge>
+        <Badge variant="secondary" class="text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30">
+          效率設計</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         篩選套用後以標籤顯示當前條件，並提供一鍵清除功能。
@@ -149,7 +149,7 @@ function clearAllFilters() {
                         <SelectGroup>
                           <SelectItem value="all">全部</SelectItem>
                           <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label
-                          }}</SelectItem>
+                            }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -226,7 +226,7 @@ function clearAllFilters() {
                         <SelectGroup>
                           <SelectItem value="all">全部</SelectItem>
                           <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label
-                          }}</SelectItem>
+                            }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>

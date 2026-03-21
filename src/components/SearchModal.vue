@@ -2,7 +2,7 @@
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { Search, ArrowRight } from 'lucide-vue-next'
-import { allCases as allPages } from '@/config/cases'
+import { allCases as allPages, categoryMeta } from '@/config/cases'
 
 const router = useRouter()
 const isOpen = ref(false)
@@ -128,12 +128,12 @@ defineExpose({ open })
             </div>
 
             <template v-else>
-              <!-- Group by category -->
-              <template v-for="category in ['UI 設計', 'UX 體驗']" :key="category">
+              <!-- Group by category (6 design principles) -->
+              <template v-for="category in Object.keys(categoryMeta)" :key="category">
                 <div v-if="filteredResults.some(r => r.category === category)" class="mb-1">
                   <div class="flex items-center gap-2 px-2 py-1.5 mb-1">
                     <span class="text-[10px] font-semibold tracking-wider uppercase"
-                      :class="category === 'UI 設計' ? 'text-blue-500 dark:text-blue-400' : 'text-purple-500 dark:text-purple-400'">
+                      :class="categoryMeta[category].typeTextClass">
                       {{ category }}
                     </span>
                   </div>
@@ -143,9 +143,8 @@ defineExpose({ open })
                     class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors" :class="selectedIndex === filteredResults.indexOf(page)
                       ? 'bg-accent text-accent-foreground'
                       : 'hover:bg-accent/50'">
-                    <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md" :class="category === 'UI 設計'
-                      ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                      : 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'">
+                    <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md"
+                      :class="categoryMeta[category].iconClass">
                       <component :is="page.icon" class="h-4 w-4" />
                     </div>
                     <div class="flex-1 min-w-0">
@@ -154,7 +153,7 @@ defineExpose({ open })
                     </div>
                     <div class="flex items-center gap-2 shrink-0">
                       <span class="text-[10px] px-1.5 py-0.5 rounded-full border text-muted-foreground">{{ page.type
-                        }}</span>
+                      }}</span>
                       <ArrowRight v-if="selectedIndex === filteredResults.indexOf(page)"
                         class="h-3.5 w-3.5 text-muted-foreground" />
                     </div>

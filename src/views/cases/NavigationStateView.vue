@@ -73,7 +73,7 @@ function goodGoBack() {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">導覽狀態保留 (Navigation State)</h1>
-        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">導覽與狀態
         </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">

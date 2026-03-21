@@ -20,7 +20,13 @@
      </div>
    </template>
    ```
-5. **標籤 Badge 統一規範**：Case Study 標題旁的 Badge 必須與其在 `cases.ts` 的所屬分類對應：若為 UX 類，使用 `<Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>`；若為 UI 類，使用對應的藍色 `UI 設計` Badge
+5. **標籤 Badge 統一規範**：Case Study 標題旁的 Badge 必須與其在 `cases.ts` 的 `category` 欄位對應，共有 6 種分類色系：
+   - 視覺設計：`<Badge variant="secondary" class="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30">視覺設計</Badge>`
+   - 互動設計：`<Badge variant="secondary" class="text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/30">互動設計</Badge>`
+   - 系統回饋：`<Badge variant="secondary" class="text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30">系統回饋</Badge>`
+   - 可用性與防呆：`<Badge variant="secondary" class="text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-900/30">可用性與防呆</Badge>`
+   - 效率設計：`<Badge variant="secondary" class="text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30">效率設計</Badge>`
+   - 導覽與狀態：`<Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">導覽與狀態</Badge>`
 6. **下拉選單元件規範**：禁止使用原生的 `<select>` 與 `<option>`，請一律使用 `shadcn-vue` 提供的 `Select` 元件（表單選擇）或 `DropdownMenu` 元件（操作選單與內聯編輯下拉）。
 7. **底部按鈕對齊 (Action Buttons)**：表單、對話框 (Dialog) 與抽屜 (Drawer) 底部的操作按鈕應**統一對齊右下方 (Right-aligned)**，也就是使用 `justify-end`。主要的確認/儲存操作擺在最右側，取消或次要操作擺在其左側。
 8. **禁止使用 Emoji 作為任何用途**：不僅限於 Icon，任何地方（標題、說明文字、標籤、對比區塊等）都不得出現 Emoji 字元。
