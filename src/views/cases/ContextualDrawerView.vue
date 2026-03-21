@@ -35,11 +35,11 @@ const getPriorityColor = (p: string) => {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">側邊抽屜預覽 (Contextual Drawer)</h1>
-        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗
+        </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        內部系統經常需要「審核清單」或「大量走訪資料」。傳統點擊跳頁的設計會讓使用者不斷在「列表 ↔ 詳情頁」之間來回穿梭，失去對整體的掌控感（Context Loss）。
-        利用固定在側邊的**抽屜 (Drawer/Panel)**，能在不離開列表的情況下快速預覽與操作，是極大提升效率的關鍵。
+        使用側邊抽屜預覽詳情，讓使用者無需跳至新頁即可完成操作。
       </p>
     </div>
 
@@ -48,7 +48,8 @@ const getPriorityColor = (p: string) => {
       <template #left>
         <div class="relative h-full flex flex-col">
           <!-- 模擬整頁跳轉後的詳情頁 -->
-          <div v-if="badSelectedTicket" class="absolute inset-0 bg-background z-20 flex flex-col animate-in fade-in slide-in-from-right-4 duration-300">
+          <div v-if="badSelectedTicket"
+            class="absolute inset-0 bg-background z-20 flex flex-col animate-in fade-in slide-in-from-right-4 duration-300">
             <div class="p-4 border-b flex items-center gap-4 bg-muted/30">
               <Button variant="ghost" size="icon" @click="badSelectedTicket = null" class="w-8 h-8 rounded-full">
                 <ArrowLeft class="w-4 h-4" />
@@ -94,16 +95,12 @@ const getPriorityColor = (p: string) => {
           <!-- 列表頁 -->
           <div class="p-4">
             <h3 class="font-semibold mb-4 flex items-center gap-2">
-              系統工單列表 
+              系統工單列表
               <span class="text-xs bg-muted px-2 py-0.5 rounded-full font-normal">5 筆</span>
             </h3>
             <div class="border rounded-md divide-y">
-              <div 
-                v-for="ticket in mockTickets" 
-                :key="ticket.id"
-                @click="badSelectedTicket = ticket"
-                class="p-4 flex items-center justify-between hover:bg-muted/50 cursor-pointer group transition-colors bg-background"
-              >
+              <div v-for="ticket in mockTickets" :key="ticket.id" @click="badSelectedTicket = ticket"
+                class="p-4 flex items-center justify-between hover:bg-muted/50 cursor-pointer group transition-colors bg-background">
                 <div>
                   <div class="font-medium text-blue-600 dark:text-blue-400 group-hover:underline">
                     {{ ticket.id }} - {{ ticket.title }}
@@ -124,26 +121,24 @@ const getPriorityColor = (p: string) => {
       <template #right>
         <div class="relative h-full flex overflow-hidden">
           <!-- 列表區塊 (Flex 縮放) -->
-          <div class="flex-1 p-4 overflow-y-auto transition-all duration-300" :class="{ 'pr-4': !goodSelectedTicket, 'opacity-40 pointer-events-none lg:opacity-100 lg:pointer-events-auto': goodSelectedTicket }">
+          <div class="flex-1 p-4 overflow-y-auto transition-all duration-300"
+            :class="{ 'pr-4': !goodSelectedTicket, 'opacity-40 pointer-events-none lg:opacity-100 lg:pointer-events-auto': goodSelectedTicket }">
             <h3 class="font-semibold mb-4 flex items-center gap-2">
-              系統工單列表 
+              系統工單列表
               <span class="text-xs bg-muted px-2 py-0.5 rounded-full font-normal">5 筆</span>
             </h3>
             <div class="border rounded-md divide-y overflow-hidden shadow-sm">
-              <div 
-                v-for="ticket in mockTickets" 
-                :key="ticket.id"
-                @click="goodSelectedTicket = ticket"
+              <div v-for="ticket in mockTickets" :key="ticket.id" @click="goodSelectedTicket = ticket"
                 class="p-4 flex flex-col lg:flex-row lg:items-center justify-between hover:bg-muted/50 cursor-pointer transition-colors"
-                :class="[goodSelectedTicket?.id === ticket.id ? 'bg-primary/5 border-l-2 border-l-primary' : 'bg-background border-l-2 border-l-transparent']"
-              >
+                :class="[goodSelectedTicket?.id === ticket.id ? 'bg-primary/5 border-l-2 border-l-primary' : 'bg-background border-l-2 border-l-transparent']">
                 <div>
                   <div class="font-medium" :class="{ 'text-primary': goodSelectedTicket?.id === ticket.id }">
                     {{ ticket.id }}
                   </div>
                   <div class="text-sm mt-0.5">{{ ticket.title }}</div>
                 </div>
-                <div class="mt-2 lg:mt-0 flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-start gap-2 lg:gap-1">
+                <div
+                  class="mt-2 lg:mt-0 flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-start gap-2 lg:gap-1">
                   <Badge variant="outline" :class="getPriorityColor(ticket.priority)">
                     {{ ticket.priority }}
                   </Badge>
@@ -157,27 +152,27 @@ const getPriorityColor = (p: string) => {
           </div>
 
           <!-- Slide-out Drawer Panel -->
-          <div 
+          <div
             class="absolute right-0 top-0 bottom-0 w-[360px] max-w-[85%] bg-card border-l shadow-2xl z-30 transition-transform duration-300 flex flex-col"
-            :class="goodSelectedTicket ? 'translate-x-0' : 'translate-x-full'"
-          >
+            :class="goodSelectedTicket ? 'translate-x-0' : 'translate-x-full'">
             <div v-if="goodSelectedTicket" class="flex-1 overflow-y-auto">
               <div class="flex items-center justify-between p-4 border-b bg-muted/10 sticky top-0 backdrop-blur-sm">
                 <h3 class="font-semibold text-lg flex items-center gap-2">
                   <FileText class="w-4 h-4 text-muted-foreground" />
                   {{ goodSelectedTicket.id }}
                 </h3>
-                <Button variant="ghost" size="icon" @click="goodSelectedTicket = null" class="w-8 h-8 rounded-full hover:bg-muted">
+                <Button variant="ghost" size="icon" @click="goodSelectedTicket = null"
+                  class="w-8 h-8 rounded-full hover:bg-muted">
                   <X class="w-4 h-4" />
                 </Button>
               </div>
-              
+
               <div class="p-5 space-y-6">
                 <div>
                   <h4 class="text-lg font-bold mb-1">{{ goodSelectedTicket.title }}</h4>
                   <p class="text-sm text-muted-foreground">報修日期: {{ goodSelectedTicket.date }}</p>
                 </div>
-                
+
                 <div class="bg-muted/30 p-4 rounded-lg space-y-4">
                   <div class="flex justify-between items-center">
                     <span class="text-sm text-muted-foreground">當前狀態</span>
@@ -197,23 +192,23 @@ const getPriorityColor = (p: string) => {
 
                 <div class="space-y-3">
                   <h5 class="text-sm font-semibold">快速回覆內容</h5>
-                  <textarea class="w-full min-h-[100px] p-3 text-sm rounded-md border focus:ring-1 focus:ring-primary outline-none transition-all resize-none bg-background placeholder:text-muted-foreground" placeholder="輸入處理紀錄..."></textarea>
+                  <textarea
+                    class="w-full min-h-[100px] p-3 text-sm rounded-md border focus:ring-1 focus:ring-primary outline-none transition-all resize-none bg-background placeholder:text-muted-foreground"
+                    placeholder="輸入處理紀錄..."></textarea>
                 </div>
               </div>
             </div>
-            
+
             <div class="p-4 border-t bg-card sticky bottom-0 flex justify-end gap-3">
               <Button variant="outline" @click="goodSelectedTicket = null">關閉</Button>
               <Button>儲存紀錄</Button>
             </div>
           </div>
-          
+
           <!-- Desktop backdrop overlay -->
-          <div 
-            v-if="goodSelectedTicket" 
+          <div v-if="goodSelectedTicket"
             class="absolute inset-0 bg-background/20 backdrop-blur-[1px] z-20 transition-opacity lg:hidden"
-            @click="goodSelectedTicket = null"
-          ></div>
+            @click="goodSelectedTicket = null"></div>
         </div>
       </template>
     </SplitView>

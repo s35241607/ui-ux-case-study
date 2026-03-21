@@ -12,12 +12,11 @@ import { Badge } from '@/components/ui/badge'
         <Badge variant="secondary" class="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30">UI 設計</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        適當的 padding 和 margin 讓介面有「呼吸感」，元素間距不足會讓視覺感到壓迫、難以閱讀；
-        過多則讓頁面顯得空洞無主次。好的間距設計能讓用戶更快找到需要的內容。
+        透過一致的間距系統建立視覺層級，讓介面更易於閱讀。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：過度擁擠或混亂的間距" rightTitle="優秀的設計：有層次的視覺呼吸空間">
+    <SplitView>
       <template #left>
         <div class="flex flex-col gap-4 mt-4">
           <p class="text-sm text-muted-foreground list-disc list-inside">

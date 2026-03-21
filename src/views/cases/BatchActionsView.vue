@@ -82,12 +82,11 @@ function batchDelete() {
         </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        企業系統中，用戶經常需要對多筆資料執行相同操作（核准、刪除、匯出）。
-        若只能逐筆操作，效率極低。批次操作設計讓用戶勾選後一次處理，大幅提升效率。
+        批次選取搭配工具列操作，減少逐筆重複點擊的負擔。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：只能逐筆操作" rightTitle="優秀的設計：勾選 + 批次操作列">
+    <SplitView>
       <template #left>
         <div class="flex-1 flex flex-col">
           <CaseBlock index="1" title="每列獨立按鈕操作" description="每筆資料都有自己的按鈕群，處理 5 筆就要點 15 下" tag="ux">

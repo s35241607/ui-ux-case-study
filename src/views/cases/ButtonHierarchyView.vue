@@ -16,12 +16,11 @@ import { toast } from 'vue-sonner'
         <Badge variant="secondary" class="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30">UI 設計</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        按鈕設計需要明確的視覺階層，讓用戶第一眼就知道「主要操作」在哪。
-        缺乏階層的按鈕設計會讓用戶感到迷惑，增加認知負荷。
+        透過明確的視覺層級，引導使用者優先關注主要操作。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：視覺重點混亂" rightTitle="優秀的設計：清晰的主要與次要動作">
+    <SplitView>
       <!-- ===== BAD Side ===== -->
       <template #left>
         <div class="flex-1 flex flex-col">
@@ -42,12 +41,10 @@ import { toast } from 'vue-sonner'
                 <!-- Bad: 兩個實心按鈕，且位置顛倒 -->
                 <Button
                   class="w-full sm:w-auto bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white"
-                  @click="() => toast.info('已取消')"
-                >取消操作</Button>
+                  @click="() => toast.info('已取消')">取消操作</Button>
                 <Button
                   class="w-full sm:w-auto bg-neutral-500 hover:bg-neutral-400 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-white"
-                  @click="() => toast.info('已刪除')"
-                >確認刪除</Button>
+                  @click="() => toast.info('已刪除')">確認刪除</Button>
               </CardFooter>
             </Card>
           </CaseBlock>
@@ -68,7 +65,8 @@ import { toast } from 'vue-sonner'
                   <span>升級至 Team 方案</span>
                   <ArrowRight class="h-4 w-4" />
                 </Button>
-                <Button class="w-full bg-neutral-600 hover:bg-neutral-500 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-white">
+                <Button
+                  class="w-full bg-neutral-600 hover:bg-neutral-500 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-white">
                   查看詳情
                 </Button>
               </CardFooter>
@@ -88,14 +86,16 @@ import { toast } from 'vue-sonner'
                 <CardDescription>此操作將無法復原，專案內所有資料都會被清除。</CardDescription>
               </CardHeader>
               <CardContent>
-                <div class="flex items-center gap-2 p-3 bg-destructive/10 text-destructive dark:text-red-400 rounded-md text-sm border border-destructive/20">
+                <div
+                  class="flex items-center gap-2 p-3 bg-destructive/10 text-destructive dark:text-red-400 rounded-md text-sm border border-destructive/20">
                   <Info class="h-4 w-4 shrink-0" />
                   <span>將會永久刪除「Project Alpha」。</span>
                 </div>
               </CardContent>
               <CardFooter class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
                 <Button variant="outline" class="w-full sm:w-auto" @click="() => toast.success('操作已取消')">取消</Button>
-                <Button variant="destructive" class="w-full sm:w-auto" @click="() => toast.error('專案已永久刪除')">確認刪除</Button>
+                <Button variant="destructive" class="w-full sm:w-auto"
+                  @click="() => toast.error('專案已永久刪除')">確認刪除</Button>
               </CardFooter>
             </Card>
           </CaseBlock>

@@ -77,12 +77,11 @@ function goodGoBack() {
         </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        用戶在列表頁篩選、搜尋後點進詳情，<strong>返回時應保留原本的查詢狀態</strong>，而不是回到初始狀態。
-        此外，單據連結應支援<strong>中鍵點擊開新分頁</strong>，讓用戶可以同時對照多筆資料。
+        從詳情頁返回時自動恢復篩選與捲動位置，減少重複操作。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：返回後遺失查詢狀態" rightTitle="優秀的設計：返回時恢復查詢條件">
+    <SplitView>
       <template #left>
         <div class="flex flex-col gap-4 mt-4">
           <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
@@ -124,7 +123,7 @@ function goodGoBack() {
             </CardHeader>
             <CardContent>
               <p class="text-sm text-muted-foreground">... 詳情內容 ...</p>
-              <p class="text-xs text-destructive mt-3">⚠️ 返回後，剛才的搜尋條件已遺失</p>
+              <p class="text-xs text-destructive mt-3">返回後，剛才的搜尋條件已遺失</p>
             </CardContent>
           </Card>
         </div>

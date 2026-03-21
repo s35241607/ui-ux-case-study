@@ -31,12 +31,11 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
         <Badge variant="secondary" class="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30">UI 設計</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        企業系統中，資料清單為空時是極為常見的狀態。銀幕空白或只有「暫無資料」文字，
-        會讓用戶感到茫然不知下一步。良好的空狀態設計應說明原因、引導下一步行動。
+        空狀態頁面搭配說明與行動引導，避免使用者不知道該如何繼續。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：空白或無意義提示" rightTitle="優秀的設計：有情境、有引導的空狀態">
+    <SplitView>
       <template #left>
         <div class="flex-1 flex flex-col">
           <!-- Case 1: Completely blank table -->

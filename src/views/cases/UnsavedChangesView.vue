@@ -84,15 +84,15 @@ onBeforeUnmount(() => clearInterval(autoSaveTimer))
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">未儲存資料提示 (Unsaved Changes)</h1>
-        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗
+        </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        用戶填寫表單到一半意外點到其他按鈕時，必須給予提示或自動保存草稿，
-        避免用戶心血白費。好的系統會在「放棄」前確認，或悄悄 auto-save 草稿。
+        離開含有未儲存變更的頁面時，提示使用者確認或放棄。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：直接跳轉，資料無聲消失" rightTitle="優秀的設計：提示保存或自動草稿">
+    <SplitView>
       <template #left>
         <div class="flex flex-col gap-5 mt-4">
           <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
@@ -117,11 +117,8 @@ onBeforeUnmount(() => clearInterval(autoSaveTimer))
               </div>
               <div class="space-y-1.5">
                 <Label class="text-xs">備註</Label>
-                <textarea
-                  v-model="badNote"
-                  placeholder="輸入備註..."
-                  class="w-full border rounded-md px-3 py-2 text-sm bg-background outline-none focus:ring-1 focus:ring-ring resize-none h-20"
-                />
+                <textarea v-model="badNote" placeholder="輸入備註..."
+                  class="w-full border rounded-md px-3 py-2 text-sm bg-background outline-none focus:ring-1 focus:ring-ring resize-none h-20" />
               </div>
             </CardContent>
             <CardFooter class="gap-2">
@@ -148,10 +145,12 @@ onBeforeUnmount(() => clearInterval(autoSaveTimer))
             <CardHeader>
               <div class="flex items-center justify-between">
                 <CardTitle class="text-sm">新增聯絡人</CardTitle>
-                <Badge v-if="isDraft" variant="outline" class="text-amber-600 dark:text-amber-400 border-amber-300 text-[10px]">
+                <Badge v-if="isDraft" variant="outline"
+                  class="text-amber-600 dark:text-amber-400 border-amber-300 text-[10px]">
                   未儲存變更
                 </Badge>
-                <Badge v-else-if="hasSavedDraft" variant="outline" class="text-green-600 dark:text-green-400 border-green-300 text-[10px]">
+                <Badge v-else-if="hasSavedDraft" variant="outline"
+                  class="text-green-600 dark:text-green-400 border-green-300 text-[10px]">
                   草稿已儲存
                 </Badge>
               </div>
@@ -168,12 +167,9 @@ onBeforeUnmount(() => clearInterval(autoSaveTimer))
               </div>
               <div class="space-y-1.5">
                 <Label class="text-xs">備註</Label>
-                <textarea
-                  v-model="goodNote"
-                  placeholder="輸入備註..."
+                <textarea v-model="goodNote" placeholder="輸入備註..."
                   class="w-full border rounded-md px-3 py-2 text-sm bg-background outline-none focus:ring-1 focus:ring-ring resize-none h-20"
-                  @input="goodMarkDirty"
-                />
+                  @input="goodMarkDirty" />
               </div>
             </CardContent>
             <CardFooter class="gap-2">
@@ -203,7 +199,8 @@ onBeforeUnmount(() => clearInterval(autoSaveTimer))
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter class="flex-col sm:flex-row gap-2">
-                <Button variant="outline" size="sm" @click="goodDiscardAndLeave" class="text-destructive border-destructive/40 hover:bg-destructive/5">
+                <Button variant="outline" size="sm" @click="goodDiscardAndLeave"
+                  class="text-destructive border-destructive/40 hover:bg-destructive/5">
                   放棄並離開
                 </Button>
                 <Button size="sm" @click="goodSaveDraft">

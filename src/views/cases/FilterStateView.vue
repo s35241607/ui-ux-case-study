@@ -91,13 +91,11 @@ function clearAllFilters() {
         </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        企業系統查詢功能常有多個篩選條件（狀態、類別、日期）。用戶設定篩選後，
-        畫面無任何提示目前套用了哪些條件，導致對查詢結果感到困惑。
-        良好的篩選器設計應在結果區域清楚顯示當前啟用的所有篩選條件，並提供快速移除的方式。
+        篩選套用後以標籤顯示當前條件，並提供一鍵清除功能。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：設好篩選就消失，結果無提示" rightTitle="優秀的設計：Active Filter 徽章 + 一鍵清除">
+    <SplitView>
       <template #left>
         <div class="flex-1 flex flex-col">
           <CaseBlock index="1" title="篩選條件面板" description="設定後收起面板，用戶不知道目前套用了什麼條件，結果可能出乎意料" tag="ux">
@@ -151,7 +149,7 @@ function clearAllFilters() {
                         <SelectGroup>
                           <SelectItem value="all">全部</SelectItem>
                           <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label
-                            }}</SelectItem>
+                          }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -228,7 +226,7 @@ function clearAllFilters() {
                         <SelectGroup>
                           <SelectItem value="all">全部</SelectItem>
                           <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label
-                            }}</SelectItem>
+                          }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>

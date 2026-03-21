@@ -63,12 +63,11 @@ async function goodRefresh() {
         </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        當用戶觸發任何需要等待的操作（送出表單、API 請求、資料載入），系統必須立即給予視覺反饋。
-        沒有 Loading 狀態會讓用戶以為系統沒有響應，導致重複點擊或放棄操作。
+        操作送出後立即顯示載入狀態，讓使用者明確知道系統正在處理。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：點擊後毫無反應" rightTitle="優秀的設計：立即給予 Loading 視覺反饋">
+    <SplitView>
       <template #left>
         <div class="flex-1 flex flex-col">
           <!-- Case 1 -->

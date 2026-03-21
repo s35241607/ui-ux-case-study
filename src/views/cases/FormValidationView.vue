@@ -43,15 +43,15 @@ const submitGoodForm = () => {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">表單驗證與回饋 (Form Validation)</h1>
-        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗
+        </Badge>
       </div>
-      <p class="text-muted-foreground w-full max-w-3xl text-sm leading-relaxed">
-        表單是用戶輸入資料的重要介面。不良的表單驗證會讓用戶感到困惑、挫折，甚至放棄操作。
-        好的表單設計應具備：即時回饋、清晰的錯誤提示位置、明確的解決方向。
+      <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
+        在欄位輸入時即時顯示驗證結果，讓使用者能及早修正錯誤。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：集中且模糊的錯誤提示" rightTitle="優秀的設計：即時且明確的欄位驗證">
+    <SplitView>
       <!-- ===== BAD Form ===== -->
       <template #left>
         <div class="flex-1 flex flex-col gap-6 max-w-sm mx-auto w-full mt-4">
@@ -69,7 +69,8 @@ const submitGoodForm = () => {
             <CardContent>
               <form @submit.prevent="submitBadForm" class="space-y-4">
                 <!-- Bad: top-level generic error -->
-                <div v-if="badError" class="bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 p-3 rounded-md text-sm border border-red-200 dark:border-red-900">
+                <div v-if="badError"
+                  class="bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 p-3 rounded-md text-sm border border-red-200 dark:border-red-900">
                   發生錯誤，請檢查您的輸入資料！
                 </div>
 
@@ -107,54 +108,44 @@ const submitGoodForm = () => {
               <form @submit.prevent="submitGoodForm" class="space-y-6">
                 <!-- Good Email Field -->
                 <div class="space-y-2">
-                  <Label
-                    for="good-email"
-                    :class="{ 'text-destructive': isEmailDirty && !goodEmail.includes('@') }"
-                  >電子郵件</Label>
+                  <Label for="good-email"
+                    :class="{ 'text-destructive': isEmailDirty && !goodEmail.includes('@') }">電子郵件</Label>
                   <div class="relative">
-                    <Input
-                      id="good-email"
-                      v-model="goodEmail"
-                      @blur="isEmailDirty = true"
-                      placeholder="example@domain.com"
-                      :class="{
+                    <Input id="good-email" v-model="goodEmail" @blur="isEmailDirty = true"
+                      placeholder="example@domain.com" :class="{
                         'border-destructive focus-visible:ring-destructive pr-10': isEmailDirty && (!goodEmail || !goodEmail.includes('@')),
                         'border-green-500 focus-visible:ring-green-500 pr-10': isEmailDirty && goodEmail.includes('@')
-                      }"
-                    />
+                      }" />
                     <div class="absolute right-3 top-1/2 -translate-y-1/2">
-                      <AlertCircle v-if="isEmailDirty && (!goodEmail || !goodEmail.includes('@'))" class="h-4 w-4 text-destructive" />
-                      <CheckCircle2 v-else-if="isEmailDirty && goodEmail.includes('@')" class="h-4 w-4 text-green-500" />
+                      <AlertCircle v-if="isEmailDirty && (!goodEmail || !goodEmail.includes('@'))"
+                        class="h-4 w-4 text-destructive" />
+                      <CheckCircle2 v-else-if="isEmailDirty && goodEmail.includes('@')"
+                        class="h-4 w-4 text-green-500" />
                     </div>
                   </div>
                   <p v-if="isEmailDirty && !goodEmail" class="text-xs text-destructive">此欄位為必填。</p>
-                  <p v-else-if="isEmailDirty && !goodEmail.includes('@')" class="text-xs text-destructive">請輸入有效的電子郵件格式（需包含 @）。</p>
+                  <p v-else-if="isEmailDirty && !goodEmail.includes('@')" class="text-xs text-destructive">
+                    請輸入有效的電子郵件格式（需包含 @）。</p>
                 </div>
 
                 <!-- Good Password Field -->
                 <div class="space-y-2">
-                  <Label
-                    for="good-password"
-                    :class="{ 'text-destructive': isPasswordDirty && goodPassword.length < 6 }"
-                  >密碼</Label>
+                  <Label for="good-password"
+                    :class="{ 'text-destructive': isPasswordDirty && goodPassword.length < 6 }">密碼</Label>
                   <div class="relative">
-                    <Input
-                      id="good-password"
-                      type="password"
-                      v-model="goodPassword"
-                      @blur="isPasswordDirty = true"
-                      placeholder="至少 6 個字元"
-                      :class="{
+                    <Input id="good-password" type="password" v-model="goodPassword" @blur="isPasswordDirty = true"
+                      placeholder="至少 6 個字元" :class="{
                         'border-destructive focus-visible:ring-destructive pr-10': isPasswordDirty && goodPassword.length < 6,
                         'border-green-500 focus-visible:ring-green-500 pr-10': isPasswordDirty && goodPassword.length >= 6
-                      }"
-                    />
+                      }" />
                     <div class="absolute right-3 top-1/2 -translate-y-1/2">
                       <AlertCircle v-if="isPasswordDirty && goodPassword.length < 6" class="h-4 w-4 text-destructive" />
-                      <CheckCircle2 v-else-if="isPasswordDirty && goodPassword.length >= 6" class="h-4 w-4 text-green-500" />
+                      <CheckCircle2 v-else-if="isPasswordDirty && goodPassword.length >= 6"
+                        class="h-4 w-4 text-green-500" />
                     </div>
                   </div>
-                  <p v-if="isPasswordDirty && goodPassword.length < 6" class="text-xs text-destructive">密碼長度必須至少為 6 個字元。</p>
+                  <p v-if="isPasswordDirty && goodPassword.length < 6" class="text-xs text-destructive">密碼長度必須至少為 6 個字元。
+                  </p>
                 </div>
 
                 <Button type="submit" class="w-full">登入系統</Button>

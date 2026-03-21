@@ -25,12 +25,11 @@ function fmt(val: number, type: string) {
         <Badge variant="secondary" class="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30">UI 設計</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        文字靠左以符合閱讀習慣；數字靠右讓位數對齊、大小一眼看出；金額加上千分位分隔符幫助快速判讀數量級。
-        這些細節直接影響報表與後台系統的易用性。
+        統一欄位對齊方式與數字格式，提升表格資料的閱讀效率。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：對齊混亂、數字難以判讀" rightTitle="優秀的設計：文字靠左、數字靠右、千分位格式">
+    <SplitView>
       <template #left>
         <div class="flex flex-col gap-5 mt-4">
           <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
@@ -58,7 +57,8 @@ function fmt(val: number, type: string) {
                     <td class="text-center p-3">{{ row.name }}</td>
                     <td class="text-center p-3">
                       <!-- Bad: no formatting, no alignment -->
-                      {{ row.type === 'money' ? `NT$${row.value}` : row.type === 'percent' ? `${row.value}` : row.value }}
+                      {{ row.type === 'money' ? `NT$${row.value}` : row.type === 'percent' ? `${row.value}` : row.value
+                      }}
                     </td>
                     <td class="text-center p-3">{{ row.change > 0 ? '+' : '' }}{{ row.change }}</td>
                   </tr>
@@ -112,8 +112,7 @@ function fmt(val: number, type: string) {
                     <td class="text-right p-3 tabular-nums font-mono">{{ fmt(row.value, row.type) }}</td>
                     <!-- Good: colored change -->
                     <td class="text-right p-3 tabular-nums font-medium"
-                      :class="row.change > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'"
-                    >
+                      :class="row.change > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'">
                       {{ row.change > 0 ? '▲' : '▼' }} {{ Math.abs(row.change) }}%
                     </td>
                   </tr>

@@ -39,12 +39,11 @@ const overflowActions = allActions.filter(a => !a.primary)
         <Badge variant="secondary" class="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30">UI 設計</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        功能按鈕過多時，應優先顯示最常用的 2~3 個主要操作，其餘收納進「更多」選單中。
-        這樣能降低認知負荷，讓用戶快速找到主要操作，不被次要功能干擾。
+        將次要操作收納至下拉選單，避免版面被大量按鈕佔滿。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：所有按鈕全部顯示" rightTitle="優秀的設計：主要操作外露，其餘收納">
+    <SplitView>
       <template #left>
         <div class="flex flex-col gap-5 mt-4">
           <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
@@ -68,7 +67,7 @@ const overflowActions = allActions.filter(a => !a.primary)
                   {{ action.label }}
                 </Button>
               </div>
-              <div class="text-xs text-muted-foreground/70 italic">👆 哪個是主要操作？用戶需要逐一閱讀</div>
+              <div class="text-xs text-muted-foreground/70 italic">哪個是主要操作？需要逐一閱讀按鈕內容</div>
             </CardContent>
           </Card>
 
@@ -140,7 +139,7 @@ const overflowActions = allActions.filter(a => !a.primary)
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-              <div class="text-xs text-muted-foreground/70 italic">👆 主要操作一目了然，其他在⋯裡</div>
+              <div class="text-xs text-muted-foreground/70 italic">主要操作一目了然，其他收納在 ⋯ 選單裡</div>
             </CardContent>
           </Card>
 

@@ -67,8 +67,7 @@ const getStatusColor = (status: string) => {
         </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        在企業內部系統中，使用者每天可能要修改數百筆資料的狀態。若是每次修改都需要點擊「編輯」進入特殊模式或彈出對話框，將會造成嚴重的效率瓶頸與認知中斷。
-        提供直接點擊單元格進行<b>內聯編輯 (Inline Editing)</b>，是提昇 Power User 效率的關鍵體驗。
+        直接在列表中點擊欄位進行編輯，省去開啟彈窗的額外步驟。
       </p>
     </div>
 

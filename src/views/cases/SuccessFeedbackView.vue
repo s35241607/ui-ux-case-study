@@ -41,13 +41,11 @@ function showGoodInfo() {
         </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        <strong>Toast</strong> 適合輕量、非破壞性的操作回饋（成功、失敗通知）；
-        <strong>Modal</strong> 適合需要用戶確認才能繼續的重要操作（刪除、不可逆動作）。
-        混用或濫用會讓用戶感到干擾或不安。
+        依操作的重要程度選擇適合的回饋方式，避免過度打擾使用者。
       </p>
     </div>
 
-    <SplitView leftTitle="不良的設計：用 Modal 回饋所有操作" rightTitle="優秀的設計：適切選用 Toast 或 Modal">
+    <SplitView>
       <template #left>
         <div class="flex flex-col gap-5 mt-4">
           <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
