@@ -21,7 +21,13 @@ const { isPresenting, togglePresentationMode } = usePresentation()
     and break fixed positioning, causing toast to appear in wrong location.
   -->
   <Teleport to="body">
-    <Toaster position="bottom-right" richColors :theme="isDark ? 'dark' : 'light'" />
+    <Toaster 
+      position="bottom-right" 
+      :theme="isDark ? 'dark' : 'light'" 
+      :toastOptions="{
+        className: 'sonner-toast-custom',
+      }"
+    />
     
     <!-- Presentation Mode Exit Button (only visible when presenting) -->
     <Transition name="fade">

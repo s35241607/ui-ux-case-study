@@ -130,3 +130,58 @@
 .dark *::-webkit-scrollbar-thumb:hover {
   background-color: hsl(0 0% 40%);
 }
+
+/* ===== Sonner UI Refinement (Shadcn-style) ===== */
+[data-sonner-toaster] {
+  font-family: inherit !important;
+}
+
+[data-sonner-toast] {
+  --radius: 0.75rem;
+  border-radius: var(--radius) !important;
+  padding: 12px 16px !important;
+  border: 1px solid hsl(var(--border)) !important;
+  background: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark [data-sonner-toast] {
+  background: hsl(var(--popover) / 0.8) !important;
+  backdrop-filter: blur(8px) !important;
+  border-color: hsl(var(--border) / 0.8) !important;
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-sonner-toast][data-styled="true"] {
+  /* Success states */
+  &[data-type="success"] {
+    border-color: hsl(142.1 76.2% 36.3% / 0.3) !important;
+    [data-icon] { color: hsl(142.1 76.2% 36.3%) !important; }
+  }
+  
+  /* Error states */
+  &[data-type="error"] {
+    border-color: hsl(var(--destructive) / 0.3) !important;
+    [data-icon] { color: hsl(var(--destructive)) !important; }
+  }
+
+  /* Info states */
+  &[data-type="info"] {
+    border-color: hsl(221.2 83.2% 53.3% / 0.3) !important;
+    [data-icon] { color: hsl(221.2 83.2% 53.3%) !important; }
+  }
+}
+
+.dark [data-sonner-toast][data-styled="true"] {
+  &[data-type="success"] {
+    border-color: hsl(142.1 70.6% 45.3% / 0.3) !important;
+    [data-icon] { color: hsl(142.1 70.6% 45.3%) !important; }
+  }
+  &[data-type="error"] {
+    [data-icon] { color: hsl(0 84.2% 60.2%) !important; }
+  }
+  &[data-type="info"] {
+    [data-icon] { color: hsl(217.2 91.2% 59.8%) !important; }
+  }
+}
