@@ -4,6 +4,8 @@ import { Check, X, Pencil, Edit2 } from 'lucide-vue-next'
 import SplitView from '@/components/layout/SplitView.vue'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { toast } from 'vue-sonner'
 
 // 模擬資料
@@ -61,7 +63,8 @@ const getStatusColor = (status: string) => {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">內聯編輯 vs 彈窗編輯 (Inline Edit)</h1>
-        <Badge variant="secondary" class="text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/30">企業場景</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
+        <Badge variant="outline">企業場景</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         在企業內部系統中，使用者每天可能要修改數百筆資料的狀態。若是每次修改都需要點擊「編輯」進入特殊模式或彈出對話框，將會造成嚴重的效率瓶頸與認知中斷。
@@ -109,17 +112,31 @@ const getStatusColor = (status: string) => {
                       <div class="flex items-end gap-3 p-3 bg-background border rounded-md shadow-sm">
                         <div class="grid w-full gap-1.5">
                           <label class="text-xs font-medium">狀態修改</label>
-                          <select v-model="badEditForm.status" class="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
-                            <option v-for="opt in statusOptions" :value="opt">{{ opt }}</option>
-                          </select>
+                          <Select v-model="badEditForm.status">
+                            <SelectTrigger class="h-9 w-full">
+                              <SelectValue placeholder="選擇狀態" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectGroup>
+                                <SelectItem v-for="opt in statusOptions" :key="opt" :value="opt">{{ opt }}</SelectItem>
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
                         </div>
                         <div class="grid w-full gap-1.5">
                           <label class="text-xs font-medium">權限修改</label>
-                          <select v-model="badEditForm.role" class="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
-                            <option v-for="opt in roleOptions" :value="opt">{{ opt }}</option>
-                          </select>
+                          <Select v-model="badEditForm.role">
+                            <SelectTrigger class="h-9 w-full">
+                              <SelectValue placeholder="選擇權限" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectGroup>
+                                <SelectItem v-for="opt in roleOptions" :key="opt" :value="opt">{{ opt }}</SelectItem>
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
                         </div>
-                        <div class="flex items-center gap-2 shrink-0">
+                        <div class="flex items-center justify-end gap-2 shrink-0 pt-4">
                           <Button variant="outline" size="sm" @click="cancelBadEdit">取消</Button>
                           <Button size="sm" @click="saveBadEdit(row)">儲存</Button>
                         </div>
@@ -155,30 +172,35 @@ const getStatusColor = (status: string) => {
                     <div class="text-xs text-muted-foreground">{{ row.email }}</div>
                   </td>
                   <td class="p-3">
-                    <!-- 內聯編輯 Select 外觀偽裝成文字 -->
+                    <!-- 內聯編輯 Select 外觀偽裝成文字 (使用 DropdownMenu) -->
                     <div class="relative flex items-center">
-                      <select 
-                        :value="row.role"
-                        @change="(e) => quickUpdateGood(row, 'role', (e.target as HTMLSelectElement).value)"
-                        class="appearance-none bg-transparent hover:bg-black/5 dark:hover:bg-white/10 p-1.5 pr-6 rounded-md cursor-pointer text-sm transition-colors border-none outline-none focus:ring-1 focus:ring-ring font-medium"
-                      >
-                        <option v-for="opt in roleOptions" :value="opt">{{ opt }}</option>
-                      </select>
-                      <Pencil class="w-3 h-3 text-muted-foreground absolute right-2 opacity-0 group-hover:opacity-50 pointer-events-none transition-opacity" />
+                      <DropdownMenu>
+                        <DropdownMenuTrigger class="appearance-none bg-transparent hover:bg-black/5 dark:hover:bg-white/10 p-1.5 pr-6 rounded-md cursor-pointer text-sm transition-colors border-none outline-none focus:ring-1 focus:ring-ring font-medium flex items-center gap-1 group w-full text-left">
+                          <span>{{ row.role }}</span>
+                          <Pencil class="w-3 h-3 text-muted-foreground absolute right-2 opacity-0 group-hover:opacity-50 transition-opacity" />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="start">
+                          <DropdownMenuItem v-for="opt in roleOptions" :key="opt" @click="quickUpdateGood(row, 'role', opt)">
+                            <span :class="{'font-bold': row.role === opt}">{{ opt }}</span>
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                     </div>
                   </td>
                   <td class="p-3">
-                    <!-- 內聯編輯 Select 外觀偽裝成 Badge -->
+                    <!-- 內聯編輯 Select 外觀偽裝成 Badge (使用 DropdownMenu) -->
                     <div class="relative flex items-center">
-                      <select 
-                        :value="row.status"
-                        @change="(e) => quickUpdateGood(row, 'status', (e.target as HTMLSelectElement).value)"
-                        class="appearance-none px-2.5 py-1 rounded-full text-xs font-semibold cursor-pointer transition-colors border outline-none focus:ring-1 focus:ring-ring pr-6"
-                        :class="getStatusColor(row.status)"
-                      >
-                        <option v-for="opt in statusOptions" :value="opt" class="text-foreground bg-background">{{ opt }}</option>
-                      </select>
-                      <Pencil class="w-3 h-3 text-current absolute right-2 opacity-0 group-hover:opacity-50 pointer-events-none transition-opacity" />
+                      <DropdownMenu>
+                        <DropdownMenuTrigger class="appearance-none px-2.5 py-1 rounded-full text-xs font-semibold cursor-pointer transition-colors border outline-none focus:ring-1 focus:ring-ring pr-6 flex items-center gap-1 group" :class="getStatusColor(row.status)">
+                          <span>{{ row.status }}</span>
+                          <Pencil class="w-3 h-3 text-current absolute right-2 opacity-0 group-hover:opacity-50 transition-opacity" />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="start">
+                          <DropdownMenuItem v-for="opt in statusOptions" :key="opt" @click="quickUpdateGood(row, 'status', opt)">
+                            <span :class="{'font-bold': row.status === opt}">{{ opt }}</span>
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
                     </div>
                   </td>
                 </tr>
