@@ -1,77 +1,9 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { ArrowRight, Layers, Maximize2, AlignLeft, MousePointer2, LayoutTemplate, Loader2, Bell, Navigation, FileWarning } from 'lucide-vue-next'
+import { ArrowRight, Layers } from 'lucide-vue-next'
+import { uiCases, uxCases } from '@/config/cases'
 
 const router = useRouter()
-
-const uiCases = [
-  {
-    icon: Maximize2,
-    title: '視覺間距與舒適度',
-    type: '視覺設計',
-    desc: 'padding 與 margin 的合理運用，讓畫面有呼吸感，不讓用戶感到壓迫。',
-    path: '/case/spacing',
-  },
-  {
-    icon: AlignLeft,
-    title: '資料對齊與數字格式',
-    type: '資料呈現',
-    desc: '文字靠左、數字靠右，並搭配千分位格式讓資料一目了然。',
-    path: '/case/data-alignment',
-  },
-  {
-    icon: MousePointer2,
-    title: '按鈕階層設計',
-    type: '互動設計',
-    desc: '利用 Primary / Secondary / Ghost 視覺重量引導用戶完成主要操作。',
-    path: '/case/button-hierarchy',
-  },
-  {
-    icon: LayoutTemplate,
-    title: '按鈕收納與工具列',
-    type: '資訊架構',
-    desc: '功能過多時，只保留常用按鈕，其餘收納在 More 選單。',
-    path: '/case/button-overflow',
-  },
-]
-
-const uxCases = [
-  {
-    icon: LayoutTemplate,
-    title: '表單驗證與即時回饋',
-    type: '表單體驗',
-    desc: '在用戶輸入時即時驗證並提示，而非等送出後才集中報錯。',
-    path: '/case/form-validation',
-  },
-  {
-    icon: Loader2,
-    title: '載入狀態反饋',
-    type: '互動回饋',
-    desc: '觸發事件後要有 loading 狀態，避免用戶不知道系統是否正在處理。',
-    path: '/case/loading-feedback',
-  },
-  {
-    icon: Bell,
-    title: '事件回饋：Toast vs Modal',
-    type: '狀態通知',
-    desc: '成功、失敗的回饋應選擇適合的 Toast 或 Modal，而非一律使用彈窗。',
-    path: '/case/success-feedback',
-  },
-  {
-    icon: Navigation,
-    title: '導覽狀態保留',
-    type: '導覽行為',
-    desc: '返回上一頁時保留查詢篩選狀態，並支援中鍵開新分頁。',
-    path: '/case/navigation-state',
-  },
-  {
-    icon: FileWarning,
-    title: '未儲存資料提示',
-    type: '資料保護',
-    desc: '表單填到一半意外離開時，應提示用戶或自動保存草稿。',
-    path: '/case/unsaved-changes',
-  },
-]
 </script>
 
 <template>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
-import { Search, ArrowRight, LayoutTemplate, MousePointer2, AlignLeft, Loader2, Bell, Navigation, FileWarning, Maximize2 } from 'lucide-vue-next'
+import { Search, ArrowRight } from 'lucide-vue-next'
+import { allCases as allPages } from '@/config/cases'
 
 const router = useRouter()
 const isOpen = ref(false)
@@ -10,89 +11,7 @@ const selectedIndex = ref(0)
 const inputRef = ref<HTMLInputElement | null>(null)
 const resultRefs = ref<HTMLElement[]>([])
 
-const allPages = [
-  {
-    title: '視覺間距與舒適度',
-    path: '/case/spacing',
-    category: 'UI 設計',
-    type: '視覺設計',
-    desc: 'Padding、Margin 的視覺舒適感',
-    icon: Maximize2,
-    tag: 'ui'
-  },
-  {
-    title: '資料對齊與數字格式',
-    path: '/case/data-alignment',
-    category: 'UI 設計',
-    type: '資料呈現',
-    desc: '文字靠左、數字靠右、千分位格式',
-    icon: AlignLeft,
-    tag: 'ui'
-  },
-  {
-    title: '按鈕階層設計',
-    path: '/case/button-hierarchy',
-    category: 'UI 設計',
-    type: '互動設計',
-    desc: 'Primary、Secondary、Destructive 按鈕的視覺權重',
-    icon: MousePointer2,
-    tag: 'ui'
-  },
-  {
-    title: '按鈕收納與工具列',
-    path: '/case/button-overflow',
-    category: 'UI 設計',
-    type: '資訊架構',
-    desc: '過多按鈕時的收納與 More 模式',
-    icon: LayoutTemplate,
-    tag: 'ui'
-  },
-  {
-    title: '表單驗證與即時回饋',
-    path: '/case/form-validation',
-    category: 'UX 體驗',
-    type: '表單體驗',
-    desc: '即時欄位驗證 vs 送出後錯誤提示',
-    icon: LayoutTemplate,
-    tag: 'ux'
-  },
-  {
-    title: '載入狀態反饋',
-    path: '/case/loading-feedback',
-    category: 'UX 體驗',
-    type: '互動回饋',
-    desc: '觸發事件的 Loading 狀態設計',
-    icon: Loader2,
-    tag: 'ux'
-  },
-  {
-    title: '事件回饋：Toast vs Modal',
-    path: '/case/success-feedback',
-    category: 'UX 體驗',
-    type: '狀態通知',
-    desc: '操作成功與失敗的回饋方式比較',
-    icon: Bell,
-    tag: 'ux'
-  },
-  {
-    title: '導覽狀態保留',
-    path: '/case/navigation-state',
-    category: 'UX 體驗',
-    type: '導覽行為',
-    desc: '返回上頁時保留查詢狀態、中鍵開新分頁',
-    icon: Navigation,
-    tag: 'ux'
-  },
-  {
-    title: '未儲存資料提示',
-    path: '/case/unsaved-changes',
-    category: 'UX 體驗',
-    type: '資料保護',
-    desc: '表單填寫後意外離開的保護機制',
-    icon: FileWarning,
-    tag: 'ux'
-  }
-]
+
 
 const filteredResults = computed(() => {
   const q = query.value.toLowerCase().trim()

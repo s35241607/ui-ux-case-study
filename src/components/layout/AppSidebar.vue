@@ -11,26 +11,11 @@ import {
   Loader2, Bell, Navigation, FileWarning, Layers, Home,
   FolderOpen, CheckSquare, Filter
 } from 'lucide-vue-next'
+import { uiCases, uxCases } from '@/config/cases'
 
 const route = useRoute()
 
-const uiCases = [
-  { title: '視覺間距與舒適度', path: '/case/spacing', icon: Maximize2 },
-  { title: '資料對齊與數字格式', path: '/case/data-alignment', icon: AlignLeft },
-  { title: '按鈕階層設計', path: '/case/button-hierarchy', icon: MousePointer2 },
-  { title: '按鈕收納與工具列', path: '/case/button-overflow', icon: LayoutTemplate },
-  { title: '空狀態設計', path: '/case/empty-state', icon: FolderOpen },
-]
 
-const uxCases = [
-  { title: '表單驗證與即時回饋', path: '/case/form-validation', icon: LayoutTemplate },
-  { title: '載入狀態反饋', path: '/case/loading-feedback', icon: Loader2 },
-  { title: '事件回饋：Toast vs Modal', path: '/case/success-feedback', icon: Bell },
-  { title: '篩選器狀態顯示', path: '/case/filter-state', icon: Filter },
-  { title: '批次操作設計', path: '/case/batch-actions', icon: CheckSquare },
-  { title: '導覽狀態保留', path: '/case/navigation-state', icon: Navigation },
-  { title: '未儲存資料提示', path: '/case/unsaved-changes', icon: FileWarning },
-]
 
 const currentPath = computed(() => route.path)
 </script>

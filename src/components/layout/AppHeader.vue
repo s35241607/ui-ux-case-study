@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { Sun, Moon, Search } from 'lucide-vue-next'
+import { Sun, Moon, Search, MonitorPlay } from 'lucide-vue-next'
 import { useDark, useToggle } from '@vueuse/core'
 import { SidebarTrigger } from '@/components/ui/sidebar'
+import { togglePresentationMode } from '@/composables/usePresentation'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -78,6 +79,15 @@ const breadcrumbs = computed(() => {
         class="flex sm:hidden items-center justify-center rounded-md h-7 w-7 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       >
         <Search class="h-3.5 w-3.5" />
+      </button>
+
+      <!-- Presentation toggle -->
+      <button
+        @click="togglePresentationMode"
+        class="hidden sm:inline-flex items-center justify-center rounded-md h-7 w-7 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        title="簡報模式 (Shift+P)"
+      >
+        <MonitorPlay class="h-3.5 w-3.5" />
       </button>
 
       <!-- Dark mode toggle -->
