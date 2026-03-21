@@ -60,7 +60,7 @@ async function goodRefresh() {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">載入狀態反饋 (Loading Feedback)</h1>
-        <Badge variant="secondary" class="text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         當用戶觸發任何需要等待的操作（送出表單、API 請求、資料載入），系統必須立即給予視覺反饋。

@@ -36,7 +36,6 @@ const getPriorityColor = (p: string) => {
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">側邊抽屜預覽 (Contextual Drawer)</h1>
         <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
-        <Badge variant="outline">企業場景</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         內部系統經常需要「審核清單」或「大量走訪資料」。傳統點擊跳頁的設計會讓使用者不斷在「列表 ↔ 詳情頁」之間來回穿梭，失去對整體的掌控感（Context Loss）。

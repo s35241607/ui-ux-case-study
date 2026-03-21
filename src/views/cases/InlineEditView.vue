@@ -64,7 +64,6 @@ const getStatusColor = (status: string) => {
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">內聯編輯 vs 彈窗編輯 (Inline Edit)</h1>
         <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
-        <Badge variant="outline">企業場景</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         在企業內部系統中，使用者每天可能要修改數百筆資料的狀態。若是每次修改都需要點擊「編輯」進入特殊模式或彈出對話框，將會造成嚴重的效率瓶頸與認知中斷。
@@ -166,42 +165,38 @@ const getStatusColor = (status: string) => {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="row in goodData" :key="row.id" class="border-b last:border-0 hover:bg-muted/20 transition-colors group">
+                <tr v-for="row in goodData" :key="row.id" class="border-b last:border-0 hover:bg-primary/5 transition-colors group cursor-default">
                   <td class="p-4">
                     <div class="font-medium">{{ row.name }}</div>
                     <div class="text-xs text-muted-foreground">{{ row.email }}</div>
                   </td>
-                  <td class="p-3">
-                    <!-- 內聯編輯 Select 外觀偽裝成文字 (使用 DropdownMenu) -->
-                    <div class="relative flex items-center">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger class="appearance-none bg-transparent hover:bg-black/5 dark:hover:bg-white/10 p-1.5 pr-6 rounded-md cursor-pointer text-sm transition-colors border-none outline-none focus:ring-1 focus:ring-ring font-medium flex items-center gap-1 group w-full text-left">
-                          <span>{{ row.role }}</span>
-                          <Pencil class="w-3 h-3 text-muted-foreground absolute right-2 opacity-0 group-hover:opacity-50 transition-opacity" />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="start">
-                          <DropdownMenuItem v-for="opt in roleOptions" :key="opt" @click="quickUpdateGood(row, 'role', opt)">
-                            <span :class="{'font-bold': row.role === opt}">{{ opt }}</span>
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </div>
+                  <td class="p-0">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger class="w-full h-full px-4 py-3 flex items-center gap-2 cursor-pointer hover:bg-primary/10 transition-colors text-left focus:outline-none focus:ring-1 focus:ring-ring focus:ring-inset rounded-sm group/cell">
+                        <span class="font-medium text-sm">{{ row.role }}</span>
+                        <Pencil class="w-3 h-3 text-muted-foreground/30 group-hover/cell:text-muted-foreground/70 transition-colors shrink-0" />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="start">
+                        <DropdownMenuItem v-for="opt in roleOptions" :key="opt" @click="quickUpdateGood(row, 'role', opt)">
+                          <span :class="{'font-bold': row.role === opt}">{{ opt }}</span>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </td>
-                  <td class="p-3">
-                    <!-- 內聯編輯 Select 外觀偽裝成 Badge (使用 DropdownMenu) -->
-                    <div class="relative flex items-center">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger class="appearance-none px-2.5 py-1 rounded-full text-xs font-semibold cursor-pointer transition-colors border outline-none focus:ring-1 focus:ring-ring pr-6 flex items-center gap-1 group" :class="getStatusColor(row.status)">
-                          <span>{{ row.status }}</span>
-                          <Pencil class="w-3 h-3 text-current absolute right-2 opacity-0 group-hover:opacity-50 transition-opacity" />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="start">
-                          <DropdownMenuItem v-for="opt in statusOptions" :key="opt" @click="quickUpdateGood(row, 'status', opt)">
-                            <span :class="{'font-bold': row.status === opt}">{{ opt }}</span>
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </div>
+                  <td class="p-0">
+                    <DropdownMenu>
+                      <DropdownMenuTrigger class="w-full h-full px-4 py-3 flex items-center gap-2 cursor-pointer hover:bg-primary/10 transition-colors text-left focus:outline-none focus:ring-1 focus:ring-ring focus:ring-inset rounded-sm group/cell">
+                        <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold border" :class="getStatusColor(row.status)">
+                          {{ row.status }}
+                        </span>
+                        <Pencil class="w-3 h-3 text-muted-foreground/30 group-hover/cell:text-muted-foreground/70 transition-colors shrink-0" />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="start">
+                        <DropdownMenuItem v-for="opt in statusOptions" :key="opt" @click="quickUpdateGood(row, 'status', opt)">
+                          <span :class="{'font-bold': row.status === opt}">{{ opt }}</span>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </td>
                 </tr>
               </tbody>

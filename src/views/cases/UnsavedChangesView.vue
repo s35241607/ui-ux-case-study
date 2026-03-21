@@ -84,7 +84,7 @@ onBeforeUnmount(() => clearInterval(autoSaveTimer))
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">未儲存資料提示 (Unsaved Changes)</h1>
-        <Badge variant="secondary" class="text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         用戶填寫表單到一半意外點到其他按鈕時，必須給予提示或自動保存草稿，

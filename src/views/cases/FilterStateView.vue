@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { X, Filter, Search, Calendar, Tag, Users, ChevronDown } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
@@ -86,7 +87,7 @@ function clearAllFilters() {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">篩選器狀態顯示 (Filter State)</h1>
-        <Badge variant="secondary" class="text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         企業系統查詢功能常有多個篩選條件（狀態、類別、日期）。用戶設定篩選後，
@@ -111,24 +112,45 @@ function clearAllFilters() {
                   </div>
                   <div class="space-y-1">
                     <label class="text-xs text-muted-foreground">狀態</label>
-                    <select v-model="badStatus" class="w-full h-8 text-xs border rounded-md px-2 bg-background">
-                      <option value="">全部</option>
-                      <option v-for="opt in filterOptions.status" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
-                    </select>
+                    <Select v-model="badStatus">
+                      <SelectTrigger class="h-8 text-xs w-full">
+                        <SelectValue placeholder="全部" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.status" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div class="space-y-1">
                     <label class="text-xs text-muted-foreground">採購類別</label>
-                    <select v-model="badCategory" class="w-full h-8 text-xs border rounded-md px-2 bg-background">
-                      <option value="">全部</option>
-                      <option v-for="opt in filterOptions.category" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
-                    </select>
+                    <Select v-model="badCategory">
+                      <SelectTrigger class="h-8 text-xs w-full">
+                        <SelectValue placeholder="全部" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.category" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div class="space-y-1">
                     <label class="text-xs text-muted-foreground">時間範圍</label>
-                    <select v-model="badDate" class="w-full h-8 text-xs border rounded-md px-2 bg-background">
-                      <option value="">全部</option>
-                      <option v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
-                    </select>
+                    <Select v-model="badDate">
+                      <SelectTrigger class="h-8 text-xs w-full">
+                        <SelectValue placeholder="全部" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
                 <Button size="sm" class="w-full h-8 text-xs" @click="toast.info('已套用篩選條件')">
@@ -164,24 +186,45 @@ function clearAllFilters() {
                   </div>
                   <div class="space-y-1">
                     <label class="text-xs text-muted-foreground">狀態</label>
-                    <select v-model="goodStatus" class="w-full h-8 text-xs border rounded-md px-2 bg-background">
-                      <option value="">全部</option>
-                      <option v-for="opt in filterOptions.status" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
-                    </select>
+                    <Select v-model="goodStatus">
+                      <SelectTrigger class="h-8 text-xs w-full">
+                        <SelectValue placeholder="全部" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.status" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div class="space-y-1">
                     <label class="text-xs text-muted-foreground">採購類別</label>
-                    <select v-model="goodCategory" class="w-full h-8 text-xs border rounded-md px-2 bg-background">
-                      <option value="">全部</option>
-                      <option v-for="opt in filterOptions.category" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
-                    </select>
+                    <Select v-model="goodCategory">
+                      <SelectTrigger class="h-8 text-xs w-full">
+                        <SelectValue placeholder="全部" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.category" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div class="space-y-1">
                     <label class="text-xs text-muted-foreground">時間範圍</label>
-                    <select v-model="goodDate" class="w-full h-8 text-xs border rounded-md px-2 bg-background">
-                      <option value="">全部</option>
-                      <option v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
-                    </select>
+                    <Select v-model="goodDate">
+                      <SelectTrigger class="h-8 text-xs w-full">
+                        <SelectValue placeholder="全部" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
 

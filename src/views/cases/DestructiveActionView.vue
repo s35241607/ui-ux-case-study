@@ -39,7 +39,7 @@ const cancelGood = () => {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">破壞性操作的雙重確認 (Destructive Action Safeguards)</h1>
-        <Badge variant="secondary" class="text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/30">企業場景</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         在企業系統中，刪除關鍵資源（如專案、資料庫、金流設定）往往會造成無法挽回的災難。

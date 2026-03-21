@@ -20,7 +20,7 @@
      </div>
    </template>
    ```
-5. **標籤 Badge 統一規範**：Case Study 標題旁的 Badge 必須與其在 `cases.ts` 的所屬分類對應：若為 UX 類，使用 `<Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>`；若為 UI 類，使用對應的藍色 `UI 設計` Badge。可額外搭配 `variant="outline"` 的次要標籤（如：`企業場景`）。
+5. **標籤 Badge 統一規範**：Case Study 標題旁的 Badge 必須與其在 `cases.ts` 的所屬分類對應：若為 UX 類，使用 `<Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>`；若為 UI 類，使用對應的藍色 `UI 設計` Badge
 6. **下拉選單元件規範**：禁止使用原生的 `<select>` 與 `<option>`，請一律使用 `shadcn-vue` 提供的 `Select` 元件（表單選擇）或 `DropdownMenu` 元件（操作選單與內聯編輯下拉）。
 7. **底部按鈕對齊 (Action Buttons)**：表單、對話框 (Dialog) 與抽屜 (Drawer) 底部的操作按鈕應**統一對齊右下方 (Right-aligned)**，也就是使用 `justify-end`。主要的確認/儲存操作擺在最右側，取消或次要操作擺在其左側。
 

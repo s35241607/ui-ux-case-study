@@ -40,7 +40,10 @@ const submitGoodForm = () => {
 <template>
   <div class="h-full flex flex-col">
     <div class="mb-4 px-4 lg:px-6 pt-6">
-      <h1 class="text-2xl font-bold tracking-tight mb-2">表單驗證與回饋 (Form Validation)</h1>
+      <div class="flex items-center gap-2 mb-2">
+        <h1 class="text-2xl font-bold tracking-tight">表單驗證與回饋 (Form Validation)</h1>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
+      </div>
       <p class="text-muted-foreground w-full max-w-3xl text-sm leading-relaxed">
         表單是用戶輸入資料的重要介面。不良的表單驗證會讓用戶感到困惑、挫折，甚至放棄操作。
         好的表單設計應具備：即時回饋、清晰的錯誤提示位置、明確的解決方向。

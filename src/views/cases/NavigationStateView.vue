@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ExternalLink, ArrowLeft, Search, Filter } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
@@ -73,7 +74,7 @@ function goodGoBack() {
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">導覽狀態保留 (Navigation State)</h1>
-        <Badge variant="secondary" class="text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30">UX 體驗</Badge>
+        <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">UX 體驗</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         用戶在列表頁篩選、搜尋後點進詳情，<strong>返回時應保留原本的查詢狀態</strong>，而不是回到初始狀態。
@@ -143,14 +144,19 @@ function goodGoBack() {
               <CardTitle class="text-sm">訂單列表</CardTitle>
               <div class="flex gap-2 mt-2">
                 <Input v-model="goodSearchQuery" placeholder="搜尋客戶或編號..." class="h-8 text-sm flex-1" />
-                <select v-model="goodStatusFilter"
-                  class="border rounded-md h-8 px-2 text-xs bg-background outline-none focus:ring-1 focus:ring-ring"
-                >
-                  <option value="all">所有狀態</option>
-                  <option value="已付款">已付款</option>
-                  <option value="處理中">處理中</option>
-                  <option value="待付款">待付款</option>
-                </select>
+                <Select v-model="goodStatusFilter">
+                  <SelectTrigger class="h-8 text-xs w-32 shrink-0">
+                    <SelectValue placeholder="所有狀態" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="all">所有狀態</SelectItem>
+                      <SelectItem value="已付款">已付款</SelectItem>
+                      <SelectItem value="處理中">處理中</SelectItem>
+                      <SelectItem value="待付款">待付款</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </div>
               <div v-if="goodSearchQuery || goodStatusFilter !== 'all'" class="flex items-center gap-1.5 mt-1.5">
                 <Filter class="h-3 w-3 text-muted-foreground" />
