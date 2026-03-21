@@ -33,17 +33,20 @@ const currentPath = computed(() => route.path)
 
 <template>
   <Sidebar collapsible="icon">
-    <SidebarHeader class="border-b">
+    <!-- Header: Notion-style workspace header -->
+    <SidebarHeader class="px-3 py-3 border-b">
       <SidebarMenu>
         <SidebarMenuItem>
-          <SidebarMenuButton asChild size="lg" tooltip="UI/UX Case Study">
+          <SidebarMenuButton asChild size="lg" class="h-auto py-2 px-2 hover:bg-accent rounded-md" tooltip="Lan's UX Lab">
             <router-link to="/" class="flex items-center gap-2.5">
-              <div class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-xs tracking-wide">
-                UX
+              <!-- Avatar style icon - Notion-like gradient monogram -->
+              <div class="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-lg overflow-hidden bg-gradient-to-br from-violet-500 via-purple-500 to-indigo-600 shadow-sm">
+                <span class="text-white font-bold text-xs tracking-tight">L</span>
               </div>
-              <div class="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
-                <span class="text-sm font-semibold">UI/UX Case Study</span>
-                <span class="text-[10px] text-muted-foreground font-normal">互動式設計示範</span>
+              <!-- Workspace name -->
+              <div class="flex flex-col gap-0 leading-none group-data-[collapsible=icon]:hidden">
+                <span class="text-[13px] font-semibold text-foreground">Lan's UX Lab</span>
+                <span class="text-[11px] text-muted-foreground font-normal">互動式設計示範</span>
               </div>
             </router-link>
           </SidebarMenuButton>
@@ -51,14 +54,14 @@ const currentPath = computed(() => route.path)
       </SidebarMenu>
     </SidebarHeader>
 
-    <SidebarContent class="px-1">
+    <SidebarContent class="px-1 pt-1">
       <!-- Home -->
-      <SidebarGroup>
+      <SidebarGroup class="py-1">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild :isActive="currentPath === '/'" tooltip="首頁">
-              <router-link to="/" class="gap-2">
-                <Home class="h-4 w-4 shrink-0" />
+              <router-link to="/" class="gap-2.5">
+                <Home class="h-4 w-4 shrink-0 text-muted-foreground" />
                 <span class="text-sm">首頁</span>
               </router-link>
             </SidebarMenuButton>
@@ -66,18 +69,21 @@ const currentPath = computed(() => route.path)
         </SidebarMenu>
       </SidebarGroup>
 
+      <!-- Divider -->
+      <div class="mx-2 h-px bg-border/60 group-data-[collapsible=icon]:hidden" />
+
       <!-- UI Design Cases -->
-      <SidebarGroup>
-        <SidebarGroupLabel class="flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
+      <SidebarGroup class="py-1">
+        <SidebarGroupLabel class="flex items-center gap-1.5 text-xs font-semibold text-blue-600/80 dark:text-blue-400/80 px-2 mb-0.5">
           <Layers class="h-3 w-3" />
-          <span>UI 設計</span>
+          <span class="group-data-[collapsible=icon]:hidden">UI 設計</span>
         </SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             <SidebarMenuItem v-for="item in uiCases" :key="item.path">
               <SidebarMenuButton asChild :isActive="currentPath === item.path" :tooltip="item.title">
                 <router-link :to="item.path" class="gap-2.5">
-                  <component :is="item.icon" class="h-4 w-4 shrink-0" />
+                  <component :is="item.icon" class="h-4 w-4 shrink-0 text-muted-foreground" />
                   <span class="text-sm">{{ item.title }}</span>
                 </router-link>
               </SidebarMenuButton>
@@ -86,18 +92,21 @@ const currentPath = computed(() => route.path)
         </SidebarGroupContent>
       </SidebarGroup>
 
+      <!-- Divider -->
+      <div class="mx-2 h-px bg-border/60 group-data-[collapsible=icon]:hidden" />
+
       <!-- UX Experience Cases -->
-      <SidebarGroup>
-        <SidebarGroupLabel class="flex items-center gap-1.5 text-purple-600 dark:text-purple-400">
+      <SidebarGroup class="py-1">
+        <SidebarGroupLabel class="flex items-center gap-1.5 text-xs font-semibold text-violet-600/80 dark:text-violet-400/80 px-2 mb-0.5">
           <Layers class="h-3 w-3" />
-          <span>UX 體驗</span>
+          <span class="group-data-[collapsible=icon]:hidden">UX 體驗</span>
         </SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             <SidebarMenuItem v-for="item in uxCases" :key="item.path">
               <SidebarMenuButton asChild :isActive="currentPath === item.path" :tooltip="item.title">
                 <router-link :to="item.path" class="gap-2.5">
-                  <component :is="item.icon" class="h-4 w-4 shrink-0" />
+                  <component :is="item.icon" class="h-4 w-4 shrink-0 text-muted-foreground" />
                   <span class="text-sm">{{ item.title }}</span>
                 </router-link>
               </SidebarMenuButton>
@@ -107,9 +116,18 @@ const currentPath = computed(() => route.path)
       </SidebarGroup>
     </SidebarContent>
 
-    <SidebarFooter class="border-t py-2">
-      <div class="px-3 group-data-[collapsible=icon]:hidden">
-        <p class="text-[10px] text-muted-foreground">Made by <span class="font-medium text-foreground">Lan</span> · {{ new Date().getFullYear() }}</p>
+    <!-- Footer -->
+    <SidebarFooter class="border-t py-2.5 px-3">
+      <div class="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
+        <!-- Collapsed: show small L icon -->
+        <div class="h-5 w-5 shrink-0 rounded bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
+          <span class="text-white text-[9px] font-bold">L</span>
+        </div>
+        <p class="text-[11px] text-muted-foreground group-data-[collapsible=icon]:hidden">
+          Made by <span class="font-medium text-foreground">Lan</span>
+          <span class="mx-1">·</span>
+          <span>{{ new Date().getFullYear() }}</span>
+        </p>
       </div>
     </SidebarFooter>
   </Sidebar>

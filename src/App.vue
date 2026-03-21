@@ -11,8 +11,9 @@ const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null)
 </script>
 
 <template>
+  <!-- Toaster teleported to body root to avoid flex/overflow clipping -->
+  <Toaster position="bottom-right" richColors :toastOptions="{ style: { zIndex: 99999 } }" />
   <SidebarProvider>
-    <Toaster position="bottom-right" richColors />
     <SearchModal ref="searchModalRef" />
     <div class="flex h-screen w-full overflow-hidden bg-background text-foreground">
       <AppSidebar />
