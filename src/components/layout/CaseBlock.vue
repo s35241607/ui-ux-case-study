@@ -15,7 +15,7 @@ defineProps<{
         v-if="index !== undefined"
         class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold mt-0.5"
         :class="tag === 'ux'
-          ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
+          ? 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300'
           : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'"
       >
         {{ index }}

@@ -12,9 +12,9 @@ import { toast } from 'vue-sonner'
 
 // Bad: no filter indicator
 const badSearch = ref('')
-const badStatus = ref('')
-const badCategory = ref('')
-const badDate = ref('')
+const badStatus = ref('all')
+const badCategory = ref('all')
+const badDate = ref('all')
 
 // Good: filter state shown as chips with count
 interface ActiveFilter {
@@ -24,9 +24,9 @@ interface ActiveFilter {
 }
 
 const goodSearch = ref('')
-const goodStatus = ref('')
-const goodCategory = ref('')
-const goodDate = ref('')
+const goodStatus = ref('all')
+const goodCategory = ref('all')
+const goodDate = ref('all')
 
 const filterOptions = {
   status: [
@@ -51,15 +51,15 @@ const activeFilters = computed<ActiveFilter[]>(() => {
   if (goodSearch.value) {
     filters.push({ key: 'search', label: '關鍵字', value: goodSearch.value })
   }
-  if (goodStatus.value) {
+  if (goodStatus.value && goodStatus.value !== 'all') {
     const opt = filterOptions.status.find(o => o.value === goodStatus.value)
     if (opt) filters.push({ key: 'status', label: '狀態', value: opt.label })
   }
-  if (goodCategory.value) {
+  if (goodCategory.value && goodCategory.value !== 'all') {
     const opt = filterOptions.category.find(o => o.value === goodCategory.value)
     if (opt) filters.push({ key: 'category', label: '類別', value: opt.label })
   }
-  if (goodDate.value) {
+  if (goodDate.value && goodDate.value !== 'all') {
     const opt = filterOptions.date.find(o => o.value === goodDate.value)
     if (opt) filters.push({ key: 'date', label: '時間', value: opt.label })
   }
@@ -68,16 +68,16 @@ const activeFilters = computed<ActiveFilter[]>(() => {
 
 function removeFilter(key: string) {
   if (key === 'search') goodSearch.value = ''
-  else if (key === 'status') goodStatus.value = ''
-  else if (key === 'category') goodCategory.value = ''
-  else if (key === 'date') goodDate.value = ''
+  else if (key === 'status') goodStatus.value = 'all'
+  else if (key === 'category') goodCategory.value = 'all'
+  else if (key === 'date') goodDate.value = 'all'
 }
 
 function clearAllFilters() {
   goodSearch.value = ''
-  goodStatus.value = ''
-  goodCategory.value = ''
-  goodDate.value = ''
+  goodStatus.value = 'all'
+  goodCategory.value = 'all'
+  goodDate.value = 'all'
   toast.info('已清除全部篩選條件')
 }
 </script>
@@ -118,7 +118,7 @@ function clearAllFilters() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem value="all">全部</SelectItem>
                           <SelectItem v-for="opt in filterOptions.status" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
@@ -132,7 +132,7 @@ function clearAllFilters() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem value="all">全部</SelectItem>
                           <SelectItem v-for="opt in filterOptions.category" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
@@ -146,7 +146,7 @@ function clearAllFilters() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem value="all">全部</SelectItem>
                           <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
@@ -192,7 +192,7 @@ function clearAllFilters() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem value="all">全部</SelectItem>
                           <SelectItem v-for="opt in filterOptions.status" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
@@ -206,7 +206,7 @@ function clearAllFilters() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem value="all">全部</SelectItem>
                           <SelectItem v-for="opt in filterOptions.category" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
@@ -220,7 +220,7 @@ function clearAllFilters() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="">全部</SelectItem>
+                          <SelectItem value="all">全部</SelectItem>
                           <SelectItem v-for="opt in filterOptions.date" :key="opt.value" :value="opt.value">{{ opt.label }}</SelectItem>
                         </SelectGroup>
                       </SelectContent>
