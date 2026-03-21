@@ -40,7 +40,19 @@ const router = createRouter({
       component: () => import('../views/cases/EmptyStateView.vue'),
       meta: { title: '空狀態設計', category: 'UI 設計', type: '資料呈現', tag: 'ui' }
     },
-    // UX 體驗案例
+    // UX 體驗案例 (企業操作情境)
+    {
+      path: '/case/inline-edit',
+      name: 'inline-edit',
+      component: () => import('../views/cases/InlineEditView.vue'),
+      meta: { title: '內聯編輯 vs 彈窗編輯', category: 'UX 體驗', type: '資料編輯', tag: 'ux' }
+    },
+    {
+      path: '/case/contextual-drawer',
+      name: 'contextual-drawer',
+      component: () => import('../views/cases/ContextualDrawerView.vue'),
+      meta: { title: '側邊抽屜預覽', category: 'UX 體驗', type: '導覽行為', tag: 'ux' }
+    },
     {
       path: '/case/form-validation',
       name: 'form-validation',
@@ -52,6 +64,12 @@ const router = createRouter({
       name: 'loading-feedback',
       component: () => import('../views/cases/LoadingFeedbackView.vue'),
       meta: { title: '載入狀態反饋', category: 'UX 體驗', type: '互動回饋', tag: 'ux' }
+    },
+    {
+      path: '/case/destructive-action',
+      name: 'destructive-action',
+      component: () => import('../views/cases/DestructiveActionView.vue'),
+      meta: { title: '破壞性操作的雙重確認', category: 'UX 體驗', type: '防呆機制', tag: 'ux' }
     },
     {
       path: '/case/success-feedback',

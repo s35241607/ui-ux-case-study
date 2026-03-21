@@ -53,12 +53,48 @@ export const uiCases = [
 
 export const uxCases = [
   {
+    title: '內聯編輯 vs 彈窗編輯',
+    path: '/case/inline-edit',
+    category: 'UX 體驗',
+    type: '資料編輯',
+    desc: '直接在表格內修改狀態與權限，取代跳轉或開啟彈窗，極大化效率。',
+    icon: LayoutTemplate,
+    tag: 'ux'
+  },
+  {
+    title: '側邊抽屜預覽',
+    path: '/case/contextual-drawer',
+    category: 'UX 體驗',
+    type: '導覽行為',
+    desc: '點選列表項目後，以側邊抽屜展開詳情，省去跳轉與按上一頁的時間。',
+    icon: FolderOpen,
+    tag: 'ux'
+  },
+  {
+    title: '破壞性操作的雙重確認',
+    path: '/case/destructive-action',
+    category: 'UX 體驗',
+    type: '防呆機制',
+    desc: '移除或刪除關鍵資料時，要求手動輸入資源名稱進行二次確認，防止肌肉記憶盲點。',
+    icon: FileWarning,
+    tag: 'ux'
+  },
+  {
     title: '表單驗證與即時回饋',
     path: '/case/form-validation',
     category: 'UX 體驗',
     type: '表單體驗',
     desc: '在用戶輸入時即時驗證並提示，而非等送出後才集中報錯。',
     icon: LayoutTemplate,
+    tag: 'ux'
+  },
+  {
+    title: '未儲存資料提示',
+    path: '/case/unsaved-changes',
+    category: 'UX 體驗',
+    type: '資料保護',
+    desc: '表單填到一半意外離開時，應提示用戶或自動保存草稿。',
+    icon: FileWarning,
     tag: 'ux'
   },
   {
@@ -80,21 +116,12 @@ export const uxCases = [
     tag: 'ux'
   },
   {
-    title: '導覽狀態保留',
-    path: '/case/navigation-state',
+    title: '篩選器狀態顯示',
+    path: '/case/filter-state',
     category: 'UX 體驗',
-    type: '導覽行為',
-    desc: '返回上一頁時保留查詢篩選狀態，並支援中鍵開新分頁。',
-    icon: Navigation,
-    tag: 'ux'
-  },
-  {
-    title: '未儲存資料提示',
-    path: '/case/unsaved-changes',
-    category: 'UX 體驗',
-    type: '資料保護',
-    desc: '表單填到一半意外離開時，應提示用戶或自動保存草稿。',
-    icon: FileWarning,
+    type: '互動設計',
+    desc: '在查詢結果下方清楚顯示 Active Filter 徽章，支援逐一移除。',
+    icon: Filter,
     tag: 'ux'
   },
   {
@@ -107,12 +134,12 @@ export const uxCases = [
     tag: 'ux'
   },
   {
-    title: '篩選器狀態顯示',
-    path: '/case/filter-state',
+    title: '導覽狀態保留',
+    path: '/case/navigation-state',
     category: 'UX 體驗',
-    type: '互動設計',
-    desc: '在查詢結果下方清楚顯示 Active Filter 徽章，支援逐一移除。',
-    icon: Filter,
+    type: '導覽行為',
+    desc: '返回上一頁時保留查詢篩選狀態，並支援中鍵開新分頁。',
+    icon: Navigation,
     tag: 'ux'
   }
 ]
