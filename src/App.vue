@@ -11,8 +11,15 @@ const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null)
 </script>
 
 <template>
-  <!-- Toaster teleported to body root to avoid flex/overflow clipping -->
-  <Toaster position="bottom-right" richColors :toastOptions="{ style: { zIndex: 99999 } }" />
+  <!--
+    Teleport Toaster to body to ensure position:fixed works correctly.
+    Without this, sidebar's CSS transforms create a new stacking context
+    and break fixed positioning, causing toast to appear in wrong location.
+  -->
+  <Teleport to="body">
+    <Toaster position="bottom-right" richColors />
+  </Teleport>
+
   <SidebarProvider>
     <SearchModal ref="searchModalRef" />
     <div class="flex h-screen w-full overflow-hidden bg-background text-foreground">

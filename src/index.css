@@ -4,11 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Prevent layout shift when dialogs add/remove scrollbar */
-html {
-  scrollbar-gutter: stable;
-}
-
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -8,7 +8,8 @@ import {
 } from '@/components/ui/sidebar'
 import {
   Maximize2, AlignLeft, MousePointer2, LayoutTemplate,
-  Loader2, Bell, Navigation, FileWarning, Layers, Home
+  Loader2, Bell, Navigation, FileWarning, Layers, Home,
+  FolderOpen, CheckSquare, Filter
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -18,12 +19,15 @@ const uiCases = [
   { title: '資料對齊與數字格式', path: '/case/data-alignment', icon: AlignLeft },
   { title: '按鈕階層設計', path: '/case/button-hierarchy', icon: MousePointer2 },
   { title: '按鈕收納與工具列', path: '/case/button-overflow', icon: LayoutTemplate },
+  { title: '空狀態設計', path: '/case/empty-state', icon: FolderOpen },
 ]
 
 const uxCases = [
   { title: '表單驗證與即時回饋', path: '/case/form-validation', icon: LayoutTemplate },
   { title: '載入狀態反饋', path: '/case/loading-feedback', icon: Loader2 },
   { title: '事件回饋：Toast vs Modal', path: '/case/success-feedback', icon: Bell },
+  { title: '篩選器狀態顯示', path: '/case/filter-state', icon: Filter },
+  { title: '批次操作設計', path: '/case/batch-actions', icon: CheckSquare },
   { title: '導覽狀態保留', path: '/case/navigation-state', icon: Navigation },
   { title: '未儲存資料提示', path: '/case/unsaved-changes', icon: FileWarning },
 ]
@@ -39,11 +43,9 @@ const currentPath = computed(() => route.path)
         <SidebarMenuItem>
           <SidebarMenuButton asChild size="lg" class="h-auto py-2 px-2 hover:bg-accent rounded-md" tooltip="Lan's UX Lab">
             <router-link to="/" class="flex items-center gap-2.5">
-              <!-- Avatar style icon - Notion-like gradient monogram -->
               <div class="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-lg overflow-hidden bg-gradient-to-br from-violet-500 via-purple-500 to-indigo-600 shadow-sm">
                 <span class="text-white font-bold text-xs tracking-tight">L</span>
               </div>
-              <!-- Workspace name -->
               <div class="flex flex-col gap-0 leading-none group-data-[collapsible=icon]:hidden">
                 <span class="text-[13px] font-semibold text-foreground">Lan's UX Lab</span>
                 <span class="text-[11px] text-muted-foreground font-normal">互動式設計示範</span>
@@ -69,7 +71,6 @@ const currentPath = computed(() => route.path)
         </SidebarMenu>
       </SidebarGroup>
 
-      <!-- Divider -->
       <div class="mx-2 h-px bg-border/60 group-data-[collapsible=icon]:hidden" />
 
       <!-- UI Design Cases -->
@@ -92,7 +93,6 @@ const currentPath = computed(() => route.path)
         </SidebarGroupContent>
       </SidebarGroup>
 
-      <!-- Divider -->
       <div class="mx-2 h-px bg-border/60 group-data-[collapsible=icon]:hidden" />
 
       <!-- UX Experience Cases -->
@@ -119,7 +119,6 @@ const currentPath = computed(() => route.path)
     <!-- Footer -->
     <SidebarFooter class="border-t py-2.5 px-3">
       <div class="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
-        <!-- Collapsed: show small L icon -->
         <div class="h-5 w-5 shrink-0 rounded bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
           <span class="text-white text-[9px] font-bold">L</span>
         </div>

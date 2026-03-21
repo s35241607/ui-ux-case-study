@@ -34,6 +34,12 @@ const router = createRouter({
       component: () => import('../views/cases/ButtonOverflowView.vue'),
       meta: { title: '按鈕收納與工具列', category: 'UI 設計', type: '資訊架構', tag: 'ui' }
     },
+    {
+      path: '/case/empty-state',
+      name: 'empty-state',
+      component: () => import('../views/cases/EmptyStateView.vue'),
+      meta: { title: '空狀態設計', category: 'UI 設計', type: '資料呈現', tag: 'ui' }
+    },
     // UX 體驗案例
     {
       path: '/case/form-validation',
@@ -64,7 +70,19 @@ const router = createRouter({
       name: 'unsaved-changes',
       component: () => import('../views/cases/UnsavedChangesView.vue'),
       meta: { title: '未儲存資料提示', category: 'UX 體驗', type: '資料保護', tag: 'ux' }
-    }
+    },
+    {
+      path: '/case/batch-actions',
+      name: 'batch-actions',
+      component: () => import('../views/cases/BatchActionsView.vue'),
+      meta: { title: '批次操作設計', category: 'UX 體驗', type: '互動設計', tag: 'ux' }
+    },
+    {
+      path: '/case/filter-state',
+      name: 'filter-state',
+      component: () => import('../views/cases/FilterStateView.vue'),
+      meta: { title: '篩選器狀態顯示', category: 'UX 體驗', type: '互動設計', tag: 'ux' }
+    },
   ]
 })
 
