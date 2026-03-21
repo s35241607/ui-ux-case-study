@@ -3,11 +3,12 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel,
-  SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarHeader
+  SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton,
+  SidebarHeader, SidebarFooter
 } from '@/components/ui/sidebar'
 import {
   Maximize2, AlignLeft, MousePointer2, LayoutTemplate,
-  Loader2, Bell, Navigation, FileWarning, Layers
+  Loader2, Bell, Navigation, FileWarning, Layers, Home
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -31,30 +32,50 @@ const currentPath = computed(() => route.path)
 </script>
 
 <template>
-  <Sidebar>
-    <SidebarHeader class="border-b px-4 py-3.5">
-      <router-link to="/" class="flex items-center gap-2.5 font-semibold hover:opacity-80 transition-opacity">
-        <div class="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-md text-xs font-bold">
-          UX
-        </div>
-        <div class="leading-tight">
-          <div class="text-sm font-semibold">UI/UX Case Study</div>
-          <div class="text-[10px] text-muted-foreground font-normal">互動式設計示範</div>
-        </div>
-      </router-link>
+  <Sidebar collapsible="icon">
+    <SidebarHeader class="border-b">
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton asChild size="lg" tooltip="UI/UX Case Study">
+            <router-link to="/" class="flex items-center gap-2.5">
+              <div class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-xs tracking-wide">
+                UX
+              </div>
+              <div class="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
+                <span class="text-sm font-semibold">UI/UX Case Study</span>
+                <span class="text-[10px] text-muted-foreground font-normal">互動式設計示範</span>
+              </div>
+            </router-link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
     </SidebarHeader>
 
-    <SidebarContent class="px-2">
+    <SidebarContent class="px-1">
+      <!-- Home -->
+      <SidebarGroup>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild :isActive="currentPath === '/'" tooltip="首頁">
+              <router-link to="/" class="gap-2">
+                <Home class="h-4 w-4 shrink-0" />
+                <span class="text-sm">首頁</span>
+              </router-link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarGroup>
+
       <!-- UI Design Cases -->
       <SidebarGroup>
         <SidebarGroupLabel class="flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
           <Layers class="h-3 w-3" />
-          UI 設計
+          <span>UI 設計</span>
         </SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             <SidebarMenuItem v-for="item in uiCases" :key="item.path">
-              <SidebarMenuButton asChild :isActive="currentPath === item.path">
+              <SidebarMenuButton asChild :isActive="currentPath === item.path" :tooltip="item.title">
                 <router-link :to="item.path" class="gap-2.5">
                   <component :is="item.icon" class="h-4 w-4 shrink-0" />
                   <span class="text-sm">{{ item.title }}</span>
@@ -69,12 +90,12 @@ const currentPath = computed(() => route.path)
       <SidebarGroup>
         <SidebarGroupLabel class="flex items-center gap-1.5 text-purple-600 dark:text-purple-400">
           <Layers class="h-3 w-3" />
-          UX 體驗
+          <span>UX 體驗</span>
         </SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             <SidebarMenuItem v-for="item in uxCases" :key="item.path">
-              <SidebarMenuButton asChild :isActive="currentPath === item.path">
+              <SidebarMenuButton asChild :isActive="currentPath === item.path" :tooltip="item.title">
                 <router-link :to="item.path" class="gap-2.5">
                   <component :is="item.icon" class="h-4 w-4 shrink-0" />
                   <span class="text-sm">{{ item.title }}</span>
@@ -85,5 +106,11 @@ const currentPath = computed(() => route.path)
         </SidebarGroupContent>
       </SidebarGroup>
     </SidebarContent>
+
+    <SidebarFooter class="border-t py-2">
+      <div class="px-3 group-data-[collapsible=icon]:hidden">
+        <p class="text-[10px] text-muted-foreground">Made by <span class="font-medium text-foreground">Lan</span> · {{ new Date().getFullYear() }}</p>
+      </div>
+    </SidebarFooter>
   </Sidebar>
 </template>

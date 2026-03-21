@@ -34,7 +34,7 @@ const overflowActions = allActions.filter(a => !a.primary)
 
 <template>
   <div class="h-full flex flex-col">
-    <div class="mb-6 px-4 lg:px-6">
+    <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">按鈕收納與工具列 (Button Overflow)</h1>
         <Badge variant="secondary" class="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30">UI 設計</Badge>

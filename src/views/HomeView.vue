@@ -75,7 +75,7 @@ const uxCases = [
 </script>
 
 <template>
-  <div class="flex flex-col gap-8 px-4 pb-8 lg:px-6">
+  <div class="max-w-5xl mx-auto flex flex-col gap-8 px-6 pb-10 lg:px-8">
     <!-- Hero -->
     <div class="py-8">
       <div class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs text-muted-foreground mb-4">

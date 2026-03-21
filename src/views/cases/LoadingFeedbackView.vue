@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import SplitView from '@/components/layout/SplitView.vue'
+import CaseBlock from '@/components/layout/CaseBlock.vue'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -12,7 +13,6 @@ const isBadSubmitting = ref(false)
 const badClickCount = ref(0)
 async function badSubmit() {
   badClickCount.value++
-  // no feedback, nothing happens visually
   await new Promise(r => setTimeout(r, 2000))
 }
 
@@ -57,7 +57,7 @@ async function goodRefresh() {
 
 <template>
   <div class="h-full flex flex-col">
-    <div class="mb-6 px-4 lg:px-6">
+    <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">載入狀態反饋 (Loading Feedback)</h1>
         <Badge variant="secondary" class="text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/30">UX 體驗</Badge>
@@ -70,109 +70,104 @@ async function goodRefresh() {
 
     <SplitView leftTitle="不良的設計：點擊後毫無反應" rightTitle="優秀的設計：立即給予 Loading 視覺反饋">
       <template #left>
-        <div class="flex flex-col gap-5 mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>按鈕點擊後無任何變化，用戶不知道是否成功</li>
-            <li>可能導致用戶重複點擊，造成重複請求</li>
-            <li>沒有禁用按鈕，產生競態條件</li>
-          </ul>
+        <div class="flex-1 flex flex-col">
+          <!-- Case 1 -->
+          <CaseBlock index="1" title="送出表單" description="按鈕無任何變化，用戶不知道是否有在處理，容易重複點擊" tag="ux">
+            <Card>
+              <CardHeader>
+                <CardTitle class="text-sm">送出申請</CardTitle>
+                <CardDescription class="text-xs">（點擊送出，觀察按鈕變化）</CardDescription>
+              </CardHeader>
+              <CardContent class="space-y-3">
+                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請人姓名" />
+                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請事由" />
+              </CardContent>
+              <CardFooter class="flex-col items-start gap-2">
+                <Button class="w-full" @click="badSubmit">
+                  <Send class="h-4 w-4 mr-2" />
+                  送出申請
+                </Button>
+                <p v-if="badClickCount > 0" class="text-xs text-destructive">
+                  你已點擊 {{ badClickCount }} 次，不確定是否成功⋯
+                </p>
+              </CardFooter>
+            </Card>
+          </CaseBlock>
 
-          <Card>
-            <CardHeader>
-              <CardTitle class="text-sm">送出申請</CardTitle>
-              <CardDescription class="text-xs">（點擊送出，觀察按鈕變化）</CardDescription>
-            </CardHeader>
-            <CardContent class="space-y-3">
-              <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請人姓名" />
-              <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請事由" />
-            </CardContent>
-            <CardFooter class="flex-col items-start gap-2">
-              <!-- Bad: button doesn't change at all -->
-              <Button class="w-full" @click="badSubmit">
-                <Send class="h-4 w-4 mr-2" />
-                送出申請
-              </Button>
-              <p v-if="badClickCount > 0" class="text-xs text-destructive">
-                你已點擊 {{ badClickCount }} 次，但不確定是否成功⋯
-              </p>
-            </CardFooter>
-          </Card>
-
-          <!-- No skeleton, just shows nothing while "loading" -->
-          <Card>
-            <CardHeader>
-              <CardTitle class="text-sm">資料區塊（無骨架屏）</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div class="text-center py-8 text-muted-foreground/40 text-sm">
-                （此處在資料載入中，但沒有任何提示）
-              </div>
-            </CardContent>
-          </Card>
+          <!-- Case 2 -->
+          <CaseBlock index="2" title="資料區塊載入" description="無骨架屏，資料載入期間用戶面對空白，毫無提示" tag="ux">
+            <Card>
+              <CardHeader><CardTitle class="text-sm">資料列表</CardTitle></CardHeader>
+              <CardContent>
+                <div class="text-center py-8 text-muted-foreground/40 text-sm">
+                  （此處資料載入中，但沒有任何視覺提示）
+                </div>
+              </CardContent>
+            </Card>
+          </CaseBlock>
         </div>
       </template>
 
       <template #right>
-        <div class="flex flex-col gap-5 mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>按鈕立即切換成 Spinner + 禁用狀態</li>
-            <li>防止重複點擊，避免競態條件</li>
-            <li>操作完成後給予 Toast 確認通知</li>
-          </ul>
+        <div class="flex-1 flex flex-col">
+          <!-- Case 1 -->
+          <CaseBlock index="1" title="送出表單" description="按鈕立即切換成 Spinner + 禁用，完成後跳出 Toast 確認" tag="ux">
+            <Card>
+              <CardHeader>
+                <CardTitle class="text-sm">送出申請</CardTitle>
+                <CardDescription class="text-xs">（點擊送出，觀察 Loading 動畫）</CardDescription>
+              </CardHeader>
+              <CardContent class="space-y-3">
+                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請人姓名" />
+                <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請事由" />
+              </CardContent>
+              <CardFooter>
+                <Button class="w-full" :disabled="isGoodSubmitting" @click="goodSubmit">
+                  <Loader2 v-if="isGoodSubmitting" class="h-4 w-4 mr-2 animate-spin" />
+                  <Send v-else class="h-4 w-4 mr-2" />
+                  {{ isGoodSubmitting ? '送出中...' : '送出申請' }}
+                </Button>
+              </CardFooter>
+            </Card>
+          </CaseBlock>
 
-          <Card>
-            <CardHeader>
-              <CardTitle class="text-sm">送出申請</CardTitle>
-              <CardDescription class="text-xs">（點擊送出，觀察 Loading 動畫）</CardDescription>
-            </CardHeader>
-            <CardContent class="space-y-3">
-              <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請人姓名" />
-              <input class="w-full border rounded-md px-3 h-9 text-sm bg-background outline-none" placeholder="申請事由" />
-            </CardContent>
-            <CardFooter>
-              <!-- Good: loading state -->
-              <Button class="w-full" :disabled="isGoodSubmitting" @click="goodSubmit">
-                <Loader2 v-if="isGoodSubmitting" class="h-4 w-4 mr-2 animate-spin" />
-                <Send v-else class="h-4 w-4 mr-2" />
-                {{ isGoodSubmitting ? '送出中...' : '送出申請' }}
-              </Button>
-            </CardFooter>
-          </Card>
+          <!-- Case 2 -->
+          <CaseBlock index="2" title="資料區塊載入" description="Skeleton 骨架屏讓用戶知道資料正在載入，並預期版面結構" tag="ux">
+            <Card>
+              <CardHeader><CardTitle class="text-sm">資料列表（Skeleton 示意）</CardTitle></CardHeader>
+              <CardContent class="space-y-3">
+                <div class="animate-pulse space-y-2">
+                  <div class="h-4 bg-muted rounded w-3/4"></div>
+                  <div class="h-4 bg-muted rounded w-1/2"></div>
+                  <div class="h-4 bg-muted rounded w-5/6"></div>
+                  <div class="h-4 bg-muted rounded w-2/3"></div>
+                </div>
+              </CardContent>
+            </Card>
+          </CaseBlock>
 
-          <!-- Skeleton loading -->
-          <Card>
-            <CardHeader>
-              <CardTitle class="text-sm">骨架屏載入示意</CardTitle>
-            </CardHeader>
-            <CardContent class="space-y-3">
-              <div class="animate-pulse space-y-2">
-                <div class="h-4 bg-muted rounded w-3/4"></div>
-                <div class="h-4 bg-muted rounded w-1/2"></div>
-                <div class="h-4 bg-muted rounded w-5/6"></div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <!-- Multiple loading button states -->
-          <Card>
-            <CardHeader><CardTitle class="text-sm">各種操作的 Loading 狀態</CardTitle></CardHeader>
-            <CardContent class="flex flex-wrap gap-2">
-              <Button variant="outline" size="sm" :disabled="isGoodLiking" @click="goodLike">
-                <Loader2 v-if="isGoodLiking" class="h-3.5 w-3.5 mr-1.5 animate-spin" />
-                <Heart v-else class="h-3.5 w-3.5 mr-1.5" />
-                {{ isGoodLiking ? '處理中' : '收藏' }}
-              </Button>
-              <Button variant="outline" size="sm" :disabled="isGoodAdding" @click="goodAddToCart">
-                <Loader2 v-if="isGoodAdding" class="h-3.5 w-3.5 mr-1.5 animate-spin" />
-                <ShoppingCart v-else class="h-3.5 w-3.5 mr-1.5" />
-                {{ isGoodAdding ? '加入中...' : '加入購物車' }}
-              </Button>
-              <Button variant="outline" size="sm" :disabled="isGoodRefreshing" @click="goodRefresh">
-                <RefreshCw class="h-3.5 w-3.5 mr-1.5" :class="{ 'animate-spin': isGoodRefreshing }" />
-                {{ isGoodRefreshing ? '更新中' : '重新整理' }}
-              </Button>
-            </CardContent>
-          </Card>
+          <!-- Case 3 -->
+          <CaseBlock index="3" title="行內操作按鈕" description="收藏、購物車、重新整理等按鈕在 Loading 時禁用並顯示進度" tag="ux">
+            <Card>
+              <CardHeader><CardTitle class="text-sm">各種操作的 Loading 狀態</CardTitle></CardHeader>
+              <CardContent class="flex flex-wrap gap-2">
+                <Button variant="outline" size="sm" :disabled="isGoodLiking" @click="goodLike">
+                  <Loader2 v-if="isGoodLiking" class="h-3.5 w-3.5 mr-1.5 animate-spin" />
+                  <Heart v-else class="h-3.5 w-3.5 mr-1.5" />
+                  {{ isGoodLiking ? '處理中' : '收藏' }}
+                </Button>
+                <Button variant="outline" size="sm" :disabled="isGoodAdding" @click="goodAddToCart">
+                  <Loader2 v-if="isGoodAdding" class="h-3.5 w-3.5 mr-1.5 animate-spin" />
+                  <ShoppingCart v-else class="h-3.5 w-3.5 mr-1.5" />
+                  {{ isGoodAdding ? '加入中...' : '加入購物車' }}
+                </Button>
+                <Button variant="outline" size="sm" :disabled="isGoodRefreshing" @click="goodRefresh">
+                  <RefreshCw class="h-3.5 w-3.5 mr-1.5" :class="{ 'animate-spin': isGoodRefreshing }" />
+                  {{ isGoodRefreshing ? '更新中' : '重新整理' }}
+                </Button>
+              </CardContent>
+            </Card>
+          </CaseBlock>
         </div>
       </template>
     </SplitView>

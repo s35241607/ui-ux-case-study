@@ -39,7 +39,7 @@ const submitGoodForm = () => {
 
 <template>
   <div class="h-full flex flex-col">
-    <div class="mb-6 px-4 lg:px-6">
+    <div class="mb-4 px-4 lg:px-6 pt-6">
       <h1 class="text-2xl font-bold tracking-tight mb-2">表單驗證與回饋 (Form Validation)</h1>
       <p class="text-muted-foreground w-full max-w-3xl text-sm leading-relaxed">
         表單是用戶輸入資料的重要介面。不良的表單驗證會讓用戶感到困惑、挫折，甚至放棄操作。

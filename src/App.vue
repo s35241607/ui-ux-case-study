@@ -14,11 +14,11 @@ const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null)
   <SidebarProvider>
     <Toaster position="bottom-right" richColors />
     <SearchModal ref="searchModalRef" />
-    <div class="flex min-h-screen w-full bg-background text-foreground">
+    <div class="flex h-screen w-full overflow-hidden bg-background text-foreground">
       <AppSidebar />
-      <div class="flex flex-1 flex-col overflow-hidden">
+      <div class="flex flex-1 flex-col min-w-0 overflow-hidden">
         <AppHeader @open-search="searchModalRef?.open()" />
-        <main class="flex-1 overflow-auto pt-4">
+        <main class="flex-1 overflow-y-auto">
           <RouterView />
         </main>
       </div>
