@@ -88,7 +88,7 @@ const badFavorited = ref(false)
 
     <div class="px-4 lg:px-6 mb-3">
       <Tabs v-model="activeScenario" class="w-full">
-        <TabsList class="grid grid-cols-3 lg:max-w-md">
+        <TabsList class="grid w-full grid-cols-3 sm:w-auto sm:inline-grid sm:max-w-md">
           <TabsTrigger value="overflow">漸進揭露收納</TabsTrigger>
           <TabsTrigger value="icon_only">純圖示壓縮</TabsTrigger>
           <TabsTrigger value="toggle">狀態切換按鈕</TabsTrigger>

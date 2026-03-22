@@ -161,7 +161,7 @@ const goodFilteredTickets = computed(() => {
 
     <div class="px-4 lg:px-6 mb-3">
       <Tabs v-model="activeScenario" class="w-full">
-        <TabsList class="grid grid-cols-4 lg:max-w-xl">
+        <TabsList class="grid w-full grid-cols-4 sm:w-auto sm:inline-grid sm:max-w-xl">
           <TabsTrigger value="toggle">開關型選擇</TabsTrigger>
           <TabsTrigger value="cards">角色權限</TabsTrigger>
           <TabsTrigger value="chips">Chip 多選</TabsTrigger>

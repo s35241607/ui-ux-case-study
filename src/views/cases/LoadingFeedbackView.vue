@@ -87,7 +87,7 @@ async function goodRefresh() {
     <div class="px-4 lg:px-6 mb-3">
       <!-- Tabs Navigation -->
       <Tabs v-model="activeTab" class="w-full">
-        <TabsList class="grid w-full grid-cols-3 sm:w-auto sm:inline-grid sm:w-auto">
+        <TabsList class="grid w-full grid-cols-3 sm:w-auto sm:inline-grid">
           <TabsTrigger value="form">送出表單</TabsTrigger>
           <TabsTrigger value="block">資料區塊載入</TabsTrigger>
           <TabsTrigger value="inline">行內操作按鈕</TabsTrigger>
