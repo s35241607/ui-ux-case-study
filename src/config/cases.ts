@@ -1,7 +1,7 @@
 import {
   Maximize2, AlignLeft, MousePointer2, LayoutTemplate,
   Loader2, Bell, Navigation, FileWarning, FolderOpen, CheckSquare, Filter,
-  Search, Map, Sliders
+  Map, Sliders
 } from 'lucide-vue-next'
 
 export interface Case {
@@ -228,15 +228,6 @@ export const efficiencyCases: Case[] = [
     icon: Filter,
     tag: 'efficiency',
   },
-  {
-    title: '搜尋自動完成',
-    path: '/case/search-autocomplete',
-    category: '效率設計',
-    type: '輸入加速',
-    desc: '輸入部分文字即顯示候選建議，減少完整輸入的負擔，讓使用者更快找到目標資料。',
-    icon: Search,
-    tag: 'efficiency',
-  },
 ]
 
 // ── 6. 導覽與狀態 ─────────────────────────────────────────────
@@ -251,7 +242,7 @@ export const navigationCases: Case[] = [
     tag: 'navigation',
   },
   {
-    title: '麥包屑導覽設計',
+    title: '麵包屑導覽設計',
     path: '/case/breadcrumb-nav',
     category: '導覽與狀態',
     type: '層級導覽',

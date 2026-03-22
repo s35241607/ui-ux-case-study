@@ -102,12 +102,6 @@ const router = createRouter({
       meta: { title: '篩選器狀態顯示', category: '效率設計', type: '篩選可視', tag: 'efficiency' }
     },
     {
-      path: '/case/search-autocomplete',
-      name: 'search-autocomplete',
-      component: () => import('../views/cases/SearchAutocompleteView.vue'),
-      meta: { title: '搜尋自動完成', category: '效率設計', type: '輸入加速', tag: 'efficiency' }
-    },
-    {
       path: '/case/form-component-strategy',
       name: 'form-component-strategy',
       component: () => import('@/views/cases/FormComponentStrategyView.vue'),
