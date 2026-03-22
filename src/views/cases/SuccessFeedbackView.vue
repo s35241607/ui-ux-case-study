@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import {
   Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle
 } from '@/components/ui/dialog'
-import { CheckCircle2, XCircle, AlertTriangle, Info, Zap } from 'lucide-vue-next'
+import { CheckCircle2, XCircle, AlertCircle, Info, Zap } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 import { ref } from 'vue'
 
@@ -45,10 +45,14 @@ function showGoodInfo() {
       <template #left>
         <div class="flex flex-col gap-4 mt-4">
           <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
-            <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
+            <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
             <div class="text-xs leading-relaxed space-y-0.5">
-              <p class="font-semibold">濫用彈窗中斷流程 (Interruption Abuse)</p>
-              <p class="opacity-80">不管成功或失敗的常規通知都使用 Modal，強迫用戶手動點擊關閉才能繼續工作，體驗極差。</p>
+              <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>不論成功或失敗皆使用中斷式 Modal，強迫用戶手動點擊關閉</li>
+                <li>過度的系統回饋中斷了用戶的流暢思緒，造成操作摩擦</li>
+                <li>低風險或常規狀態通知卻佔據螢幕中心，顯得過於笨重</li>
+              </ul>
             </div>
           </div>
 
@@ -105,8 +109,12 @@ function showGoodInfo() {
           <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
             <Zap class="h-4 w-4 shrink-0 mt-0.5" />
             <div class="text-xs leading-relaxed space-y-0.5">
-              <p class="font-semibold">非阻斷式通知 (Non-blocking Toast)</p>
-              <p class="opacity-80">常規的成功或系統狀態利用 Toast 通知，數秒後自動消失，給予回饋的同時不打擾當前操作。</p>
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>將低權重通知轉換為自消失的 Toast，在反饋同時保留流暢性</li>
+                <li>僅在需要用戶立即決策或處理嚴重錯誤時才使用 Modal 彈窗</li>
+                <li>利用色彩與圖示快速傳編訊息類型，減少閱讀負擔</li>
+              </ul>
             </div>
           </div>
 

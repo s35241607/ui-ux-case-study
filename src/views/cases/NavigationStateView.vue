@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import SplitView from '@/components/layout/SplitView.vue'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { ArrowLeft, CheckCircle2, AlertTriangle, Calendar, Tag, DollarSign, Search, FilterX } from 'lucide-vue-next'
+import { ArrowLeft, CheckCircle2, AlertCircle, Calendar, Tag, DollarSign, Search, FilterX, Zap } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 interface Order {
@@ -140,13 +140,14 @@ function goodClearFilters() {
       <!-- ============================================= -->
       <template #left>
         <div class="flex flex-col gap-4 mt-4">
-          <div class="flex items-start gap-2 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
-            <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
-            <div class="text-[12px] leading-relaxed">
-              <p class="font-semibold mb-1">狀態遺失 (State Loss)</p>
-              <ul class="list-disc list-inside opacity-90 space-y-0.5">
-                <li>返回列表頁時，條件被清空</li>
-                <li>使用者必須重新鍵入或選擇條件，非常繁瑣</li>
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>返回列表頁時原有的篩選與過濾條件皆被清空</li>
+                <li>用戶必須重新輸入或點選相同的條件，增加操作阻力</li>
+                <li>缺乏上下文保留能力，造成繁瑣的重複性勞動</li>
               </ul>
             </div>
           </div>
@@ -271,13 +272,14 @@ function goodClearFilters() {
       <!-- ============================================= -->
       <template #right>
         <div class="flex flex-col gap-4 mt-4">
-          <div class="flex items-start gap-2 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
-            <CheckCircle2 class="h-4 w-4 shrink-0 mt-0.5" />
-            <div class="text-[12px] leading-relaxed">
-              <p class="font-semibold mb-1">狀態保留 (State Persistence)</p>
-              <ul class="list-disc list-inside opacity-90 space-y-0.5">
-                <li>返回列表頁時，透過 URL/Storage 恢復搜尋值與篩選項</li>
-                <li>確保使用者可無縫銜接處理下一筆資料</li>
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>返回列表時自動還原之前的搜尋值與過濾選項</li>
+                <li>利用 URL 或狀態管理無縫銜接處理中的工作流</li>
+                <li>提升操作效率，讓用戶能快速進行下一項任務</li>
               </ul>
             </div>
           </div>

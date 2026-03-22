@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { AlertTriangle, Trash2 } from 'lucide-vue-next'
+import { AlertCircle, Trash2, Zap } from 'lucide-vue-next'
 import SplitView from '@/components/layout/SplitView.vue'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -50,7 +50,23 @@ const cancelGood = () => {
     <SplitView>
       <!-- Bad Design -->
       <template #left>
-        <div class="space-y-6 flex flex-col items-center justify-center h-full min-h-[400px]">
+        <div class="flex flex-col h-full">
+          <div class="mt-4 px-4 lg:px-6">
+            <!-- Alert Box (Before) -->
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+              <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+              <div class="text-xs leading-relaxed space-y-0.5">
+                <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+                <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                  <li>右下角的紅色「確定」按鈕太過理所當然，容易無意識點選</li>
+                  <li>純文字確認對話框無法有效攔截「肌肉記憶」帶來的錯誤</li>
+                  <li>對於極度危險的操作缺乏足夠的障礙設計</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-1 flex flex-col items-center justify-center min-h-[300px] relative">
 
           <div class="text-center space-y-4">
             <h3 class="font-medium text-lg">專案設定: {{ projectName }}</h3>
@@ -84,15 +100,32 @@ const cancelGood = () => {
           <div v-if="showBadModal" class="absolute inset-0 bg-background/50 backdrop-blur-sm z-40"
             @click="showBadModal = false"></div>
 
-          <p class="text-xs text-muted-foreground max-w-xs text-center mt-auto">
-            <b>盲點：</b> 右下角的紅色「確定」按鈕太過理所當然，使用者在 0.5 秒內就會無意識地按下，無法起到攔截錯誤的保護作用。
-          </p>
+            <p class="text-xs text-muted-foreground max-w-xs text-center mt-6">
+              <b>盲點：</b> 右下角的紅色「確定」按鈕容易讓使用者在 0.5 秒內無意識按下。
+            </p>
+          </div>
         </div>
       </template>
 
       <!-- Good Design -->
       <template #right>
-        <div class="space-y-6 flex flex-col items-center justify-center h-full min-h-[400px] relative">
+        <div class="flex flex-col h-full">
+          <div class="mt-4 px-4 lg:px-6">
+            <!-- Alert Box (After) -->
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+              <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+              <div class="text-xs leading-relaxed space-y-0.5">
+                <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+                <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                  <li>強制要求手動輸入完整名稱以解鎖按鈕，確保意識清醒</li>
+                  <li>將操作障礙（Obstacle）轉化為安全保障，杜絕手滑風險</li>
+                  <li>預設鎖定危險按鈕，將肌肉記憶從「點擊」轉移到「打字」</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-1 flex flex-col items-center justify-center min-h-[300px] relative">
 
           <div class="text-center space-y-4">
             <h3 class="font-medium text-lg">專案設定: {{ projectName }}</h3>
@@ -139,9 +172,10 @@ const cancelGood = () => {
           <div v-if="showGoodModal" class="absolute inset-0 bg-background/80 backdrop-blur-sm z-40" @click="cancelGood">
           </div>
 
-          <p class="text-xs text-muted-foreground max-w-xs text-center mt-auto">
-            <b>強大保護：</b> 將按鈕預設為鎖定狀態。強迫大腦切換到打字模式，輸入完整名稱後才能解鎖刪除按鈕，100% 杜絕「肌肉記憶」帶來的意外手滑災難。
-          </p>
+            <p class="text-xs text-muted-foreground max-w-xs text-center mt-6">
+              <b>保護：</b> 強迫大腦切換到打字模式，輸入完整名稱後才能解鎖刪除按鈕。
+            </p>
+          </div>
         </div>
       </template>
     </SplitView>

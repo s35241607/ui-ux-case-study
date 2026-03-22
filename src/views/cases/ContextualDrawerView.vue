@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ArrowLeft, FileText, X, ChevronRight } from 'lucide-vue-next'
+import { ArrowLeft, FileText, X, ChevronRight, AlertCircle, Zap } from 'lucide-vue-next'
 import SplitView from '@/components/layout/SplitView.vue'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -47,6 +47,19 @@ const getPriorityColor = (p: string) => {
       <!-- Bad Design -->
       <template #left>
         <div class="relative h-full flex flex-col">
+          <div class="px-4 mt-4">
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+              <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+              <div class="text-xs leading-relaxed space-y-0.5">
+                <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+                <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                  <li>閱讀詳情後必須手動點擊「返回」才能回到列表，操作路徑中斷且不連貫</li>
+                  <li>無法在查看細節的同時保持清單的可見性，導致頻繁的頁面切換與認知中斷</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <!-- 模擬整頁跳轉後的詳情頁 -->
           <div v-if="badSelectedTicket"
             class="absolute inset-0 bg-background z-20 flex flex-col animate-in fade-in slide-in-from-right-4 duration-300">
@@ -86,9 +99,6 @@ const getPriorityColor = (p: string) => {
                   <Button>開始處理</Button>
                 </div>
               </div>
-            </div>
-            <div class="mt-auto p-4 text-center text-xs text-muted-foreground bg-muted/20 border-t">
-              <b>痛點：</b> 閱讀完後必須點擊「返回」才能尋找下一筆，極度中斷思緒與流暢度。
             </div>
           </div>
 
@@ -146,9 +156,16 @@ const getPriorityColor = (p: string) => {
                 </div>
               </div>
             </div>
-            <div class="mt-8 text-xs text-muted-foreground p-4 bg-muted/30 rounded-lg">
-              <b>優勢：</b> 點選項目後，詳情會於側邊展開。你可以一邊看著清單，一邊快速瀏覽各個項目的細節，不需跳頁返回。
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400 mb-2">
+            <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>點選項目後詳情於側邊抽屜展開，讓使用者在不中斷上下文的情況下快速瀏覽細節</li>
+                <li>支援即時更新與內聯操作，大幅減少頁面跳轉次數，提升作業流暢度</li>
+              </ul>
             </div>
+          </div>
           </div>
 
           <!-- Slide-out Drawer Panel -->

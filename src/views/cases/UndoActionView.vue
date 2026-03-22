@@ -4,7 +4,7 @@ import SplitView from '@/components/layout/SplitView.vue'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Trash2, Bell } from 'lucide-vue-next'
+import { Trash2, Bell, AlertCircle, Zap } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 interface Notification {
@@ -76,12 +76,19 @@ function goodDelete(id: number) {
 
     <SplitView>
       <template #left>
-        <div class="flex flex-col gap-4 mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>點擊刪除後立即移除，無法還原</li>
-            <li>誤刪後只能重新建立或尋找備份</li>
-            <li>對於低風險日常操作，確認彈窗反而增加摩擦</li>
-          </ul>
+        <div class="flex flex-col gap-4 mt-4 px-1">
+          <!-- Alert Box (Before) -->
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>點擊刪除後立即移除且無法復原，誤操作風險高</li>
+                <li>若增加確認彈窗則會中斷操作流，造成日常效率降低</li>
+                <li>缺乏容錯空間，用戶在執行操作時容易產生壓力</li>
+              </ul>
+            </div>
+          </div>
 
           <Card>
             <CardHeader class="pb-3">
@@ -112,12 +119,19 @@ function goodDelete(id: number) {
       </template>
 
       <template #right>
-        <div class="flex flex-col gap-4 mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>刪除後顯示 Toast，4 秒內可點「撤銷」還原</li>
-            <li>項目在撤銷窗口期間呈現淡化狀態</li>
-            <li>時間到後才真正移除，兼顧效率與安全</li>
-          </ul>
+        <div class="flex flex-col gap-4 mt-4 px-1">
+          <!-- Alert Box (After) -->
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>提供短暫的撤銷窗口，在高效與安全之間取得平衡</li>
+                <li>撤銷窗口期間保持項目可見但淡化，暗示動作尚未最終定案</li>
+                <li>整合 Toast 互動，讓用戶在不被打斷的情況下擁有反悔權</li>
+              </ul>
+            </div>
+          </div>
 
           <Card>
             <CardHeader class="pb-3">

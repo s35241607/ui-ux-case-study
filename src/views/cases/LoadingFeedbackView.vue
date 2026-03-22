@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Loader2, Send, RefreshCw, Heart, ShoppingCart, Check, AlertTriangle, Zap } from 'lucide-vue-next'
+import { Loader2, Send, RefreshCw, Heart, ShoppingCart, Check, AlertCircle, Zap } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 const activeTab = ref('form') // 'form' | 'block' | 'inline'
@@ -102,10 +102,10 @@ async function goodRefresh() {
           <!-- Case 1: Form Submit -->
           <div v-if="activeTab === 'form'" class="flex flex-col gap-4">
             <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
-              <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
+              <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">無狀態反饋 (No Feedback)</p>
-                <p class="opacity-80">按鈕無任何變化，用戶不知道是否有在處理，容易因為不確定而重複點擊送出。</p>
+                <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+                <p class="text-[11px] opacity-80">按鈕無任何載入狀態回饋，用戶不知道系統是否在處理，容易產生焦慮並重複點擊。</p>
               </div>
             </div>
 
@@ -135,10 +135,10 @@ async function goodRefresh() {
           <!-- Case 2: Data Block Loading -->
           <div v-if="activeTab === 'block'" class="flex flex-col gap-4">
             <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
-              <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
+              <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">直接留白 (Blank Loading)</p>
-                <p class="opacity-80">資料載入期間用戶面對空白，毫無提示，會讓人以為頁面壞掉或沒有資料。</p>
+                <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+                <p class="text-[11px] opacity-80">資料載入期間直接留白，毫無提示，會讓用戶誤以為頁面故障或系統無回應。</p>
               </div>
             </div>
 
@@ -173,10 +173,10 @@ async function goodRefresh() {
           <!-- Case 3: Inline Actions -->
           <div v-if="activeTab === 'inline'" class="flex flex-col gap-4">
             <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
-              <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
+              <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">缺乏按鈕層級的鎖定 (No Interaction Lock)</p>
-                <p class="opacity-80">按鈕點擊後沒有被禁用，可重複點擊送出多次相同的 API 請求。</p>
+                <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+                <p class="text-[11px] opacity-80">按鈕點擊後沒有鎖定機制，用戶可快速多次觸發同一個 API 請求，造成伺服器負擔與資料異常。</p>
               </div>
             </div>
 
@@ -212,8 +212,8 @@ async function goodRefresh() {
             <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
               <Zap class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">禁用與狀態提示 (Disabled + Spinner)</p>
-                <p class="opacity-80">點擊後立即切換成 Spinner，並將按鈕禁用以防止重複提交，完成後可搜配 Toast 通知結果。</p>
+                <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+                <p class="text-[11px] opacity-80">點擊後立即切換 Loading UI 並禁用按鈕，預防重複提交，並在結束後顯示結果通知。</p>
               </div>
             </div>
 
@@ -243,8 +243,8 @@ async function goodRefresh() {
             <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
               <Zap class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">骨架屏 (Skeleton Screens)</p>
-                <p class="opacity-80">使用 Skeleton 骨架屏讓用戶知道資料正在讀取，預先建立版面佈局的心理預期，降低等待時間的體感。</p>
+                <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+                <p class="text-[11px] opacity-80">使用骨架屏 (Skeleton Screen) 提示載入中狀態，預先建立版面佈局的心理預期，降低焦慮感。</p>
               </div>
             </div>
 
@@ -292,8 +292,8 @@ async function goodRefresh() {
             <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
               <Zap class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">元件級別的鎖定與狀態回饋 (Component-level Feedback)</p>
-                <p class="opacity-80">各操作按鈕在點擊後切換成 Loading UI 並被禁用，完成後再呈現對應的「已完成」狀態，讓用戶知道操作結果。</p>
+                <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+                <p class="text-[11px] opacity-80">操作按鈕點擊後切換為載入狀態並鎖定，完成後提供明確的視覺勾選或狀態提示。</p>
               </div>
             </div>
 

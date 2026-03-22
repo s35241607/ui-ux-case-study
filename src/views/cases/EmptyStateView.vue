@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { FolderOpen, FileText, Plus, Package, Users } from 'lucide-vue-next'
+import { FolderOpen, FileText, Plus, Package, Users, AlertCircle, Zap } from 'lucide-vue-next'
 
 const activeTab = ref('table') // 'table' | 'context'
 
@@ -54,9 +54,12 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
         <div class="flex-1 flex flex-col mt-4">
           <!-- Case 1: Empty Table -->
           <div v-if="activeTab === 'table'" class="flex flex-col gap-4">
-            <div class="p-4 bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20 rounded-lg text-sm text-red-800 dark:text-red-300">
-              <strong>無明確提示 (No Clear Feedback)</strong><br />
-              <span class="opacity-80">表格僅顯示空欄或表頭，用戶無法分辨是「資料庫為空」還是「資料仍在載入中」。</span>
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+              <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+              <div class="text-xs leading-relaxed space-y-0.5">
+                <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+                <p class="text-[11px] opacity-80">表格僅顯示空欄或表頭，用戶無法分辨是「資料庫為空」還是「資料仍在載入中」。</p>
+              </div>
             </div>
 
             <Card class="max-w-md">
@@ -92,9 +95,12 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
 
           <!-- Case 2: Contextless text -->
           <div v-if="activeTab === 'context'" class="flex flex-col gap-4">
-            <div class="p-4 bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20 rounded-lg text-sm text-red-800 dark:text-red-300">
-              <strong>缺乏引導 (Lack of Guidance)</strong><br />
-              <span class="opacity-80">每個分頁都只顯示一句冷冰冰的「暫無資料」，沒有說明原因，也沒有告訴用戶下一步該怎麼辦。</span>
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+              <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+              <div class="text-xs leading-relaxed space-y-0.5">
+                <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+                <p class="text-[11px] opacity-80">每個分頁都只顯示一句冷冰冰的「暫無資料」，沒有說明原因，也沒有告訴用戶下一步該怎麼辦。</p>
+              </div>
             </div>
 
             <Card class="max-w-md">
@@ -117,9 +123,12 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
         <div class="flex-1 flex flex-col mt-4">
           <!-- Case 1: Proper empty state table -->
           <div v-if="activeTab === 'table'" class="flex flex-col gap-4">
-            <div class="p-4 bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/20 rounded-lg text-sm text-green-800 dark:text-green-300">
-              <strong>結合架構與引導 (Structure + Guidance)</strong><br />
-              <span class="opacity-80">保留表頭（骨架結構）讓用戶了解模組用途，下方以清晰的插圖、文案與主要 CTA 鼓勵操作。</span>
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+              <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+              <div class="text-xs leading-relaxed space-y-0.5">
+                <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+                <p class="text-[11px] opacity-80">保留表頭（骨架結構）讓用戶了解模組用途，下方以清晰的插圖、文案與主要 CTA 鼓勵操作。</p>
+              </div>
             </div>
 
             <Card class="max-w-md transition-all duration-200 hover:shadow-sm">
@@ -157,9 +166,12 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
 
           <!-- Case 2: Context-aware empty state by tab -->
           <div v-if="activeTab === 'context'" class="flex flex-col gap-4">
-            <div class="p-4 bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/20 rounded-lg text-sm text-green-800 dark:text-green-300">
-              <strong>專屬情境提示 (Context-Aware State)</strong><br />
-              <span class="opacity-80">不同的分頁或模組應顯示與其對應的情境圖示、文案，以及專屬的行動呼籲按鈕 (如：新增商品)。</span>
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+              <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+              <div class="text-xs leading-relaxed space-y-0.5">
+                <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+                <p class="text-[11px] opacity-80">不同的分頁或模組應顯示與其對應的情境圖示、文案，以及專屬的行動呼籲按鈕 (如：新增商品)。</p>
+              </div>
             </div>
 
             <Card class="max-w-md transition-all duration-200 hover:shadow-sm">

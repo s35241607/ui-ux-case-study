@@ -4,7 +4,7 @@ import SplitView from '@/components/layout/SplitView.vue'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Eye, EyeOff, CheckCircle2, XCircle } from 'lucide-vue-next'
+import { Eye, EyeOff, CheckCircle2, XCircle, AlertCircle, Zap } from 'lucide-vue-next'
 
 // Bad: no strength feedback
 const badPassword = ref('')
@@ -57,12 +57,19 @@ const confirmMismatch = computed(() =>
 
     <SplitView>
       <template #left>
-        <div class="flex flex-col gap-4 mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>密碼欄位沒有任何強度或格式說明</li>
-            <li>送出後才顯示密碼規則不符的錯誤訊息</li>
-            <li>使用者不知道該如何設定符合要求的密碼</li>
-          </ul>
+        <div class="flex flex-col gap-4 mt-4 px-1">
+          <!-- Alert Box (Before) -->
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>密碼欄位缺乏即時規則說明，用戶須猜測格式</li>
+                <li>僅在送出後才顯示錯誤，造成反覆修改的挫折感</li>
+                <li>兩次輸入是否一致缺乏即時提示，增加認知負荷</li>
+              </ul>
+            </div>
+          </div>
 
           <Card>
             <CardHeader>
@@ -106,12 +113,19 @@ const confirmMismatch = computed(() =>
       </template>
 
       <template #right>
-        <div class="flex flex-col gap-4 mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>輸入時即時顯示強度進度條與等級標示</li>
-            <li>需求清單逐條標記通過狀態，引導補全</li>
-            <li>所有規則通過前，確認按鈕維持禁用</li>
-          </ul>
+        <div class="flex flex-col gap-4 mt-4 px-1">
+          <!-- Alert Box (After) -->
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>即時顯示強度進度條與等級，提供清晰的安全反饋</li>
+                <li>互動式檢查清單逐條標記狀態，引導用戶完成補全</li>
+                <li>在滿足所有規則前限制操作，預防錯誤提交</li>
+              </ul>
+            </div>
+          </div>
 
           <Card>
             <CardHeader>

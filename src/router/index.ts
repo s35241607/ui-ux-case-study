@@ -90,6 +90,18 @@ const router = createRouter({
       meta: { title: '未儲存資料提示 (Unsaved Changes)', category: 'UX 體驗', type: '資料保護', tag: 'ux' }
     },
     {
+      path: '/case/password-strength',
+      name: 'password-strength',
+      component: () => import('../views/cases/PasswordStrengthView.vue'),
+      meta: { title: '密碼強度指示器 (Password Strength)', category: '可用性與防呆', type: '品質保證', tag: 'safety' }
+    },
+    {
+      path: '/case/undo-action',
+      name: 'undo-action',
+      component: () => import('../views/cases/UndoActionView.vue'),
+      meta: { title: '操作可撤銷設計 (Undo Action)', category: '可用性與防呆', type: '品質保證', tag: 'safety' }
+    },
+    {
       path: '/case/batch-actions',
       name: 'batch-actions',
       component: () => import('../views/cases/BatchActionsView.vue'),

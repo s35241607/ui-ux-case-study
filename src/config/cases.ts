@@ -1,7 +1,7 @@
 import {
   Maximize2, AlignLeft, MousePointer2, LayoutTemplate,
   Loader2, Bell, Navigation, FileWarning, FolderOpen, CheckSquare,
-  Map, Sliders, GripVertical
+  Map, Sliders, GripVertical, RotateCcw
 } from 'lucide-vue-next'
 
 export interface Case {
@@ -203,6 +203,24 @@ export const usabilityCases: Case[] = [
     type: '資料保護',
     desc: '離開含有未儲存變更的頁面時，提示用戶確認或放棄，防止資料意外遺失。',
     icon: FileWarning,
+    tag: 'safety',
+  },
+  {
+    title: '密碼強度指示器 (Password Strength)',
+    path: '/case/password-strength',
+    category: '可用性與防呆',
+    type: '安全性',
+    desc: '即時顯示密碼強度評估與規則清單，引導用戶建立安全性足夠的密碼。',
+    icon: CheckSquare,
+    tag: 'safety',
+  },
+  {
+    title: '操作可撤銷設計 (Undo Action)',
+    path: '/case/undo-action',
+    category: '可用性與防呆',
+    type: '錯誤恢復',
+    desc: '提供短暫的撤銷窗口，讓使用者在執行刪除等操作後仍可反悔。',
+    icon: RotateCcw,
     tag: 'safety',
   },
 ]

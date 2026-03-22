@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Info, ArrowRight, RotateCcw, AlertTriangle, Zap } from 'lucide-vue-next'
+import { Info, ArrowRight, RotateCcw, AlertCircle, Zap } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
@@ -41,12 +41,11 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
         <div class="flex-1 flex flex-col mt-4">
           <!-- Case 1: Delete confirmation -->
           <div v-if="activeTab === 'delete'" class="flex flex-col gap-4">
-            <div
-              class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
-              <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+              <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">缺乏警告與錯誤順序 (Lack of Warning & Wrong Order)</p>
-                <p class="opacity-80">危險操作無警示色，且取消與確認按鈕視覺強度相同、順序風倒，容易造成誤刪。</p>
+                <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+                <p class="text-[11px] opacity-80">危險操作無警示色，且取消與確認按鈕視覺強度相同、順序顛倒，容易造成誤刪。</p>
               </div>
             </div>
 
@@ -75,12 +74,11 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
 
           <!-- Case 2: Upgrade CTA -->
           <div v-if="activeTab === 'upgrade'" class="flex flex-col gap-4">
-            <div
-              class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
-              <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+              <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">全部平鋪 (No Visual Hierarchy)</p>
-                <p class="opacity-80">三個按鈕視覺重量完全相同，用戶在採視時無法分轮哪個是系統推薦的主要操作。</p>
+                <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+                <p class="text-[11px] opacity-80">所有按鈕視覺重量完全相同，用戶在掃視時無法分辨哪個是系統推薦的主要操作。</p>
               </div>
             </div>
 
@@ -108,12 +106,11 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
 
           <!-- Case 3: Settings Save Actions -->
           <div v-if="activeTab === 'settings'" class="flex flex-col gap-4">
-            <div
-              class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
-              <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+              <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">等重按鍵混淆意圖 (Same Weight, No Priority)</p>
-                <p class="opacity-80">三個操作按鍵視覺強度相同，無法在採視時辨別主要操作，次要動作（取消、重置）也不夠收摂。</p>
+                <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+                <p class="text-[11px] opacity-80">多個操作按鍵視覺強度相同，無法在掃視時辨別主要操作，次要動作也不夠收斂。</p>
               </div>
             </div>
 
@@ -158,12 +155,11 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
         <div class="flex-1 flex flex-col mt-4">
           <!-- Case 1: Delete confirmation -->
           <div v-if="activeTab === 'delete'" class="flex flex-col gap-4">
-            <div
-              class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
               <Zap class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">明確意圖與防呆防護 (Clear Intent & Prevention)</p>
-                <p class="opacity-80">使用 Destructive 紅色警示危險操作；次要操作 (取消) 使用 Outline，且位於左側。</p>
+                <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+                <p class="text-[11px] opacity-80">使用 Destructive 紅色警示危險操作；次要操作 (取消) 使用 Outline，且位於左側。</p>
               </div>
             </div>
 
@@ -189,12 +185,11 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
 
           <!-- Case 2: Upgrade CTA -->
           <div v-if="activeTab === 'upgrade'" class="flex flex-col gap-4">
-            <div
-              class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
               <Zap class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">強調主要操作 (Primary Call to Action)</p>
-                <p class="opacity-80">利用 Primary > Secondary > Ghost 的視覺重量層差，清楚引導用戶執行高轉換率的最佳路徑。</p>
+                <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+                <p class="text-[11px] opacity-80">利用視覺重量層級 (Primary > Secondary > Ghost)，清楚引導用戶執行最佳路徑。</p>
               </div>
             </div>
 
@@ -221,12 +216,11 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
 
           <!-- Case 3: Settings Save Actions -->
           <div v-if="activeTab === 'settings'" class="flex flex-col gap-4">
-            <div
-              class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
               <Zap class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
-                <p class="font-semibold">層次分明的操作安排 (Layered Action Weight)</p>
-                <p class="opacity-80">主要操作（儲存）使用 Primary，次要操作（重置）使用 Outline，最低優先度（取消）使用 Ghost，視覺重量與操作重要性完全對應。</p>
+                <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+                <p class="text-[11px] opacity-80">主要操作（儲存）使用 Primary，次要與取消動作使用較輕的視覺權重，層次完全對應操作重要性。</p>
               </div>
             </div>
 

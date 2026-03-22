@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
-  Check, AlertTriangle, Info, Zap, ChevronDown, X,
+  Check, AlertCircle, Info, Zap, ChevronDown, X,
   ToggleLeft, ToggleRight, Package, Building2,
   ListFilter
 } from 'lucide-vue-next'
@@ -173,14 +173,15 @@ const goodFilteredTickets = computed(() => {
     <SplitView :key="activeScenario">
       <!-- ════════════════ LEFT: BAD ════════════════ -->
       <template #left>
-        <div
-          class="mb-4 flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
-          <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
-          <div class="text-xs leading-relaxed space-y-0.5">
-            <p class="font-semibold">{{ currentInfo.badLabel }}</p>
-            <p class="opacity-80">{{ currentInfo.bad }}</p>
+        <div class="flex flex-col gap-4 mt-4 px-1">
+          <!-- Alert Box (Before) -->
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+              <p class="text-[11px] opacity-80">{{ currentInfo.bad }}</p>
+            </div>
           </div>
-        </div>
 
         <!-- TOGGLE: Bad -->
         <Card v-if="activeScenario === 'toggle'" class="border-border shadow-sm">
@@ -341,19 +342,20 @@ const goodFilteredTickets = computed(() => {
             </div>
           </CardContent>
         </Card>
-
-      </template>
+      </div>
+    </template>
 
       <!-- ════════════════ RIGHT: GOOD ════════════════ -->
       <template #right>
-        <div
-          class="mb-4 flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
-          <Zap class="h-4 w-4 shrink-0 mt-0.5" />
-          <div class="text-xs leading-relaxed space-y-0.5">
-            <p class="font-semibold">{{ currentInfo.goodLabel }}</p>
-            <p class="opacity-80">{{ currentInfo.good }}</p>
+        <div class="flex flex-col gap-4 mt-4 px-1">
+          <!-- Alert Box (After) -->
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <p class="text-[11px] opacity-80">{{ currentInfo.good }}</p>
+            </div>
           </div>
-        </div>
 
         <!-- TOGGLE: Good — ✅ fixed switch colors -->
         <Card v-if="activeScenario === 'toggle'" class="border-border shadow-sm">
@@ -515,8 +517,8 @@ const goodFilteredTickets = computed(() => {
             </p>
           </CardContent>
         </Card>
-
-      </template>
+      </div>
+    </template>
     </SplitView>
   </div>
 </template>

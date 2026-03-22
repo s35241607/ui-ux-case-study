@@ -4,7 +4,7 @@ import SplitView from '@/components/layout/SplitView.vue'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ChevronRight, ArrowLeft, Home, Settings, Shield, Download } from 'lucide-vue-next'
+import { ChevronRight, ArrowLeft, Home, Settings, Shield, Download, AlertCircle, Zap } from 'lucide-vue-next'
 
 type PageKey = 'home' | 'settings' | 'privacy' | 'export'
 
@@ -57,7 +57,7 @@ function goodNavigate(key: PageKey) {
   <div class="h-full flex flex-col">
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
-        <h1 class="text-2xl font-bold tracking-tight">麵包屑導覽設計 (Breadcrumb)</h1>
+        <h1 class="text-2xl font-bold tracking-tight">麵包屑導覽設計 (Breadcrumb Navigation)</h1>
         <Badge variant="secondary" class="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30">導覽與狀態
         </Badge>
       </div>
@@ -69,11 +69,17 @@ function goodNavigate(key: PageKey) {
     <SplitView>
       <template #left>
         <div class="flex flex-col gap-4 mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>進入深層頁面後，不清楚自己處於哪個層級</li>
-            <li>只能逐層點擊返回，無法直接跳到特定上層</li>
-            <li>分享連結後對方同樣不知道當前位置的脈絡</li>
-          </ul>
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>進入深層頁面後，不清楚自己處於哪個層級與路徑脈絡</li>
+                <li>只能逐層點擊返回按鈕，無法直接跳轉至特定上層節點</li>
+                <li>缺乏視覺導引，使用者容易在複雜的資訊架構中迷失方向</li>
+              </ul>
+            </div>
+          </div>
 
           <Card class="flex-1">
             <CardHeader class="pb-3 border-b">
@@ -139,11 +145,17 @@ function goodNavigate(key: PageKey) {
 
       <template #right>
         <div class="flex flex-col gap-4 mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>頂部顯示完整路徑，清楚呈現當前所在層級</li>
-            <li>可點擊任一麵包屑節點直接跳回對應頁面</li>
-            <li>首頁以 Home 圖示表示，視覺辨識度高</li>
-          </ul>
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>頂部顯示完整路徑節點，清楚呈現當前在層級架構中的位置</li>
+                <li>所有上層節點皆可點擊，支援跨層級的高效跳轉與導航</li>
+                <li>首頁與關鍵節點搭配圖示化呈現，提升視覺辨識度與操作直覺</li>
+              </ul>
+            </div>
+          </div>
 
           <Card class="flex-1">
             <CardHeader class="pb-3 border-b">

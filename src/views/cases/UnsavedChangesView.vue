@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label'
 import {
   Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle
 } from '@/components/ui/dialog'
-import { AlertTriangle, Save, X } from 'lucide-vue-next'
+import { AlertCircle, Zap, Save, X } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 // ---- BAD: no unsaved warning ----
@@ -94,12 +94,19 @@ onBeforeUnmount(() => clearInterval(autoSaveTimer))
 
     <SplitView>
       <template #left>
-        <div class="flex flex-col gap-5 mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>點擊「取消」或導覽離開，所有輸入無聲消失</li>
-            <li>沒有草稿機制，無法恢復</li>
-            <li>用戶只能重新填寫，體驗極差</li>
-          </ul>
+        <div class="flex flex-col gap-5 mt-4 px-1">
+          <!-- Alert Box (Before) -->
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>標單或表單填寫中途若誤按導航或取消，所有輸入無聲消失</li>
+                <li>缺乏未儲存變更的防護機制，導致用戶必須重複填寫</li>
+                <li>無草稿存擋概念，一旦發生斷線或誤觸則資料全數歸零</li>
+              </ul>
+            </div>
+          </div>
 
           <Card>
             <CardHeader>
@@ -134,12 +141,19 @@ onBeforeUnmount(() => clearInterval(autoSaveTimer))
       </template>
 
       <template #right>
-        <div class="flex flex-col gap-5 mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-            <li>離開前顯示確認對話框，提供「儲存草稿」選項</li>
-            <li>有未儲存狀態徽章提示用戶</li>
-            <li>後台靜默 auto-save 草稿（不打擾用戶）</li>
-          </ul>
+        <div class="flex flex-col gap-5 mt-4 px-1">
+          <!-- Alert Box (After) -->
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>離開前透過對話框攔截並確認，避免無意間的資料遺失</li>
+                <li>提供儲存草稿選項，讓用戶能靈活決定資料的去留</li>
+                <li>背景靜默自動儲存，在不干擾操作的情形下確保資料安全</li>
+              </ul>
+            </div>
+          </div>
 
           <Card>
             <CardHeader>

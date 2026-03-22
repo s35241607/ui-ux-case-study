@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Pencil, Edit2 } from 'lucide-vue-next'
+import { Pencil, Edit2, AlertCircle, Zap } from 'lucide-vue-next'
 import SplitView from '@/components/layout/SplitView.vue'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -74,7 +74,19 @@ const getStatusColor = (status: string) => {
     <SplitView>
       <!-- Bad Design -->
       <template #left>
-        <div class="space-y-4">
+        <div class="space-y-4 mt-4">
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>點擊編輯後需切換視線到新出現的表單，破壞原有的表格閱讀流</li>
+                <li>每次微調狀態都需要「點擊 → 選擇 → 儲存」至少 3 次操作</li>
+                <li>傳統彈窗或展開式編輯會暫時阻斷對其他資料的參考</li>
+              </ul>
+            </div>
+          </div>
+
           <div class="border rounded-md bg-card overflow-hidden">
             <table class="w-full text-sm">
               <thead class="bg-muted/50 border-b">
@@ -148,15 +160,24 @@ const getStatusColor = (status: string) => {
               </tbody>
             </table>
           </div>
-          <p class="text-xs text-muted-foreground">
-            <b>繁瑣流程：</b> 點擊編輯 → 切換視線到新出現的表單 → 選擇新狀態 → 點擊儲存。<br>每次微調都需要 3-4 次操作，且破壞原有的表格閱讀流。
-          </p>
         </div>
       </template>
 
       <!-- Good Design -->
       <template #right>
-        <div class="space-y-4">
+        <div class="space-y-4 mt-4">
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>表格文字或標籤採互動式設計，點擊即觸發下拉選單進行快速切換</li>
+                <li>「1 次點擊 + 1 次選擇」即可完成更新，且不破壞原有閱讀節奏</li>
+                <li>利用微動畫與暗示圖示（鉛筆）引導，兼顧整潔度與可發現性</li>
+              </ul>
+            </div>
+          </div>
+
           <div class="border rounded-md bg-card overflow-hidden">
             <table class="w-full text-sm">
               <thead class="bg-muted/50 border-b">
@@ -212,9 +233,6 @@ const getStatusColor = (status: string) => {
               </tbody>
             </table>
           </div>
-          <p class="text-xs text-muted-foreground">
-            <b>極致效率：</b> 表格文字或 Badge 本身就是下拉選單。將游標移過去會有微弱的鉛筆圖示暗示可編輯。<br>不破壞表格結構，一次點擊、選擇即可完成操作。
-          </p>
         </div>
       </template>
     </SplitView>

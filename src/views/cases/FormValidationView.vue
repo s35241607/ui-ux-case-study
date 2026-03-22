@@ -6,12 +6,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { AlertCircle, CheckCircle2 } from 'lucide-vue-next'
+import { AlertCircle, CheckCircle2, Zap } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 // --- 表單共用資料 ---
-const categories = ['軟體開發', '硬體設備', '行銷顧問', '人力派遣']
 
 // --- Bad Form State ---
 const badForm = reactive({
@@ -76,7 +74,7 @@ const submitGoodForm = () => {
   <div class="h-full flex flex-col uppercase-none">
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
-        <h1 class="text-2xl font-bold tracking-tight">表單驗證與回饋 (Form Validation)</h1>
+        <h1 class="text-2xl font-bold tracking-tight">表單驗證與即時回饋 (Form Validation)</h1>
         <Badge variant="secondary" class="text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30">系統回饋
         </Badge>
       </div>
@@ -89,11 +87,17 @@ const submitGoodForm = () => {
       <!-- ===== BAD Form ===== -->
       <template #left>
         <div class="flex-1 flex flex-col gap-6 max-w-sm mx-auto w-full mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 mb-2 list-disc list-inside">
-            <li>全頁模式：送出後才告知錯誤</li>
-            <li>錯誤訊息模糊，未指出具體欄位</li>
-            <li>數字與格式錯誤缺乏即時導引</li>
-          </ul>
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400 mb-2">
+            <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>採用全頁提交模式，使用者必須在送出後才能獲知錯誤資訊</li>
+                <li>錯誤訊息籠統且模糊，未明確標註發生錯誤的具體欄位</li>
+                <li>數字與特定格式（如統編、Email）缺乏即時引導，增加填寫難度</li>
+              </ul>
+            </div>
+          </div>
 
           <Card>
             <CardHeader class="pb-4">
@@ -134,11 +138,17 @@ const submitGoodForm = () => {
       <!-- ===== GOOD Form ===== -->
       <template #right>
         <div class="flex-1 flex flex-col gap-6 max-w-sm mx-auto w-full mt-4">
-          <ul class="text-sm text-muted-foreground space-y-1 mb-2 list-disc list-inside">
-            <li>即時反饋：Blur 或輸入時即時檢核</li>
-            <li>精確引導：告知錯誤的具體原因</li>
-            <li>狀態視覺化：邊框與圖示輔助</li>
-          </ul>
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400 mb-2">
+            <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <ul class="text-[11px] opacity-80 list-disc list-inside space-y-0.5">
+                <li>導入 Blur 或輸入即時檢核，讓使用者在操作當下獲取即時反饋</li>
+                <li>精確告知錯誤原因與修正建議，確保使用者能快速排除問題</li>
+                <li>利用邊框顏色與圖示狀態視覺化，顯著提升表單的可讀性與穩定感</li>
+              </ul>
+            </div>
+          </div>
 
           <Card class="shadow-sm">
             <CardHeader class="pb-4">

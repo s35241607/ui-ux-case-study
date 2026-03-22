@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import SplitView from '@/components/layout/SplitView.vue'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -12,7 +12,7 @@ import {
 import {
   Download, Trash2, Edit, Share2, Copy, MoreHorizontal,
   Star, Archive, Lock, FileText, Printer, RefreshCw,
-  AlertTriangle, Zap, Info, Plus, Upload, Filter, Eye, Bell
+  AlertCircle, Zap, Info, Eye
 } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
@@ -71,8 +71,6 @@ const overflowActions = allActions.filter(a => !a.primary)
 
 const goodFavorited = ref(false)
 const badFavorited = ref(false)
-const goodNotified = ref(false)
-const goodWatching = ref(true)
 
 </script>
 
@@ -101,13 +99,15 @@ const goodWatching = ref(true)
     <SplitView :key="activeScenario">
       <!-- LEFT: BAD -->
       <template #left>
-        <div class="mb-4 flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
-          <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
-          <div class="text-xs leading-relaxed space-y-0.5">
-            <p class="font-semibold">{{ currentInfo.badLabel }}</p>
-            <p class="opacity-80">{{ currentInfo.bad }}</p>
+        <div class="flex flex-col gap-4 mt-4 px-1">
+          <!-- Alert Box (Before) -->
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <AlertCircle class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">問題點 (Pain Points)</p>
+              <p class="text-[11px] opacity-80">{{ currentInfo.bad }}</p>
+            </div>
           </div>
-        </div>
 
         <!-- 1. OVERFLOW: BAD -->
         <Card v-if="activeScenario === 'overflow'" class="border-border shadow-sm">
@@ -173,17 +173,20 @@ const goodWatching = ref(true)
             </div>
           </CardContent>
         </Card>
-      </template>
+      </div>
+    </template>
 
       <!-- RIGHT: GOOD -->
       <template #right>
-        <div class="mb-4 flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
-          <Zap class="h-4 w-4 shrink-0 mt-0.5" />
-          <div class="text-xs leading-relaxed space-y-0.5">
-            <p class="font-semibold">{{ currentInfo.goodLabel }}</p>
-            <p class="opacity-80">{{ currentInfo.good }}</p>
+        <div class="flex flex-col gap-4 mt-4 px-1">
+          <!-- Alert Box (After) -->
+          <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <Zap class="h-4 w-4 shrink-0 mt-0.5" />
+            <div class="text-xs leading-relaxed space-y-0.5">
+              <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
+              <p class="text-[11px] opacity-80">{{ currentInfo.good }}</p>
+            </div>
           </div>
-        </div>
 
         <!-- 1. OVERFLOW: GOOD -->
         <Card v-if="activeScenario === 'overflow'" class="border-border shadow-sm">
@@ -313,6 +316,7 @@ const goodWatching = ref(true)
           </CardContent>
         </Card>
 
+        </div>
       </template>
     </SplitView>
 
