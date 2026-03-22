@@ -32,7 +32,7 @@ const router = createRouter({
       path: '/case/button-overflow',
       name: 'button-overflow',
       component: () => import('../views/cases/ButtonOverflowView.vue'),
-      meta: { title: '按鈕收納與工具列', category: 'UI 設計', type: '資訊架構', tag: 'ui' }
+      meta: { title: '複雜操作的收納與壓縮', category: '互動設計', type: '空間效率', tag: 'interaction' }
     },
     {
       path: '/case/empty-state',
