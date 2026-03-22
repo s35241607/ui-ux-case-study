@@ -11,7 +11,7 @@ import { usePresentation } from '@/composables/usePresentation'
 
 const isDark = useDark()
 const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null)
-const { isPresenting, togglePresentationMode } = usePresentation()
+const { isPresenting, togglePresentationMode, currentPage, totalPages } = usePresentation()
 </script>
 
 <template>
@@ -25,12 +25,22 @@ const { isPresenting, togglePresentationMode } = usePresentation()
       class: 'sonner-toast-custom',
     }" />
 
-    <!-- Presentation Mode Exit Button (only visible when presenting) -->
+    <!-- Presentation Mode Overlay (Page info + Exit button) -->
     <Transition name="fade">
-      <button v-if="isPresenting" @click="togglePresentationMode"
-        class="fixed top-4 right-4 z-[100] bg-black/40 hover:bg-black/60 text-white px-3 py-1.5 rounded-full text-xs flex items-center gap-2 backdrop-blur-sm transition-all">
-        <span class="flex items-center gap-1"><kbd class="font-mono bg-white/20 px-1 rounded">ESC</kbd> 或點擊離開簡報模式</span>
-      </button>
+      <div v-if="isPresenting" class="fixed top-4 left-0 right-0 z-[100] px-4 flex justify-between items-center pointer-events-none">
+        <!-- left side page indicator -->
+        <div class="bg-black/40 text-white px-4 py-1.5 rounded-full text-xs backdrop-blur-sm font-medium">
+          案例專注模式：第 {{ currentPage }} / {{ totalPages }} 頁
+        </div>
+        
+        <!-- right side exit button -->
+        <button @click="togglePresentationMode"
+          class="pointer-events-auto bg-black/40 hover:bg-black/60 text-white px-3 py-1.5 rounded-full text-xs flex items-center gap-2 backdrop-blur-sm transition-all shadow-lg active:scale-95">
+          <span class="flex items-center gap-1">
+            <kbd class="font-mono bg-white/20 px-1 rounded">ESC</kbd> 或點擊離開
+          </span>
+        </button>
+      </div>
     </Transition>
   </Teleport>
 

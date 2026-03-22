@@ -49,7 +49,7 @@ const currentPath = computed(() => route.path)
         <SidebarMenu>
           <SidebarMenuItem>
             <!-- NOT asChild: let SidebarMenuButton own the 8×8 collapsed box so hover is always centered -->
-            <SidebarMenuButton :isActive="currentPath === '/'" tooltip="首頁" @click="router.push('/')" 
+            <SidebarMenuButton :isActive="currentPath === '/'" tooltip="首頁" @click="router.push('/')"
               class="gap-2.5 group-data-[collapsible=icon]:!p-0 group-data-[collapsible=icon]:justify-center">
               <Home class="h-4 w-4 shrink-0 text-muted-foreground" />
               <span>首頁</span>
@@ -57,8 +57,6 @@ const currentPath = computed(() => route.path)
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroup>
-
-      <div class="mx-2 h-px bg-border/60 group-data-[collapsible=icon]:hidden" />
 
       <!-- Case Groups -->
       <template v-for="(group, idx) in caseGroups" :key="group.label">
@@ -73,7 +71,7 @@ const currentPath = computed(() => route.path)
             <SidebarMenu>
               <SidebarMenuItem v-for="item in group.cases" :key="item.path">
                 <SidebarMenuButton :isActive="currentPath === item.path" :tooltip="item.title"
-                  @click="router.push(item.path)" 
+                  @click="router.push(item.path)"
                   class="gap-2.5 group-data-[collapsible=icon]:!p-0 group-data-[collapsible=icon]:justify-center">
                   <component :is="item.icon" class="h-4 w-4 shrink-0 text-muted-foreground" />
                   <span>{{ item.title }}</span>

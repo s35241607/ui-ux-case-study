@@ -43,7 +43,7 @@ const breadcrumbs = computed(() => {
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink as-child class="text-muted-foreground hover:text-foreground transition-colors text-xs">
-              <router-link to="/">Lan's UX Lab</router-link>
+              <router-link to="/">首頁</router-link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <template v-for="(crumb, index) in breadcrumbs" :key="crumb.path">
@@ -85,7 +85,7 @@ const breadcrumbs = computed(() => {
       <button
         @click="togglePresentationMode"
         class="hidden sm:inline-flex items-center justify-center rounded-md h-7 w-7 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-        title="簡報模式 (Shift+P)"
+        title="簡報模式 (F11)"
       >
         <MonitorPlay class="h-3.5 w-3.5" />
       </button>
