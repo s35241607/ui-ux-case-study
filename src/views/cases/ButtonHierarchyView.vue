@@ -37,11 +37,11 @@ import { toast } from 'vue-sonner'
                   <span>將會永久刪除「Project Alpha」。</span>
                 </div>
               </CardContent>
-              <CardFooter class="flex flex-col gap-2 sm:flex-row sm:justify-start">
+              <CardFooter class="flex flex-col gap-2 sm:flex-row sm:justify-end">
                 <!-- Bad: 兩個實心按鈕，且位置顛倒 -->
                 <Button
                   class="w-full sm:w-auto bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-600 dark:hover:bg-neutral-500 text-white"
-                  @click="() => toast.info('已取消')">取消操作</Button>
+                  @click="() => toast.info('已取消')">取消</Button>
                 <Button
                   class="w-full sm:w-auto bg-neutral-500 hover:bg-neutral-400 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-white"
                   @click="() => toast.info('已刪除')">確認刪除</Button>
@@ -57,11 +57,11 @@ import { toast } from 'vue-sonner'
                 <CardDescription>獲取更多進階功能與儲存空間。</CardDescription>
               </CardHeader>
               <CardFooter class="flex flex-col gap-2">
-                <Button class="w-full flex items-center justify-between">
+                <Button class="w-full flex items-center">
                   <span>升級至 Pro 方案</span>
                   <ArrowRight class="h-4 w-4" />
                 </Button>
-                <Button class="w-full flex items-center justify-between">
+                <Button class="w-full flex items-center">
                   <span>升級至 Team 方案</span>
                   <ArrowRight class="h-4 w-4" />
                 </Button>
@@ -114,6 +114,7 @@ import { toast } from 'vue-sonner'
                 </Button>
                 <Button variant="secondary" class="w-full" @click="() => toast.info('跳轉至 Team 方案頁面')">
                   升級至 Team 方案
+                  <ArrowRight class="h-4 w-4" />
                 </Button>
                 <Button variant="ghost" class="w-full text-muted-foreground" @click="() => toast.info('查看方案差異')">
                   查看詳情

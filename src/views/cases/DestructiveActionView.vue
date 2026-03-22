@@ -62,8 +62,8 @@ const cancelGood = () => {
 
           <!-- 模擬彈窗 -->
           <div v-if="showBadModal"
-            class="fixed rounded-lg border bg-background shadow-lg max-w-sm w-full mx-4 z-50 p-6 animate-in fade-in zoom-in-95"
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            class="absolute rounded-lg border bg-background shadow-lg max-w-sm w-full mx-4 z-50 p-6 animate-in fade-in zoom-in-95"
+            style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
             <div class="flex flex-col gap-4">
               <div class="flex items-center gap-3 text-destructive">
                 <AlertTriangle class="w-6 h-6" />
@@ -105,8 +105,8 @@ const cancelGood = () => {
 
           <!-- 安全防呆彈窗 -->
           <div v-if="showGoodModal"
-            class="fixed rounded-lg border border-destructive/20 bg-background shadow-xl max-w-md w-full mx-4 z-50 p-6 animate-in fade-in zoom-in-95"
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            class="absolute rounded-lg border border-destructive/20 bg-background shadow-xl max-w-md w-full mx-4 z-50 p-6 animate-in fade-in zoom-in-95"
+            style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
             <div class="flex flex-col gap-5">
               <h4 class="font-semibold text-xl">嚴重警告：這項操作極度危險</h4>
 

@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { ExternalLink, ArrowLeft, Filter } from 'lucide-vue-next'
+import { ExternalLink, ArrowLeft, Filter, CheckCircle2 } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 // ---- BAD simulation ----
@@ -208,7 +208,10 @@ function goodGoBack() {
                   <dd>{{ selectedOrder?.status }}</dd>
                 </div>
               </dl>
-              <p class="text-xs text-green-600 dark:text-green-400 mt-3">✓ 返回後篩選條件將自動恢復</p>
+              <p class="text-xs text-green-600 dark:text-green-400 mt-3 flex items-center gap-1">
+                <CheckCircle2 class="h-3 w-3 shrink-0" />
+                返回後篩選條件將自動恢復
+              </p>
             </CardContent>
           </Card>
         </div>

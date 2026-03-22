@@ -7,7 +7,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('../views/HomeView.vue'),
-      meta: { title: '首頁' }
+      meta: { title: "Lan's UX Lab" }
     },
     // UI 設計案例
     {
@@ -99,7 +99,25 @@ const router = createRouter({
       path: '/case/filter-state',
       name: 'filter-state',
       component: () => import('../views/cases/FilterStateView.vue'),
-      meta: { title: '篩選器狀態顯示', category: 'UX 體驗', type: '互動設計', tag: 'ux' }
+      meta: { title: '篩選器狀態顯示', category: '效率設計', type: '篩選可視', tag: 'efficiency' }
+    },
+    {
+      path: '/case/search-autocomplete',
+      name: 'search-autocomplete',
+      component: () => import('../views/cases/SearchAutocompleteView.vue'),
+      meta: { title: '搜尋自動完成', category: '效率設計', type: '輸入加速', tag: 'efficiency' }
+    },
+    {
+      path: '/case/form-component-strategy',
+      name: 'form-component-strategy',
+      component: () => import('@/views/cases/FormComponentStrategyView.vue'),
+      meta: { title: '表單元件選擇策略', category: '互動設計', type: '元件決策', tag: 'interaction' }
+    },
+    {
+      path: '/case/breadcrumb-nav',
+      name: 'breadcrumb-nav',
+      component: () => import('../views/cases/BreadcrumbNavView.vue'),
+      meta: { title: '麵包屑導覽設計', category: '導覽與狀態', type: '層級導覽', tag: 'navigation' }
     },
   ]
 })

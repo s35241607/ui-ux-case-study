@@ -15,6 +15,11 @@ async function badSubmit() {
   await new Promise(r => setTimeout(r, 2000))
 }
 
+const badInlineClicks = ref(0)
+function badClickInline() {
+  badInlineClicks.value++
+}
+
 // Good: proper loading states
 const isGoodSubmitting = ref(false)
 const isGoodLiking = ref(false)
@@ -105,6 +110,34 @@ async function goodRefresh() {
                 <div class="text-center py-8 text-muted-foreground/40 text-sm">
                   （此處資料載入中，但沒有任何視覺提示）
                 </div>
+              </CardContent>
+            </Card>
+          </CaseBlock>
+
+          <!-- Case 3 -->
+          <CaseBlock index="3" title="行內操作按鈕" description="按鈕點擊後無任何狀態回饋，可重複點擊送出多次請求" tag="ux">
+            <Card>
+              <CardHeader>
+                <CardTitle class="text-sm">各種操作</CardTitle>
+              </CardHeader>
+              <CardContent class="space-y-3">
+                <div class="flex flex-wrap gap-2">
+                  <Button variant="outline" size="sm" @click="badClickInline">
+                    <Heart class="h-3.5 w-3.5 mr-1.5" />
+                    收藏
+                  </Button>
+                  <Button variant="outline" size="sm" @click="badClickInline">
+                    <ShoppingCart class="h-3.5 w-3.5 mr-1.5" />
+                    加入購物車
+                  </Button>
+                  <Button variant="outline" size="sm" @click="badClickInline">
+                    <RefreshCw class="h-3.5 w-3.5 mr-1.5" />
+                    重新整理
+                  </Button>
+                </div>
+                <p v-if="badInlineClicks > 0" class="text-xs text-destructive">
+                  已點擊 {{ badInlineClicks }} 次，重複請求已送出
+                </p>
               </CardContent>
             </Card>
           </CaseBlock>

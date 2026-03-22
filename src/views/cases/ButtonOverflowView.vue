@@ -168,6 +168,12 @@ const overflowActions = allActions.filter(a => !a.primary)
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" class="w-36">
+                      <DropdownMenuItem @click="() => toast.info('加入星號')" class="gap-2">
+                        <Star class="h-3.5 w-3.5 text-muted-foreground" />加入星號
+                      </DropdownMenuItem>
+                      <DropdownMenuItem @click="() => toast.info('複製')" class="gap-2">
+                        <Copy class="h-3.5 w-3.5 text-muted-foreground" />複製
+                      </DropdownMenuItem>
                       <DropdownMenuItem @click="() => toast.info('分享')" class="gap-2">
                         <Share2 class="h-3.5 w-3.5 text-muted-foreground" />分享
                       </DropdownMenuItem>

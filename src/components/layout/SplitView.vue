@@ -43,17 +43,16 @@ const props = defineProps<{
           </h2>
         </div>
       </div>
-      <div class="p-6 flex-1 flex flex-col overflow-y-auto transition-all duration-500"
+      <div class="p-6 flex-1 flex flex-col overflow-y-auto transition-all duration-500 relative z-0"
         :class="{ 'blur-md opacity-40 pointer-events-none select-none': !isRevealed }">
         <slot name="right"></slot>
       </div>
 
       <!-- Reveal Overlay -->
-      <div
-        class="absolute inset-0 z-20 top-[49px] flex flex-col items-center justify-center transition-opacity duration-300 pointer-events-none"
-        :class="isRevealed ? 'opacity-0' : 'opacity-100'">
+      <div v-if="!isRevealed"
+        class="absolute inset-0 z-20 top-[49px] flex flex-col items-center justify-center bg-background/5 backdrop-blur-[1px]">
         <button @click="isRevealed = true"
-          class="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold shadow-xl hover:bg-primary/90 transition-all hover:scale-105 pointer-events-auto">
+          class="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold shadow-xl hover:bg-primary/90 transition-all hover:scale-105">
           <Eye class="h-4 w-4" /> 點擊查看改善結果
         </button>
       </div>

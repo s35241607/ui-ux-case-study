@@ -1,6 +1,7 @@
 import {
   Maximize2, AlignLeft, MousePointer2, LayoutTemplate,
-  Loader2, Bell, Navigation, FileWarning, FolderOpen, CheckSquare, Filter
+  Loader2, Bell, Navigation, FileWarning, FolderOpen, CheckSquare, Filter,
+  Search, Map, Sliders
 } from 'lucide-vue-next'
 
 export interface Case {
@@ -142,6 +143,15 @@ export const interactionDesignCases: Case[] = [
     icon: Bell,
     tag: 'interaction',
   },
+  {
+    title: '表單元件選擇策略',
+    path: '/case/form-component-strategy',
+    category: '互動設計',
+    type: '元件決策',
+    desc: '根據選項數量、是否多選、空間限制，選擇正確的表單元件，降低使用者操作成本。',
+    icon: Sliders,
+    tag: 'interaction',
+  },
 ]
 
 // ── 3. 系統回饋 ────────────────────────────────────────────────
@@ -197,6 +207,7 @@ export const usabilityCases: Case[] = [
   },
 ]
 
+
 // ── 5. 效率設計 ────────────────────────────────────────────────
 export const efficiencyCases: Case[] = [
   {
@@ -217,6 +228,15 @@ export const efficiencyCases: Case[] = [
     icon: Filter,
     tag: 'efficiency',
   },
+  {
+    title: '搜尋自動完成',
+    path: '/case/search-autocomplete',
+    category: '效率設計',
+    type: '輸入加速',
+    desc: '輸入部分文字即顯示候選建議，減少完整輸入的負擔，讓使用者更快找到目標資料。',
+    icon: Search,
+    tag: 'efficiency',
+  },
 ]
 
 // ── 6. 導覽與狀態 ─────────────────────────────────────────────
@@ -228,6 +248,15 @@ export const navigationCases: Case[] = [
     type: '上下文保留',
     desc: '從詳情頁返回時自動恢復篩選與捲動位置，減少重複操作。',
     icon: Navigation,
+    tag: 'navigation',
+  },
+  {
+    title: '麥包屑導覽設計',
+    path: '/case/breadcrumb-nav',
+    category: '導覽與狀態',
+    type: '層級導覽',
+    desc: '在多層級頁面中顯示完整路徑軌跡，讓使用者隨時瞭解所在位置並能快速跳回任一上層頁面。',
+    icon: Map,
     tag: 'navigation',
   },
 ]

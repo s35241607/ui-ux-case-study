@@ -42,8 +42,8 @@ const breadcrumbs = computed(() => {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/" class="text-muted-foreground hover:text-foreground transition-colors text-xs">
-              首頁
+            <BreadcrumbLink as-child class="text-muted-foreground hover:text-foreground transition-colors text-xs">
+              <router-link to="/">Lan's UX Lab</router-link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <template v-for="(crumb, index) in breadcrumbs" :key="crumb.path">
@@ -52,8 +52,8 @@ const breadcrumbs = computed(() => {
               <BreadcrumbPage v-if="index === breadcrumbs.length - 1" class="text-xs font-medium max-w-[280px] truncate">
                 {{ crumb.title }}
               </BreadcrumbPage>
-              <BreadcrumbLink v-else :href="crumb.path" class="text-muted-foreground hover:text-foreground transition-colors text-xs">
-                {{ crumb.title }}
+              <BreadcrumbLink v-else as-child class="text-muted-foreground hover:text-foreground transition-colors text-xs">
+                <router-link :to="crumb.path">{{ crumb.title }}</router-link>
               </BreadcrumbLink>
             </BreadcrumbItem>
           </template>

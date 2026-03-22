@@ -27,11 +27,20 @@ import { Badge } from '@/components/ui/badge'
           <div class="border rounded overflow-hidden text-sm">
             <div class="bg-muted/50 border-b p-1 font-bold text-xs">訂單列表</div>
             <div class="divide-y">
-              <div v-for="i in 4" :key="i" class="flex items-center p-1 gap-1 text-xs">
-                <span class="font-mono">#ORD-{{ 1000 + i }}</span>
-                <span class="flex-1">客戶{{ ['王小明', '陳大志', '林美華', '張志遠'][i - 1] }}</span>
-                <span class="text-green-600">已付款</span>
-                <span>${{ [12800, 4500, 98200, 2100][i - 1] }}</span>
+              <div v-for="row in [
+                { id: 'ORD-1001', name: '王小明', status: '已付款', amount: 12800 },
+                { id: 'ORD-1002', name: '陳大志', status: '處理中', amount: 4500 },
+                { id: 'ORD-1003', name: '林美華', status: '已付款', amount: 98200 },
+                { id: 'ORD-1004', name: '張志遠', status: '待付款', amount: 2100 },
+              ]" :key="row.id" class="flex items-center p-1 gap-1 text-xs">
+                <span class="font-mono">#{{ row.id }}</span>
+                <span class="flex-1">{{ row.name }}</span>
+                <span :class="{
+                  'text-green-600': row.status === '已付款',
+                  'text-blue-600': row.status === '處理中',
+                  'text-amber-600': row.status === '待付款',
+                }">{{ row.status }}</span>
+                <span>${{ row.amount.toLocaleString() }}</span>
               </div>
             </div>
           </div>
@@ -57,8 +66,8 @@ import { Badge } from '@/components/ui/badge'
             <div class="text-xs">電話：0912-345-678</div>
             <div class="text-xs">地址：台北市信義區市府路1號</div>
             <div class="flex gap-1 mt-0.5">
-              <button class="bg-primary text-primary-foreground text-xs rounded px-1 py-0.5">編輯</button>
-              <button class="bg-destructive text-destructive-foreground text-xs rounded px-1 py-0.5">刪除</button>
+              <button class="bg-primary text-primary-foreground text-xs rounded px-1 py-0.5">編輯資訊</button>
+              <button class="bg-secondary text-destructive-foreground text-xs rounded px-1 py-0.5">取消</button>
             </div>
           </div>
         </div>
