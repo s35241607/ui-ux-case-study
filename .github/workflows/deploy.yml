@@ -24,16 +24,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          # do not use cache: pnpm here when pnpm is not installed yet
+          # use pnpm/action-setup after Node is ready
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9.15.4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
+      - name: Verify pnpm availability
+        run: |
+          node --version
+          pnpm --version
+          which pnpm
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
