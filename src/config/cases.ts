@@ -1,7 +1,7 @@
 import {
   Maximize2, AlignLeft, MousePointer2, LayoutTemplate,
   Loader2, Bell, Navigation, FileWarning, FolderOpen, CheckSquare,
-  Map, Sliders, GripVertical, RotateCcw
+  Map, Sliders, GripVertical, RotateCcw, LayoutGrid, CheckCircle
 } from 'lucide-vue-next'
 
 export interface Case {
@@ -71,6 +71,14 @@ export const categoryMeta: Record<string, CategoryMeta> = {
     hoverBorder: 'hover:border-indigo-300 dark:hover:border-indigo-700',
     typeTextClass: 'text-indigo-600 dark:text-indigo-400',
     homeDesc: '在頁面跳轉與層級切換中保留操作上下文，讓每次返回都回到原點。',
+  },
+  '結語': {
+    labelColor: 'text-slate-600/80 dark:text-slate-400/80',
+    iconClass: 'bg-slate-100 dark:bg-slate-900/30 text-slate-600 dark:text-slate-400',
+    dotColor: 'bg-slate-500',
+    hoverBorder: 'hover:border-slate-300 dark:hover:border-slate-700',
+    typeTextClass: 'text-slate-600 dark:text-slate-400',
+    homeDesc: '總結系列案例中，使用者在意的核心設計價值與思維。',
   },
 }
 
@@ -270,6 +278,19 @@ export const navigationCases: Case[] = [
   },
 ]
 
+// ── 7. 結語 ──────────────────────────────────────────────────
+export const conclusionCases: Case[] = [
+  {
+    title: '設計思維：使用者在乎什麼？ (Design Philosophy)',
+    path: '/case/philosophy',
+    category: '結語',
+    type: '核心原則',
+    desc: '從使用者的視角出發，重新審視系統設計的初衷。',
+    icon: LayoutGrid,
+    tag: 'summary',
+  },
+]
+
 // ── 分組結構（供 Sidebar / HomeView 循環使用）────────────────
 export const caseGroups = [
   { label: '視覺設計', cases: visualDesignCases },
@@ -278,6 +299,7 @@ export const caseGroups = [
   { label: '可用性與防呆', cases: usabilityCases },
   { label: '效率設計', cases: efficiencyCases },
   { label: '導覽與狀態', cases: navigationCases },
+  { label: '結語', cases: conclusionCases },
 ]
 
 export const allCases = [
@@ -287,4 +309,5 @@ export const allCases = [
   ...usabilityCases,
   ...efficiencyCases,
   ...navigationCases,
+  ...conclusionCases,
 ]

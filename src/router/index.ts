@@ -120,6 +120,12 @@ const router = createRouter({
       component: () => import('../views/cases/BreadcrumbNavView.vue'),
     },
     {
+      path: '/case/philosophy',
+      name: 'philosophy',
+      component: () => import('../views/cases/DesignPhilosophyView.vue'),
+      meta: { title: '設計思維：使用者在乎什麼？ (Design Philosophy)', category: '結語', type: '核心原則', tag: 'summary' }
+    },
+    {
       path: '/case/drag-drop-reorder',
       name: 'drag-drop-reorder',
       component: () => import('../views/cases/DragDropReorderView.vue'),
