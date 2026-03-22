@@ -50,10 +50,10 @@ const breadcrumbs = computed(() => {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage v-if="index === breadcrumbs.length - 1" class="text-xs font-medium max-w-[280px] truncate">
-                {{ crumb.title }}
+                {{ crumb.title.split(' (')[0] }}
               </BreadcrumbPage>
               <BreadcrumbLink v-else as-child class="text-muted-foreground hover:text-foreground transition-colors text-xs">
-                <router-link :to="crumb.path">{{ crumb.title }}</router-link>
+                <router-link :to="crumb.path">{{ crumb.title.split(' (')[0] }}</router-link>
               </BreadcrumbLink>
             </BreadcrumbItem>
           </template>

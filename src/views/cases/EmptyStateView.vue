@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import SplitView from '@/components/layout/SplitView.vue'
-import CaseBlock from '@/components/layout/CaseBlock.vue'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { FolderOpen, FileText, Plus, Package, Users } from 'lucide-vue-next'
+
+const activeTab = ref('table') // 'table' | 'context'
 
 const badTab = ref<'orders' | 'products' | 'users'>('orders')
 const goodTab = ref<'orders' | 'products' | 'users'>('orders')
 
-const tabs = [
+const tabsList = [
   { key: 'orders', label: '訂單管理', icon: FileText },
   { key: 'products', label: '商品管理', icon: Package },
   { key: 'users', label: '人員管理', icon: Users },
@@ -27,21 +29,37 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
   <div class="h-full flex flex-col">
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
-        <h1 class="text-2xl font-bold tracking-tight">空狀態設計 (Empty State)</h1>
-        <Badge variant="secondary" class="text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30">系統回饋
-        </Badge>
-      </div>
-      <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
-        空狀態頁面搭配說明與行動引導，避免使用者不知道該如何繼續。
-      </p>
+          <h1 class="text-2xl font-bold tracking-tight">空狀態設計 (Empty State)</h1>
+          <Badge variant="secondary" class="text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30">系統回饋
+          </Badge>
+        </div>
+        <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
+          空狀態頁面搭配情境說明與行動引導 (CTA)，避免使用者在面對無從下手的空白頁時感到困惑。
+        </p>
     </div>
 
-    <SplitView>
+    <div class="px-4 lg:px-6 mb-3">
+      <!-- Tabs Navigation -->
+      <Tabs v-model="activeTab" class="w-full">
+        <TabsList class="grid w-full grid-cols-2 sm:w-auto sm:inline-grid">
+          <TabsTrigger value="table">資料表格</TabsTrigger>
+          <TabsTrigger value="context">依情境提示</TabsTrigger>
+        </TabsList>
+      </Tabs>
+    </div>
+
+    <!-- Ensure right side reveal state resets on tab change -->
+    <SplitView :key="activeTab">
       <template #left>
-        <div class="flex-1 flex flex-col">
-          <!-- Case 1: Completely blank table -->
-          <CaseBlock index="1" title="資料表格無資料" description="表格顯示空欄，用戶不知道是沒資料還是載入中" tag="ui">
-            <Card>
+        <div class="flex-1 flex flex-col mt-4">
+          <!-- Case 1: Empty Table -->
+          <div v-if="activeTab === 'table'" class="flex flex-col gap-4">
+            <div class="p-4 bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20 rounded-lg text-sm text-red-800 dark:text-red-300">
+              <strong>無明確提示 (No Clear Feedback)</strong><br />
+              <span class="opacity-80">表格僅顯示空欄或表頭，用戶無法分辨是「資料庫為空」還是「資料仍在載入中」。</span>
+            </div>
+
+            <Card class="max-w-md">
               <CardHeader class="pb-2">
                 <div class="flex items-center justify-between">
                   <CardTitle class="text-sm">訂單列表</CardTitle>
@@ -70,37 +88,44 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
                 </table>
               </CardContent>
             </Card>
-          </CaseBlock>
+          </div>
 
-          <!-- Case 2: Bad text-only empty state -->
-          <CaseBlock index="2" title="只顯示文字「暫無資料」" description="缺乏情境說明，用戶不知道要做什麼才能有資料" tag="ui">
-            <Card>
+          <!-- Case 2: Contextless text -->
+          <div v-if="activeTab === 'context'" class="flex flex-col gap-4">
+            <div class="p-4 bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20 rounded-lg text-sm text-red-800 dark:text-red-300">
+              <strong>缺乏引導 (Lack of Guidance)</strong><br />
+              <span class="opacity-80">每個分頁都只顯示一句冷冰冰的「暫無資料」，沒有說明原因，也沒有告訴用戶下一步該怎麼辦。</span>
+            </div>
+
+            <Card class="max-w-md">
               <CardHeader class="pb-2">
                 <div class="flex gap-1 border-b pb-2">
-                  <button v-for="tab in tabs" :key="tab.key" class="px-3 py-1.5 text-xs rounded transition-colors"
+                  <button v-for="tab in tabsList" :key="tab.key" class="px-3 py-1.5 text-xs rounded transition-colors"
                     :class="badTab === tab.key ? 'bg-muted font-medium' : 'text-muted-foreground hover:text-foreground'"
                     @click="badTab = tab.key">{{ tab.label }}</button>
                 </div>
               </CardHeader>
               <CardContent>
-                <div class="py-6 text-center text-sm text-muted-foreground">暫無資料</div>
+                <div class="py-12 text-center text-sm text-muted-foreground">暫無資料</div>
               </CardContent>
             </Card>
-          </CaseBlock>
+          </div>
         </div>
       </template>
 
       <template #right>
-        <div class="flex-1 flex flex-col">
+        <div class="flex-1 flex flex-col mt-4">
           <!-- Case 1: Proper empty state table -->
-          <CaseBlock index="1" title="資料表格無資料" description="骨架結構 + 圖示 + 引導文案 + 主要 CTA 按鈕" tag="ui">
-            <Card>
+          <div v-if="activeTab === 'table'" class="flex flex-col gap-4">
+            <div class="p-4 bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/20 rounded-lg text-sm text-green-800 dark:text-green-300">
+              <strong>結合架構與引導 (Structure + Guidance)</strong><br />
+              <span class="opacity-80">保留表頭（骨架結構）讓用戶了解模組用途，下方以清晰的插圖、文案與主要 CTA 鼓勵操作。</span>
+            </div>
+
+            <Card class="max-w-md transition-all duration-200 hover:shadow-sm">
               <CardHeader class="pb-2">
                 <div class="flex items-center justify-between">
                   <CardTitle class="text-sm">訂單列表</CardTitle>
-                  <Button size="sm">
-                    <Plus class="h-3.5 w-3.5 mr-1" />新增訂單
-                  </Button>
                 </div>
               </CardHeader>
               <CardContent>
@@ -114,7 +139,7 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
                   </thead>
                 </table>
                 <!-- Proper empty state -->
-                <div class="py-8 flex flex-col items-center text-center gap-3">
+                <div class="py-8 flex flex-col items-center text-center gap-3 bg-muted/20 border-b border-dashed">
                   <div class="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
                     <FolderOpen class="h-6 w-6 text-muted-foreground" />
                   </div>
@@ -122,40 +147,45 @@ const emptyMessages: Record<string, { title: string; desc: string; cta: string }
                     <p class="text-sm font-medium">尚無訂單資料</p>
                     <p class="text-xs text-muted-foreground mt-0.5">目前沒有任何訂單，新增第一筆開始使用</p>
                   </div>
-                  <Button size="sm">
+                  <Button size="sm" class="mt-1 shadow-sm">
                     <Plus class="h-3.5 w-3.5 mr-1" />新增訂單
                   </Button>
                 </div>
               </CardContent>
             </Card>
-          </CaseBlock>
+          </div>
 
           <!-- Case 2: Context-aware empty state by tab -->
-          <CaseBlock index="2" title="依情境顯示對應提示" description="不同分頁/模組顯示對應空狀態，並帶有相關 CTA" tag="ui">
-            <Card>
+          <div v-if="activeTab === 'context'" class="flex flex-col gap-4">
+            <div class="p-4 bg-green-50 dark:bg-green-900/10 border border-green-100 dark:border-green-900/20 rounded-lg text-sm text-green-800 dark:text-green-300">
+              <strong>專屬情境提示 (Context-Aware State)</strong><br />
+              <span class="opacity-80">不同的分頁或模組應顯示與其對應的情境圖示、文案，以及專屬的行動呼籲按鈕 (如：新增商品)。</span>
+            </div>
+
+            <Card class="max-w-md transition-all duration-200 hover:shadow-sm">
               <CardHeader class="pb-2">
                 <div class="flex gap-1 border-b pb-2">
-                  <button v-for="tab in tabs" :key="tab.key" class="px-3 py-1.5 text-xs rounded transition-colors"
-                    :class="goodTab === tab.key ? 'bg-primary text-primary-foreground font-medium' : 'text-muted-foreground hover:text-foreground'"
+                  <button v-for="tab in tabsList" :key="tab.key" class="px-3 py-1.5 text-xs rounded transition-colors"
+                    :class="goodTab === tab.key ? 'bg-primary text-primary-foreground shadow-sm font-medium' : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'"
                     @click="goodTab = tab.key">{{ tab.label }}</button>
                 </div>
               </CardHeader>
               <CardContent>
-                <div class="py-8 flex flex-col items-center text-center gap-3">
+                <div class="py-10 flex flex-col items-center text-center gap-3">
                   <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <component :is="tabs.find(t => t.key === goodTab)?.icon" class="h-6 w-6 text-primary" />
+                    <component :is="tabsList.find(t => t.key === goodTab)?.icon" class="h-6 w-6 text-primary" />
                   </div>
-                  <div>
-                    <p class="text-sm font-medium">{{ emptyMessages[goodTab].title }}</p>
-                    <p class="text-xs text-muted-foreground mt-0.5 max-w-[200px]">{{ emptyMessages[goodTab].desc }}</p>
+                  <div class="flex flex-col gap-1 items-center">
+                    <p class="text-[13px] font-medium text-foreground">{{ emptyMessages[goodTab].title }}</p>
+                    <p class="text-xs text-muted-foreground max-w-[200px] leading-relaxed">{{ emptyMessages[goodTab].desc }}</p>
                   </div>
-                  <Button size="sm">
+                  <Button size="sm" class="mt-2 shadow-sm">
                     <Plus class="h-3.5 w-3.5 mr-1" />{{ emptyMessages[goodTab].cta }}
                   </Button>
                 </div>
               </CardContent>
             </Card>
-          </CaseBlock>
+          </div>
         </div>
       </template>
     </SplitView>

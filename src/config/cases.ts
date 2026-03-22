@@ -77,7 +77,7 @@ export const categoryMeta: Record<string, CategoryMeta> = {
 // ── 1. 視覺設計 ────────────────────────────────────────────────
 export const visualDesignCases: Case[] = [
   {
-    title: '視覺間距與舒適度',
+    title: '視覺間距與舒適度 (Spacing)',
     path: '/case/spacing',
     category: '視覺設計',
     type: '間距系統',
@@ -86,7 +86,7 @@ export const visualDesignCases: Case[] = [
     tag: 'visual',
   },
   {
-    title: '資料對齊與數字格式',
+    title: '資料對齊與數字格式 (Data Alignment)',
     path: '/case/data-alignment',
     category: '視覺設計',
     type: '資料呈現',
@@ -95,7 +95,7 @@ export const visualDesignCases: Case[] = [
     tag: 'visual',
   },
   {
-    title: '按鈕階層設計',
+    title: '按鈕階層設計 (Button Hierarchy)',
     path: '/case/button-hierarchy',
     category: '視覺設計',
     type: '視覺層級',
@@ -108,7 +108,7 @@ export const visualDesignCases: Case[] = [
 // ── 2. 互動設計 ────────────────────────────────────────────────
 export const interactionDesignCases: Case[] = [
   {
-    title: '內聯編輯 vs 彈窗編輯',
+    title: '內聯編輯 vs 彈窗編輯 (Inline Edit)',
     path: '/case/inline-edit',
     category: '互動設計',
     type: '漸進揭露',
@@ -117,7 +117,7 @@ export const interactionDesignCases: Case[] = [
     tag: 'interaction',
   },
   {
-    title: '側邊抽屜預覽',
+    title: '側邊抽屜預覽 (Contextual Drawer)',
     path: '/case/contextual-drawer',
     category: '互動設計',
     type: '情境保留',
@@ -126,7 +126,7 @@ export const interactionDesignCases: Case[] = [
     tag: 'interaction',
   },
   {
-    title: '複雜操作的收納與壓縮',
+    title: '複雜操作的收納與壓縮 (Button Overflow)',
     path: '/case/button-overflow',
     category: '互動設計',
     type: '空間效率',
@@ -135,7 +135,7 @@ export const interactionDesignCases: Case[] = [
     tag: 'interaction',
   },
   {
-    title: '事件回饋：Toast vs Modal',
+    title: '事件回饋：Toast vs Modal (Success Feedback)',
     path: '/case/success-feedback',
     category: '互動設計',
     type: '回饋設計',
@@ -144,7 +144,7 @@ export const interactionDesignCases: Case[] = [
     tag: 'interaction',
   },
   {
-    title: '表單元件選擇策略',
+    title: '表單元件選擇策略 (Form Component Strategy)',
     path: '/case/form-component-strategy',
     category: '互動設計',
     type: '元件決策',
@@ -157,7 +157,7 @@ export const interactionDesignCases: Case[] = [
 // ── 3. 系統回饋 ────────────────────────────────────────────────
 export const feedbackCases: Case[] = [
   {
-    title: '載入狀態反饋',
+    title: '載入狀態反饋 (Loading Feedback)',
     path: '/case/loading-feedback',
     category: '系統回饋',
     type: '狀態可見性',
@@ -166,7 +166,7 @@ export const feedbackCases: Case[] = [
     tag: 'feedback',
   },
   {
-    title: '表單驗證與即時回饋',
+    title: '表單驗證與即時回饋 (Form Validation)',
     path: '/case/form-validation',
     category: '系統回饋',
     type: '即時驗證',
@@ -175,7 +175,7 @@ export const feedbackCases: Case[] = [
     tag: 'feedback',
   },
   {
-    title: '空狀態設計',
+    title: '空狀態設計 (Empty State)',
     path: '/case/empty-state',
     category: '系統回饋',
     type: '用戶引導',
@@ -188,7 +188,7 @@ export const feedbackCases: Case[] = [
 // ── 4. 可用性與防呆 ───────────────────────────────────────────
 export const usabilityCases: Case[] = [
   {
-    title: '破壞性操作的雙重確認',
+    title: '破壞性操作的雙重確認 (Destructive Action)',
     path: '/case/destructive-action',
     category: '可用性與防呆',
     type: '錯誤預防',
@@ -197,7 +197,7 @@ export const usabilityCases: Case[] = [
     tag: 'safety',
   },
   {
-    title: '未儲存資料提示',
+    title: '未儲存資料提示 (Unsaved Changes)',
     path: '/case/unsaved-changes',
     category: '可用性與防呆',
     type: '資料保護',
@@ -211,7 +211,7 @@ export const usabilityCases: Case[] = [
 // ── 5. 效率設計 ────────────────────────────────────────────────
 export const efficiencyCases: Case[] = [
   {
-    title: '批次操作設計',
+    title: '批次操作設計 (Batch Actions)',
     path: '/case/batch-actions',
     category: '效率設計',
     type: '批次處理',
@@ -220,7 +220,7 @@ export const efficiencyCases: Case[] = [
     tag: 'efficiency',
   },
   {
-    title: '篩選器狀態顯示',
+    title: '篩選器狀態顯示 (Filter State)',
     path: '/case/filter-state',
     category: '效率設計',
     type: '篩選可視',
@@ -233,7 +233,7 @@ export const efficiencyCases: Case[] = [
 // ── 6. 導覽與狀態 ─────────────────────────────────────────────
 export const navigationCases: Case[] = [
   {
-    title: '導覽狀態保留',
+    title: '導覽狀態保留 (Navigation State)',
     path: '/case/navigation-state',
     category: '導覽與狀態',
     type: '上下文保留',
@@ -242,7 +242,7 @@ export const navigationCases: Case[] = [
     tag: 'navigation',
   },
   {
-    title: '麵包屑導覽設計',
+    title: '麵包屑導覽設計 (Breadcrumb Navigation)',
     path: '/case/breadcrumb-nav',
     category: '導覽與狀態',
     type: '層級導覽',

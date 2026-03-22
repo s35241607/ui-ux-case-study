@@ -44,7 +44,7 @@ const router = useRouter()
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2 mb-1">
-                <span class="text-sm font-semibold">{{ item.title }}</span>
+                <span class="text-sm font-semibold">{{ item.title.split(' (')[0] }}</span>
                 <ArrowRight
                   class="h-3.5 w-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
               </div>

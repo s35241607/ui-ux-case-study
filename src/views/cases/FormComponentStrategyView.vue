@@ -203,7 +203,7 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
   <div class="h-full flex flex-col">
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
-        <h1 class="text-2xl font-bold tracking-tight">表單元件選擇策略</h1>
+        <h1 class="text-2xl font-bold tracking-tight">表單元件選擇策略 (Form Component Strategy)</h1>
         <Badge variant="secondary" class="text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/30">互動設計</Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">

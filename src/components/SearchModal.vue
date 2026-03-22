@@ -148,7 +148,7 @@ defineExpose({ open })
                       <component :is="page.icon" class="h-4 w-4" />
                     </div>
                     <div class="flex-1 min-w-0">
-                      <div class="text-sm font-medium truncate">{{ page.title }}</div>
+                      <div class="text-sm font-medium truncate">{{ page.title.split(' (')[0] }}</div>
                       <div class="text-xs text-muted-foreground truncate">{{ page.desc }}</div>
                     </div>
                     <div class="flex items-center gap-2 shrink-0">

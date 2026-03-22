@@ -70,11 +70,11 @@ const currentPath = computed(() => route.path)
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem v-for="item in group.cases" :key="item.path">
-                <SidebarMenuButton :isActive="currentPath === item.path" :tooltip="item.title"
+                <SidebarMenuButton :isActive="currentPath === item.path" :tooltip="item.title.split(' (')[0]"
                   @click="router.push(item.path)"
                   class="gap-2.5 group-data-[collapsible=icon]:!p-0 group-data-[collapsible=icon]:justify-center">
                   <component :is="item.icon" class="h-4 w-4 shrink-0 text-muted-foreground" />
-                  <span>{{ item.title }}</span>
+                  <span>{{ item.title.split(' (')[0] }}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
