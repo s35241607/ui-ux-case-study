@@ -41,7 +41,8 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
         <div class="flex-1 flex flex-col mt-4">
           <!-- Case 1: Delete confirmation -->
           <div v-if="activeTab === 'delete'" class="flex flex-col gap-4">
-            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <div
+              class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
               <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
                 <p class="font-semibold">缺乏警告與錯誤順序 (Lack of Warning & Wrong Order)</p>
@@ -74,7 +75,8 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
 
           <!-- Case 2: Upgrade CTA -->
           <div v-if="activeTab === 'upgrade'" class="flex flex-col gap-4">
-            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <div
+              class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
               <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
                 <p class="font-semibold">全部平鋪 (No Visual Hierarchy)</p>
@@ -106,7 +108,8 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
 
           <!-- Case 3: Settings Save Actions -->
           <div v-if="activeTab === 'settings'" class="flex flex-col gap-4">
-            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+            <div
+              class="flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
               <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
                 <p class="font-semibold">等重按鍵混淆意圖 (Same Weight, No Priority)</p>
@@ -155,7 +158,8 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
         <div class="flex-1 flex flex-col mt-4">
           <!-- Case 1: Delete confirmation -->
           <div v-if="activeTab === 'delete'" class="flex flex-col gap-4">
-            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <div
+              class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
               <Zap class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
                 <p class="font-semibold">明確意圖與防呆防護 (Clear Intent & Prevention)</p>
@@ -185,7 +189,8 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
 
           <!-- Case 2: Upgrade CTA -->
           <div v-if="activeTab === 'upgrade'" class="flex flex-col gap-4">
-            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <div
+              class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
               <Zap class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
                 <p class="font-semibold">強調主要操作 (Primary Call to Action)</p>
@@ -201,11 +206,11 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
               <CardFooter class="flex flex-col gap-2">
                 <Button class="w-full group/btn" size="lg" @click="() => toast.success('跳轉至 Pro 方案頁面')">
                   升級至 Pro 方案
-                  <ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                  <ArrowRight class="h-4 w-4" />
                 </Button>
                 <Button variant="secondary" class="w-full" @click="() => toast.info('跳轉至 Team 方案頁面')">
                   升級至 Team 方案
-                  <ArrowRight class="h-4 w-4 mr-2 hidden" />
+                  <ArrowRight class="h-4 w-4" />
                 </Button>
                 <Button variant="ghost" class="w-full text-muted-foreground" @click="() => toast.info('查看方案差異')">
                   查看詳情
@@ -216,7 +221,8 @@ const activeTab = ref('delete') // 'delete' | 'upgrade' | 'settings'
 
           <!-- Case 3: Settings Save Actions -->
           <div v-if="activeTab === 'settings'" class="flex flex-col gap-4">
-            <div class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+            <div
+              class="flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
               <Zap class="h-4 w-4 shrink-0 mt-0.5" />
               <div class="text-xs leading-relaxed space-y-0.5">
                 <p class="font-semibold">層次分明的操作安排 (Layered Action Weight)</p>

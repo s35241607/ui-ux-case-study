@@ -1,6 +1,6 @@
 import {
   Maximize2, AlignLeft, MousePointer2, LayoutTemplate,
-  Loader2, Bell, Navigation, FileWarning, FolderOpen, CheckSquare, Filter,
+  Loader2, Bell, Navigation, FileWarning, FolderOpen, CheckSquare,
   Map, Sliders
 } from 'lucide-vue-next'
 
@@ -219,15 +219,7 @@ export const efficiencyCases: Case[] = [
     icon: CheckSquare,
     tag: 'efficiency',
   },
-  {
-    title: '篩選器狀態顯示 (Filter State)',
-    path: '/case/filter-state',
-    category: '效率設計',
-    type: '篩選可視',
-    desc: '套用篩選後以標籤列顯示當前條件，支援逐一移除或一鍵清除全部。',
-    icon: Filter,
-    tag: 'efficiency',
-  },
+
 ]
 
 // ── 6. 導覽與狀態 ─────────────────────────────────────────────

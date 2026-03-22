@@ -95,12 +95,7 @@ const router = createRouter({
       component: () => import('../views/cases/BatchActionsView.vue'),
       meta: { title: '批次操作設計 (Batch Actions)', category: 'UX 體驗', type: '互動設計', tag: 'ux' }
     },
-    {
-      path: '/case/filter-state',
-      name: 'filter-state',
-      component: () => import('../views/cases/FilterStateView.vue'),
-      meta: { title: '篩選器狀態顯示 (Filter State)', category: '效率設計', type: '篩選可視', tag: 'efficiency' }
-    },
+
     {
       path: '/case/form-component-strategy',
       name: 'form-component-strategy',
