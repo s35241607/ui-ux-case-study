@@ -1,7 +1,7 @@
 import {
   Maximize2, AlignLeft, MousePointer2, LayoutTemplate,
   Loader2, Bell, Navigation, FileWarning, FolderOpen, CheckSquare,
-  Map, Sliders, GripVertical, RotateCcw, LayoutGrid, CheckCircle
+  Map, Sliders, GripVertical, RotateCcw, LayoutGrid
 } from 'lucide-vue-next'
 
 export interface Case {
