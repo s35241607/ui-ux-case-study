@@ -1,7 +1,7 @@
 import {
   Maximize2, AlignLeft, MousePointer2, LayoutTemplate,
   Loader2, Bell, Navigation, FileWarning, FolderOpen, CheckSquare,
-  Map, Sliders
+  Map, Sliders, GripVertical
 } from 'lucide-vue-next'
 
 export interface Case {
@@ -135,15 +135,6 @@ export const interactionDesignCases: Case[] = [
     tag: 'interaction',
   },
   {
-    title: '事件回饋：Toast vs Modal (Success Feedback)',
-    path: '/case/success-feedback',
-    category: '互動設計',
-    type: '回饋設計',
-    desc: '依操作重要程度選用 Toast 或 Modal，避免不必要的流程中斷。',
-    icon: Bell,
-    tag: 'interaction',
-  },
-  {
     title: '表單元件選擇策略 (Form Component Strategy)',
     path: '/case/form-component-strategy',
     category: '互動設計',
@@ -183,6 +174,15 @@ export const feedbackCases: Case[] = [
     icon: FolderOpen,
     tag: 'feedback',
   },
+  {
+    title: '事件回饋：Toast vs Modal (Success Feedback)',
+    path: '/case/success-feedback',
+    category: '系統回饋',
+    type: '狀態通知',
+    desc: '依操作重要程度選用 Toast 或 Modal，避免不必要的流程中斷。',
+    icon: Bell,
+    tag: 'feedback',
+  },
 ]
 
 // ── 4. 可用性與防呆 ───────────────────────────────────────────
@@ -219,7 +219,15 @@ export const efficiencyCases: Case[] = [
     icon: CheckSquare,
     tag: 'efficiency',
   },
-
+  {
+    title: '拖拉排序 (Drag & Drop Reordering)',
+    path: '/case/drag-drop-reorder',
+    category: '效率設計',
+    type: '操作直覺性',
+    desc: '相較於「點擊上下箭頭」，拖拉是直覺且高效率的順序調整方案。',
+    icon: GripVertical,
+    tag: 'efficiency',
+  },
 ]
 
 // ── 6. 導覽與狀態 ─────────────────────────────────────────────

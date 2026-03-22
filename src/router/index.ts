@@ -75,7 +75,7 @@ const router = createRouter({
       path: '/case/success-feedback',
       name: 'success-feedback',
       component: () => import('../views/cases/SuccessFeedbackView.vue'),
-      meta: { title: '事件回饋：Toast vs Modal (Success Feedback)', category: 'UX 體驗', type: '狀態通知', tag: 'ux' }
+      meta: { title: '事件回饋：Toast vs Modal (Success Feedback)', category: '系統回饋', type: '狀態通知', tag: 'feedback' }
     },
     {
       path: '/case/navigation-state',
@@ -106,7 +106,12 @@ const router = createRouter({
       path: '/case/breadcrumb-nav',
       name: 'breadcrumb-nav',
       component: () => import('../views/cases/BreadcrumbNavView.vue'),
-      meta: { title: '麵包屑導覽設計 (Breadcrumb Navigation)', category: '導覽與狀態', type: '層級導覽', tag: 'navigation' }
+    },
+    {
+      path: '/case/drag-drop-reorder',
+      name: 'drag-drop-reorder',
+      component: () => import('../views/cases/DragDropReorderView.vue'),
+      meta: { title: '拖拉排序 (Drag & Drop Reordering)', category: '效率設計', type: '操作直覺性', tag: 'efficiency' }
     },
   ]
 })
