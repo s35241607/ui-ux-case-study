@@ -9,10 +9,10 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   Check, AlertTriangle, Info, Zap, ChevronDown, X,
   ToggleLeft, ToggleRight, Package, Building2,
-  ListFilter, CircleDot, ArrowUp, Minus, ArrowDown, Flame
+  ListFilter
 } from 'lucide-vue-next'
 
-type ScenarioKey = 'toggle' | 'cards' | 'chips' | 'filter' | 'priority'
+type ScenarioKey = 'toggle' | 'cards' | 'chips' | 'filter'
 const activeScenario = ref<ScenarioKey>('toggle')
 
 const scenarioInfo: Record<ScenarioKey, { bad: string; good: string; badLabel: string; goodLabel: string }> = {
@@ -39,12 +39,6 @@ const scenarioInfo: Record<ScenarioKey, { bad: string; good: string; badLabel: s
     good: '改用橫向 Button Filter Bar，將所有狀態平鋪在一列，目前所在狀態高亮顯示，單次點擊即完成切換。',
     badLabel: '下拉選單（Select）',
     goodLabel: 'Button Filter Bar',
-  },
-  priority: {
-    bad: '以下拉選單選擇任務優先度，選項全為純文字且無視覺強度區別，使用者難以直覺感受輕重緩急。',
-    good: '改用視覺化優先度選擇器，每個選項有對應的顏色與圖示，選擇後也能即時在表單中呈現對應的樣式。',
-    badLabel: '下拉選單（Select）',
-    goodLabel: '視覺化優先度選擇器',
   },
 }
 
@@ -149,54 +143,7 @@ const goodFilteredTickets = computed(() => {
   return allTickets.filter(t => t.status === goodFilterValue.value)
 })
 
-// ── Priority scenario ─────────────────────────────────────
-const badPriorityValue = ref('')
-const goodPriorityValue = ref('')
 
-const priorities = [
-  {
-    id: 'low',
-    label: '低',
-    sublabel: '可排入下週',
-    color: 'text-slate-600 dark:text-slate-300',
-    activeBorder: 'border-slate-400 dark:border-slate-400',
-    activeBg: 'bg-slate-100 dark:bg-slate-700',
-    dotColor: 'bg-slate-400',
-    icon: ArrowDown,
-  },
-  {
-    id: 'medium',
-    label: '中',
-    sublabel: '本週完成',
-    color: 'text-blue-600 dark:text-blue-400',
-    activeBorder: 'border-blue-500',
-    activeBg: 'bg-blue-50 dark:bg-blue-900/40',
-    dotColor: 'bg-blue-500',
-    icon: Minus,
-  },
-  {
-    id: 'high',
-    label: '高',
-    sublabel: '今日完成',
-    color: 'text-orange-600 dark:text-orange-400',
-    activeBorder: 'border-orange-500',
-    activeBg: 'bg-orange-50 dark:bg-orange-900/40',
-    dotColor: 'bg-orange-500',
-    icon: ArrowUp,
-  },
-  {
-    id: 'urgent',
-    label: '緊急',
-    sublabel: '立即處理',
-    color: 'text-rose-600 dark:text-rose-400',
-    activeBorder: 'border-rose-500',
-    activeBg: 'bg-rose-50 dark:bg-rose-900/40',
-    dotColor: 'bg-rose-500',
-    icon: Flame,
-  },
-]
-
-const selectedPriority = computed(() => priorities.find(p => p.id === goodPriorityValue.value))
 </script>
 
 <template>
@@ -204,7 +151,8 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
     <div class="mb-4 px-4 lg:px-6 pt-6">
       <div class="flex items-center gap-2 mb-2">
         <h1 class="text-2xl font-bold tracking-tight">表單元件選擇策略 (Form Component Strategy)</h1>
-        <Badge variant="secondary" class="text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/30">互動設計</Badge>
+        <Badge variant="secondary" class="text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/30">互動設計
+        </Badge>
       </div>
       <p class="text-muted-foreground text-sm leading-relaxed max-w-3xl">
         許多情境下選單（Select）並非最佳解，根據資料的型態與互動頻率，選擇更直覺的元件能有效降低使用者的操作成本。
@@ -213,12 +161,11 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
 
     <div class="px-4 lg:px-6 mb-3">
       <Tabs v-model="activeScenario" class="w-full">
-        <TabsList class="grid grid-cols-5 lg:max-w-2xl">
+        <TabsList class="grid grid-cols-4 lg:max-w-xl">
           <TabsTrigger value="toggle">開關型選擇</TabsTrigger>
           <TabsTrigger value="cards">角色權限</TabsTrigger>
           <TabsTrigger value="chips">Chip 多選</TabsTrigger>
           <TabsTrigger value="filter">狀態篩選</TabsTrigger>
-          <TabsTrigger value="priority">優先度</TabsTrigger>
         </TabsList>
       </Tabs>
     </div>
@@ -226,7 +173,8 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
     <SplitView :key="activeScenario">
       <!-- ════════════════ LEFT: BAD ════════════════ -->
       <template #left>
-        <div class="mb-4 flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
+        <div
+          class="mb-4 flex items-start gap-2.5 p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400">
           <AlertTriangle class="h-4 w-4 shrink-0 mt-0.5" />
           <div class="text-xs leading-relaxed space-y-0.5">
             <p class="font-semibold">{{ currentInfo.badLabel }}</p>
@@ -255,7 +203,8 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
                 </SelectContent>
               </Select>
             </div>
-            <div class="flex items-start gap-2 p-2.5 border border-dashed border-amber-300 dark:border-amber-700 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400">
+            <div
+              class="flex items-start gap-2 p-2.5 border border-dashed border-amber-300 dark:border-amber-700 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400">
               <AlertTriangle class="h-3.5 w-3.5 shrink-0 mt-0.5" />
               <span class="text-[11px]">每個開關都需展開下拉才能看到目前狀態，3 個選項共需 6 次點擊才能完成設定。</span>
             </div>
@@ -282,7 +231,8 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
                 </SelectContent>
               </Select>
             </div>
-            <div class="flex items-start gap-2 p-2.5 border border-dashed border-amber-300 dark:border-amber-700 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400">
+            <div
+              class="flex items-start gap-2 p-2.5 border border-dashed border-amber-300 dark:border-amber-700 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400">
               <AlertTriangle class="h-3.5 w-3.5 shrink-0 mt-0.5" />
               <span class="text-[11px]">下拉僅顯示角色名稱，管理者無法直接對照各角色的權限差異，容易分配錯誤。</span>
             </div>
@@ -303,23 +253,15 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
 
               <!-- Simulated multi-select via repeated dropdown -->
               <div class="relative">
-                <button
-                  @click="badChipsOpen = !badChipsOpen"
-                  class="w-full h-9 flex items-center justify-between px-3 rounded-md border dark:border-border bg-background text-sm text-muted-foreground hover:bg-muted/40 transition-colors"
-                >
+                <button @click="badChipsOpen = !badChipsOpen"
+                  class="w-full h-9 flex items-center justify-between px-3 rounded-md border dark:border-border bg-background text-sm text-muted-foreground hover:bg-muted/40 transition-colors">
                   <span>新增部門...</span>
                   <ChevronDown class="h-4 w-4 opacity-50" :class="{ 'rotate-180': badChipsOpen }" />
                 </button>
-                <div
-                  v-if="badChipsOpen"
-                  class="absolute top-full left-0 right-0 mt-1 bg-popover border dark:border-border rounded-md shadow-lg z-10 max-h-48 overflow-y-auto"
-                >
-                  <div
-                    v-for="dept in badChipsAvailable"
-                    :key="dept"
-                    @click="badAddDept(dept)"
-                    class="px-3 py-2 text-sm text-popover-foreground hover:bg-accent cursor-pointer border-b dark:border-border last:border-0"
-                  >
+                <div v-if="badChipsOpen"
+                  class="absolute top-full left-0 right-0 mt-1 bg-popover border dark:border-border rounded-md shadow-lg z-10 max-h-48 overflow-y-auto">
+                  <div v-for="dept in badChipsAvailable" :key="dept" @click="badAddDept(dept)"
+                    class="px-3 py-2 text-sm text-popover-foreground hover:bg-accent cursor-pointer border-b dark:border-border last:border-0">
                     {{ dept }}
                   </div>
                   <div v-if="badChipsAvailable.length === 0" class="px-3 py-2 text-xs text-muted-foreground">
@@ -330,21 +272,20 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
 
               <!-- Selected tags (cramped style, no easy manage) -->
               <div class="min-h-[36px] flex flex-wrap gap-1.5 p-2 rounded-md border dark:border-border bg-muted/20">
-                <span
-                  v-for="dept in badChipsSelected"
-                  :key="dept"
-                  class="flex items-center gap-1 px-2 py-1 bg-muted border dark:border-border rounded text-xs text-muted-foreground"
-                >
+                <span v-for="dept in badChipsSelected" :key="dept"
+                  class="flex items-center gap-1 px-2 py-1 bg-muted border dark:border-border rounded text-xs text-muted-foreground">
                   {{ dept }}
                   <button @click="badRemoveDept(dept)" class="hover:text-foreground ml-0.5">
                     <X class="h-3 w-3" />
                   </button>
                 </span>
-                <span v-if="!badChipsSelected.length" class="text-xs text-muted-foreground italic px-1 pt-1">尚未加入任何部門</span>
+                <span v-if="!badChipsSelected.length"
+                  class="text-xs text-muted-foreground italic px-1 pt-1">尚未加入任何部門</span>
               </div>
             </div>
 
-            <div class="flex items-start gap-2 p-2.5 border border-dashed border-amber-300 dark:border-amber-700 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400">
+            <div
+              class="flex items-start gap-2 p-2.5 border border-dashed border-amber-300 dark:border-amber-700 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400">
               <AlertTriangle class="h-3.5 w-3.5 shrink-0 mt-0.5" />
               <span class="text-[11px]">每次只能透過下拉加入一個部門，無法快速瀏覽、切換或一眼確認所有可選項目。</span>
             </div>
@@ -379,7 +320,8 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
                 <span class="truncate">主旨</span>
                 <span class="text-right">狀態</span>
               </div>
-              <div v-for="t in badFilteredTickets" :key="t.id" class="grid grid-cols-3 px-3 py-2.5 text-xs items-center">
+              <div v-for="t in badFilteredTickets" :key="t.id"
+                class="grid grid-cols-3 px-3 py-2.5 text-xs items-center">
                 <span class="font-mono text-muted-foreground text-[11px]">{{ t.id }}</span>
                 <span class="truncate pr-2">{{ t.title }}</span>
                 <span class="text-right">
@@ -392,47 +334,20 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
                 此狀態下無工單
               </div>
             </div>
-            <div class="flex items-start gap-2 p-2.5 border border-dashed border-amber-300 dark:border-amber-700 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400">
+            <div
+              class="flex items-start gap-2 p-2.5 border border-dashed border-amber-300 dark:border-amber-700 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400">
               <AlertTriangle class="h-3.5 w-3.5 shrink-0 mt-0.5" />
               <span class="text-[11px]">切換篩選條件需要展開、選取、收合三個步驟，且無法直接看出各狀態的數量分布。</span>
             </div>
           </CardContent>
         </Card>
 
-        <!-- PRIORITY: Bad -->
-        <Card v-else-if="activeScenario === 'priority'" class="border-border shadow-sm">
-          <CardHeader class="pb-3 border-b">
-            <CardTitle class="text-[13px] text-muted-foreground flex items-center gap-1.5">
-              <CircleDot class="h-3.5 w-3.5" />
-              建立任務
-            </CardTitle>
-          </CardHeader>
-          <CardContent class="pt-5 flex flex-col gap-4">
-            <div class="space-y-1.5">
-              <Label class="text-xs text-muted-foreground">任務優先度</Label>
-              <Select v-model="badPriorityValue">
-                <SelectTrigger class="h-9">
-                  <SelectValue placeholder="請選擇優先度..." />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="low">低優先</SelectItem>
-                  <SelectItem value="medium">中優先</SelectItem>
-                  <SelectItem value="high">高優先</SelectItem>
-                  <SelectItem value="urgent">緊急</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div class="flex items-start gap-2 p-2.5 border border-dashed border-amber-300 dark:border-amber-700 rounded-lg bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400">
-              <AlertTriangle class="h-3.5 w-3.5 shrink-0 mt-0.5" />
-              <span class="text-[11px]">純文字選項無法傳遞輕重緩急的視覺強度，使用者在建立任務時難以直覺判斷正確等級。</span>
-            </div>
-          </CardContent>
-        </Card>
       </template>
 
       <!-- ════════════════ RIGHT: GOOD ════════════════ -->
       <template #right>
-        <div class="mb-4 flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
+        <div
+          class="mb-4 flex items-start gap-2.5 p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900/50 text-green-700 dark:text-green-400">
           <Zap class="h-4 w-4 shrink-0 mt-0.5" />
           <div class="text-xs leading-relaxed space-y-0.5">
             <p class="font-semibold">{{ currentInfo.goodLabel }}</p>
@@ -449,28 +364,19 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
             </CardTitle>
           </CardHeader>
           <CardContent class="pt-5 flex flex-col gap-3">
-            <div
-              v-for="item in goodToggles"
-              :key="item.id"
-              @click="item.enabled = !item.enabled"
+            <div v-for="item in goodToggles" :key="item.id" @click="item.enabled = !item.enabled"
               class="flex items-center justify-between p-3 rounded-xl border dark:border-border bg-background cursor-pointer transition-all hover:bg-muted/40"
-              :class="item.enabled ? 'border-emerald-500/40 dark:border-emerald-500/30 bg-emerald-50/50 dark:bg-emerald-950/20' : ''"
-            >
+              :class="item.enabled ? 'border-emerald-500/40 dark:border-emerald-500/30 bg-emerald-50/50 dark:bg-emerald-950/20' : ''">
               <div class="flex-1 min-w-0 mr-4">
                 <p class="text-sm font-medium">{{ item.label }}</p>
                 <p class="text-[11px] text-muted-foreground mt-0.5">{{ item.desc }}</p>
               </div>
               <!-- Switch with explicit semantic colors, not CSS tokens -->
-              <div
-                class="relative h-6 w-11 rounded-full transition-colors duration-200 shrink-0"
-                :class="item.enabled
-                  ? 'bg-emerald-500'
-                  : 'bg-zinc-300 dark:bg-zinc-600'"
-              >
-                <div
-                  class="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-md transition-transform duration-200"
-                  :class="item.enabled ? 'translate-x-5' : 'translate-x-0.5'"
-                />
+              <div class="relative h-6 w-11 rounded-full transition-colors duration-200 shrink-0" :class="item.enabled
+                ? 'bg-emerald-500'
+                : 'bg-zinc-300 dark:bg-zinc-600'">
+                <div class="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-md transition-transform duration-200"
+                  :class="item.enabled ? 'translate-x-5' : 'translate-x-0.5'" />
               </div>
             </div>
             <p class="text-[10px] text-muted-foreground flex items-center gap-1 mt-1">
@@ -489,31 +395,21 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
             </CardTitle>
           </CardHeader>
           <CardContent class="pt-5 flex flex-col gap-2.5">
-            <div
-              v-for="role in roles"
-              :key="role.id"
-              @click="goodCardValue = role.id"
-              class="border dark:border-border rounded-xl p-3.5 cursor-pointer transition-all"
-              :class="goodCardValue === role.id
+            <div v-for="role in roles" :key="role.id" @click="goodCardValue = role.id"
+              class="border dark:border-border rounded-xl p-3.5 cursor-pointer transition-all" :class="goodCardValue === role.id
                 ? 'border-primary ring-1 ring-primary bg-primary/5 dark:bg-primary/10'
-                : 'hover:border-primary/40 bg-background'"
-            >
+                : 'hover:border-primary/40 bg-background'">
               <div class="flex items-center gap-2.5 mb-2">
-                <div
-                  class="h-4 w-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
-                  :class="goodCardValue === role.id ? 'border-primary bg-primary' : 'border-muted-foreground/40'"
-                >
+                <div class="h-4 w-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors"
+                  :class="goodCardValue === role.id ? 'border-primary bg-primary' : 'border-muted-foreground/40'">
                   <div v-if="goodCardValue === role.id" class="h-1.5 w-1.5 rounded-full bg-primary-foreground" />
                 </div>
                 <span class="text-sm font-bold">{{ role.label }}</span>
               </div>
               <p class="text-[11px] text-muted-foreground mb-2 pl-[26px]">{{ role.desc }}</p>
               <div class="flex flex-wrap gap-1 pl-[26px]">
-                <span
-                  v-for="perm in role.permissions"
-                  :key="perm"
-                  class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-muted text-muted-foreground"
-                >
+                <span v-for="perm in role.permissions" :key="perm"
+                  class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-muted text-muted-foreground">
                   {{ perm }}
                 </span>
               </div>
@@ -537,20 +433,12 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
             <div class="flex flex-col gap-2">
               <Label class="text-xs text-muted-foreground">可存取的部門（可複選）</Label>
               <div class="flex flex-wrap gap-2">
-                <button
-                  v-for="dept in departments"
-                  :key="dept"
-                  @click="toggleGoodChip(dept)"
+                <button v-for="dept in departments" :key="dept" @click="toggleGoodChip(dept)"
                   class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-all"
                   :class="goodChipsSelected.includes(dept)
                     ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                    : 'bg-background dark:border-border text-foreground hover:border-primary/50 hover:bg-muted/50'"
-                >
-                  <Check
-                    v-if="goodChipsSelected.includes(dept)"
-                    class="h-3 w-3"
-                    stroke-width="3"
-                  />
+                    : 'bg-background dark:border-border text-foreground hover:border-primary/50 hover:bg-muted/50'">
+                  <Check v-if="goodChipsSelected.includes(dept)" class="h-3 w-3" stroke-width="3" />
                   {{ dept }}
                 </button>
               </div>
@@ -581,36 +469,32 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
           </CardHeader>
           <CardContent class="pt-4 flex flex-col gap-3">
             <div class="flex gap-1.5 flex-wrap">
-              <button
-                v-for="s in filterStatuses"
-                :key="s.id"
-                @click="goodFilterValue = s.id"
+              <button v-for="s in filterStatuses" :key="s.id" @click="goodFilterValue = s.id"
                 class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border transition-all"
                 :class="goodFilterValue === s.id
                   ? 'bg-primary text-primary-foreground border-primary shadow-sm'
-                  : 'bg-background dark:border-border text-muted-foreground hover:border-primary/50 hover:text-foreground'"
-              >
+                  : 'bg-background dark:border-border text-muted-foreground hover:border-primary/50 hover:text-foreground'">
                 {{ s.label }}
-                <!-- ✅ 修正：選中時使用固定白底深字確保對比度 -->
+                <!-- 修正：選中時用 primary-foreground/primary 確保雙模式對比，未選中時確保 badge 可見 -->
                 <span
                   class="inline-flex items-center justify-center h-4 min-w-[16px] px-1 rounded-full text-[10px] font-bold transition-colors"
                   :class="goodFilterValue === s.id
-                    ? 'bg-white text-primary'
-                    : 'bg-muted text-muted-foreground'"
-                >
+                    ? 'bg-primary-foreground text-primary'
+                    : 'bg-foreground/10 text-foreground/70'">
                   {{ s.count }}
                 </span>
               </button>
             </div>
 
-            <div class="border dark:border-border rounded-md divide-y dark:divide-border">
+            <div class="border dark:border-border rounded-md divide-y dark:divide-border min-h-[220px]">
               <div class="grid grid-cols-3 px-3 py-2 bg-muted/40 text-[11px] font-medium text-muted-foreground">
                 <span>工單編號</span>
                 <span class="truncate">主旨</span>
                 <span class="text-right">狀態</span>
               </div>
               <TransitionGroup name="row">
-                <div v-for="t in goodFilteredTickets" :key="t.id" class="grid grid-cols-3 px-3 py-2.5 text-xs items-center">
+                <div v-for="t in goodFilteredTickets" :key="t.id"
+                  class="grid grid-cols-3 px-3 py-2.5 text-xs items-center">
                   <span class="font-mono text-muted-foreground text-[11px]">{{ t.id }}</span>
                   <span class="truncate pr-2">{{ t.title }}</span>
                   <span class="text-right">
@@ -632,68 +516,6 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
           </CardContent>
         </Card>
 
-        <!-- PRIORITY: Good — ✅ redesigned as compact inline selector -->
-        <Card v-else-if="activeScenario === 'priority'" class="border-border shadow-sm">
-          <CardHeader class="pb-3 border-b">
-            <CardTitle class="text-[13px] text-muted-foreground flex items-center gap-1.5">
-              <CircleDot class="h-3.5 w-3.5" />
-              建立任務
-            </CardTitle>
-          </CardHeader>
-          <CardContent class="pt-5 flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-              <Label class="text-xs text-muted-foreground">任務優先度</Label>
-              <!-- Compact inline priority selector -->
-              <div class="flex rounded-lg border dark:border-border overflow-hidden divide-x dark:divide-border">
-                <button
-                  v-for="p in priorities"
-                  :key="p.id"
-                  @click="goodPriorityValue = goodPriorityValue === p.id ? '' : p.id"
-                  class="flex-1 flex flex-col items-center gap-1 py-2.5 px-2 transition-all text-center"
-                  :class="goodPriorityValue === p.id
-                    ? [p.activeBg, p.activeBorder.replace('border-', 'outline-none '), 'relative z-10']
-                    : 'bg-background hover:bg-muted/50'"
-                >
-                  <component
-                    :is="p.icon"
-                    class="h-3.5 w-3.5 transition-colors"
-                    :class="goodPriorityValue === p.id ? p.color : 'text-muted-foreground'"
-                  />
-                  <span
-                    class="text-[11px] font-semibold transition-colors leading-none"
-                    :class="goodPriorityValue === p.id ? p.color : 'text-muted-foreground'"
-                  >
-                    {{ p.label }}
-                  </span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Live preview when selected -->
-            <Transition name="fade-label" mode="out-in">
-              <div
-                v-if="selectedPriority"
-                :key="selectedPriority.id"
-                class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg border"
-                :class="[selectedPriority.activeBg, selectedPriority.activeBorder]"
-              >
-                <div class="h-2 w-2 rounded-full shrink-0" :class="selectedPriority.dotColor" />
-                <div class="flex-1 min-w-0">
-                  <span class="text-xs font-semibold" :class="selectedPriority.color">{{ selectedPriority.label }}優先</span>
-                  <span class="text-[11px] text-muted-foreground ml-2">{{ selectedPriority.sublabel }}</span>
-                </div>
-              </div>
-              <div v-else class="py-2 text-center text-xs text-muted-foreground italic">
-                請選擇上方的優先度等級
-              </div>
-            </Transition>
-
-            <p class="text-[10px] text-muted-foreground flex items-center gap-1">
-              <Info class="h-3 w-3 shrink-0" />
-              顏色與圖示傳遞視覺強度，所有等級一覽，點擊即可選擇或再次點擊取消。
-            </p>
-          </CardContent>
-        </Card>
       </template>
     </SplitView>
   </div>
@@ -704,6 +526,7 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
 .fade-label-leave-active {
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
+
 .fade-label-enter-from,
 .fade-label-leave-to {
   opacity: 0;
@@ -714,6 +537,7 @@ const selectedPriority = computed(() => priorities.find(p => p.id === goodPriori
 .row-leave-active {
   transition: opacity 0.2s ease;
 }
+
 .row-enter-from,
 .row-leave-to {
   opacity: 0;
