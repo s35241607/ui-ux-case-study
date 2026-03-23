@@ -7,7 +7,7 @@
 
 ![專案預覽圖](/public/images/readme/preview.png)
 
-[🚀 立即查看網頁版 (Live Demo)](https://your-username.github.io/ui-ux-case-study/)
+[🚀 立即查看網頁版 (Live Demo)](https://s35241607.github.io/ui-ux-case-study/)
 
 > 一個集結 UI/UX 設計模式、案例研究與實作範例的綜合資源庫。採用 Vue 3、TypeScript 與 Tailwind CSS 構建。
 >
