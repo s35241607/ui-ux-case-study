@@ -1,6 +1,13 @@
 # UI/UX 案例研究集 (UI/UX Case Study)
 
+[![Vue](https://img.shields.io/badge/Vue-3.5-4FC08D?style=flat-square&logo=vue.js)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+
 ![專案預覽圖](/public/images/readme/preview.png)
+
+[🚀 立即查看網頁版 (Live Demo)](https://your-username.github.io/ui-ux-case-study/)
 
 > 一個集結 UI/UX 設計模式、案例研究與實作範例的綜合資源庫。採用 Vue 3、TypeScript 與 Tailwind CSS 構建。
 >
