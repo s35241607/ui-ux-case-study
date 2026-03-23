@@ -1,7 +1,8 @@
-{
   "name": "ui-ux-case-study",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "description": "一個基於 Vue 3 與 Tailwind CSS 的 UI/UX 設計模式與案例研究集。",
+  "version": "1.0.0",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
