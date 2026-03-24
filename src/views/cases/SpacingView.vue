@@ -112,7 +112,7 @@ const activeTab = ref('list')
             <Zap class="h-4 w-4 shrink-0 mt-0.5" />
             <div class="text-xs leading-relaxed space-y-0.5">
               <p class="font-semibold text-[13px]">優化方案 (Optimization)</p>
-              <p class="text-[11px] opacity-80">
+              <p class="text-[12px] opacity-80">
                 特徵：遵循 8pt 格線系統提供充足間距、層級清晰、點擊目標符合人體工學 (大於 40px)，閱讀感舒適流暢。
               </p>
             </div>
@@ -174,7 +174,7 @@ const activeTab = ref('list')
 
           <!-- Scenario 3: Info -->
           <Card v-if="activeTab === 'info'" class="mt-2 max-w-sm border-border/60 shadow-sm p-6">
-            <div class="text-[11px] font-bold mb-4 uppercase text-muted-foreground tracking-widest px-1">Account Information</div>
+            <div class="text-[12px] font-bold mb-4 uppercase text-muted-foreground tracking-widest px-1">Account Information</div>
             <dl class="space-y-4 text-[13px]">
               <div class="flex items-center">
                 <dt class="text-muted-foreground w-20 shrink-0">客戶姓名</dt>

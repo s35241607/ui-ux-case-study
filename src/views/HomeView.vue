@@ -14,7 +14,7 @@ const router = useRouter()
         <Layers class="h-3 w-3" />
         互動式設計思考示範
       </div>
-      <h1 class="text-4xl font-bold tracking-tight mb-3">UI/UX Case Study</h1>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">UI/UX Case Study</h1>
       <p class="text-muted-foreground text-base max-w-2xl leading-relaxed">
         每個案例都是可操作的真實元件，讓你親身感受「不好的設計」與「好的設計」帶來的體驗差異。
         按下 <kbd class="inline-flex items-center rounded border bg-muted px-1.5 py-0.5 text-xs font-mono">⌘K</kbd>
@@ -48,7 +48,7 @@ const router = useRouter()
                 <ArrowRight
                   class="h-3.5 w-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
               </div>
-              <div class="text-[11px] font-medium mb-1" :class="categoryMeta[group.label].typeTextClass">{{ item.type }}
+              <div class="text-[12px] font-medium mb-1" :class="categoryMeta[group.label].typeTextClass">{{ item.type }}
               </div>
               <p class="text-xs text-muted-foreground leading-relaxed">{{ item.desc }}</p>
             </div>

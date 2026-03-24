@@ -25,7 +25,7 @@ const props = defineProps<{
           {{ props.leftTitle || '修改前' }}
         </h2>
       </div>
-      <div class="p-6 flex-1 flex flex-col overflow-y-auto">
+      <div class="p-4 lg:p-6 flex-1 flex flex-col overflow-y-auto">
         <slot name="left"></slot>
       </div>
     </section>
@@ -43,7 +43,7 @@ const props = defineProps<{
           </h2>
         </div>
       </div>
-      <div class="p-6 flex-1 flex flex-col overflow-y-auto transition-all duration-500 relative z-0"
+      <div class="p-4 lg:p-6 flex-1 flex flex-col overflow-y-auto transition-all duration-500 relative z-0"
         :class="{ 'blur-md opacity-40 pointer-events-none select-none': !isRevealed }">
         <slot name="right"></slot>
       </div>

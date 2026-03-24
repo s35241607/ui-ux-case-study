@@ -132,7 +132,7 @@ defineExpose({ open })
               <template v-for="category in Object.keys(categoryMeta)" :key="category">
                 <div v-if="filteredResults.some(r => r.category === category)" class="mb-1">
                   <div class="flex items-center gap-2 px-2 py-1.5 mb-1">
-                    <span class="text-[10px] font-semibold tracking-wider uppercase"
+                    <span class="text-[11px] font-semibold tracking-wider uppercase"
                       :class="categoryMeta[category].typeTextClass">
                       {{ category }}
                     </span>
@@ -152,7 +152,7 @@ defineExpose({ open })
                       <div class="text-xs text-muted-foreground truncate">{{ page.desc }}</div>
                     </div>
                     <div class="flex items-center gap-2 shrink-0">
-                      <span class="text-[10px] px-1.5 py-0.5 rounded-full border text-muted-foreground">{{ page.type
+                      <span class="text-[11px] px-1.5 py-0.5 rounded-full border text-muted-foreground">{{ page.type
                       }}</span>
                       <ArrowRight v-if="selectedIndex === filteredResults.indexOf(page)"
                         class="h-3.5 w-3.5 text-muted-foreground" />
@@ -164,7 +164,7 @@ defineExpose({ open })
           </div>
 
           <!-- Footer -->
-          <div class="flex items-center gap-4 border-t px-4 py-2 text-[11px] text-muted-foreground">
+          <div class="flex items-center gap-4 border-t px-4 py-2 text-[12px] text-muted-foreground">
             <span class="flex items-center gap-1.5">
               <kbd class="rounded border bg-muted px-1 py-0.5 font-mono">↑↓</kbd> 選擇
             </span>
