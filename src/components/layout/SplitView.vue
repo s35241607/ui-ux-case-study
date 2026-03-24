@@ -11,8 +11,8 @@ const props = defineProps<{
 </script>
 
 <template>
-  <!-- Height based on viewport minus header (h-11 = 44px) -->
-  <div class="flex flex-col h-[calc(100vh-2.75rem)] lg:flex-row overflow-hidden border rounded-xl mx-4 lg:mx-6 mb-6">
+  <!-- Height based on viewport minus header (h-11 = 44px) on desktop, auto on mobile -->
+  <div class="flex flex-col h-auto lg:h-[calc(100vh-2.75rem)] lg:flex-row overflow-hidden border rounded-xl mx-4 lg:mx-6 mb-6">
     <!-- Bad Side (Left) -->
     <section
       class="flex-1 flex flex-col relative bg-red-50/50 dark:bg-red-950/10 border-b lg:border-b-0 lg:border-r overflow-hidden">
@@ -50,7 +50,7 @@ const props = defineProps<{
 
       <!-- Reveal Overlay -->
       <div v-if="!isRevealed"
-        class="absolute inset-0 z-20 top-[49px] flex flex-col items-center justify-center bg-background/5 backdrop-blur-[1px]">
+        class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-background/5 backdrop-blur-[1px] pt-[49px]">
         <button @click="isRevealed = true"
           class="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold shadow-xl hover:bg-primary/90 transition-all hover:scale-105">
           <Eye class="h-4 w-4" /> 點擊查看改善結果

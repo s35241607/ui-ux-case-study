@@ -9,13 +9,22 @@ import {
 import {
   Layers, Home, Github
 } from 'lucide-vue-next'
+import { useSidebar } from '@/components/ui/sidebar'
 
 const GITHUB_URL = 'https://github.com/s35241607/ui-ux-case-study'
 import { caseGroups, categoryMeta } from '@/config/cases'
 
 const route = useRoute()
 const router = useRouter()
+const { setOpenMobile, isMobile } = useSidebar()
 const currentPath = computed(() => route.path)
+
+const navigateTo = (path: string) => {
+  router.push(path)
+  if (isMobile.value) {
+    setOpenMobile(false)
+  }
+}
 </script>
 
 <template>
@@ -49,7 +58,7 @@ const currentPath = computed(() => route.path)
         <SidebarMenu>
           <SidebarMenuItem>
             <!-- NOT asChild: let SidebarMenuButton own the 8×8 collapsed box so hover is always centered -->
-            <SidebarMenuButton :isActive="currentPath === '/'" tooltip="首頁" @click="router.push('/')"
+            <SidebarMenuButton :isActive="currentPath === '/'" tooltip="首頁" @click="navigateTo('/')"
               class="gap-2.5 group-data-[collapsible=icon]:!p-0 group-data-[collapsible=icon]:justify-center">
               <Home class="h-4 w-4 shrink-0 text-muted-foreground" />
               <span>首頁</span>
@@ -71,7 +80,7 @@ const currentPath = computed(() => route.path)
             <SidebarMenu>
               <SidebarMenuItem v-for="item in group.cases" :key="item.path">
                 <SidebarMenuButton :isActive="currentPath === item.path" :tooltip="item.title.split(' (')[0]"
-                  @click="router.push(item.path)"
+                  @click="navigateTo(item.path)"
                   class="gap-2.5 group-data-[collapsible=icon]:!p-0 group-data-[collapsible=icon]:justify-center">
                   <component :is="item.icon" class="h-4 w-4 shrink-0 text-muted-foreground" />
                   <span>{{ item.title.split(' (')[0] }}</span>

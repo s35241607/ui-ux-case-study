@@ -38,21 +38,21 @@ const breadcrumbs = computed(() => {
     <div class="w-px h-4 bg-border shrink-0" />
 
     <!-- Breadcrumb -->
-    <div class="flex items-center gap-2 flex-1 min-w-0">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink as-child class="text-muted-foreground hover:text-foreground transition-colors text-xs">
+    <div class="flex items-center gap-2 flex-1 min-w-0 overflow-hidden">
+      <Breadcrumb class="min-w-0 overflow-hidden">
+        <BreadcrumbList class="flex-nowrap">
+          <BreadcrumbItem class="shrink-0">
+            <BreadcrumbLink as-child class="text-muted-foreground hover:text-foreground transition-colors text-xs whitespace-nowrap">
               <router-link to="/">首頁</router-link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <template v-for="(crumb, index) in breadcrumbs" :key="crumb.path">
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage v-if="index === breadcrumbs.length - 1" class="text-xs font-medium max-w-[280px] truncate">
+            <BreadcrumbSeparator class="shrink-0" />
+            <BreadcrumbItem class="min-w-0">
+              <BreadcrumbPage v-if="index === breadcrumbs.length - 1" class="text-xs font-medium truncate">
                 {{ crumb.title.split(' (')[0] }}
               </BreadcrumbPage>
-              <BreadcrumbLink v-else as-child class="text-muted-foreground hover:text-foreground transition-colors text-xs">
+              <BreadcrumbLink v-else as-child class="text-muted-foreground hover:text-foreground transition-colors text-xs truncate">
                 <router-link :to="crumb.path">{{ crumb.title.split(' (')[0] }}</router-link>
               </BreadcrumbLink>
             </BreadcrumbItem>

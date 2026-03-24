@@ -108,8 +108,8 @@ defineExpose({ open })
 
     <!-- Modal -->
     <Transition name="search-modal">
-      <div v-if="isOpen" class="fixed left-1/2 top-[20%] z-50 w-full max-w-xl -translate-x-1/2 px-4">
-        <div class="rounded-xl border bg-popover shadow-2xl overflow-hidden">
+      <div v-if="isOpen" class="fixed left-1/2 top-[10%] sm:top-[20%] z-50 w-full max-w-[calc(100vw-2rem)] sm:max-w-xl -translate-x-1/2">
+        <div class="rounded-xl border bg-popover shadow-2xl overflow-hidden flex flex-col max-h-[80vh] sm:max-h-none">
           <!-- Search input -->
           <div class="flex items-center gap-3 px-4 border-b">
             <Search class="h-4 w-4 text-muted-foreground shrink-0" />
